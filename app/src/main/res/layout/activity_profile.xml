@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="20dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    tools:context=".ProfileActivity"
+    android:background="@drawable/profilebg">
+
+    <!-- Customer Image -->
+
+    <ImageView
+        android:id="@+id/ivCustImage"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/pikeslogo" />
+
+    <!-- First Name -->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/tvFirstName"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_below="@id/ivCustImage"-->
+    <!--        android:layout_alignParentStart="true"-->
+    <!--        android:layout_marginStart="14dp"-->
+    <!--        android:layout_marginTop="135dp"-->
+    <!--        android:text="First Name"-->
+    <!--        android:textColor="@color/blue"-->
+    <!--        android:textStyle="bold" />-->
+
+    <TextView
+        android:id="@+id/FirstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="180dp"
+        android:text=""
+        android:textColor="@color/white"
+        android:fontFamily="serif"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <!-- Last Name -->
+    <!--    <TextView-->
+    <!--        android:id="@+id/tvLastName"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_below="@id/tvFirstName"-->
+    <!--        android:layout_alignParentStart="true"-->
+    <!--        android:layout_marginStart="199dp"-->
+    <!--        android:layout_marginTop="-21dp"-->
+    <!--        android:text="Last Name"-->
+    <!--        android:textColor="@color/blue"-->
+    <!--        android:textStyle="bold" />-->
+
+    <TextView
+        android:id="@+id/LastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="180dp"
+        android:text=""
+        android:textColor="@color/white"
+        android:fontFamily="serif"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+
+    <!-- Age -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="225dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/whitebackground"
+        android:elevation="4dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="345dp"
+            android:layout_height="90dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:text="Personal Information"
+            android:textColor="@color/blue"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+           >
+
+            <TextView
+                android:id="@+id/tvAddress"
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:drawableLeft="@drawable/baseline_house_24"
+                android:drawableTint="@color/blue"
+                android:text="Address"
+                android:textColor="@color/blue"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/Address"
+                android:layout_width="68dp"
+                android:layout_height="match_parent"
+                android:text=""
+                android:textSize="12sp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    >
+
+                    <TextView
+                        android:id="@+id/tvAge"
+                        android:layout_width="55dp"
+                        android:layout_height="wrap_content"
+                        android:text="Age"
+                        android:textColor="@color/blue"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:drawableTint="@color/blue"
+                        android:drawableLeft="@drawable/baseline_person_outline_24"
+                        />
+
+                    <TextView
+                        android:id="@+id/Age"
+                        android:layout_width="68dp"
+                        android:textSize="15sp"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tvSex"
+                        android:layout_width="55dp"
+                        android:layout_height="wrap_content"
+                        android:text="Sex"
+                        android:textColor="@color/blue"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:drawableTint="@color/blue"
+                        android:drawableLeft="@drawable/baseline_person_outline_24"
+                        />
+
+                    <TextView
+                        android:id="@+id/Sex"
+                        android:layout_width="68dp"
+                        android:textSize="15sp"
+                        android:layout_height="wrap_content"
+                        android:text=""/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tvContact"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:text="Contact"
+                        android:textColor="@color/blue"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:drawableTint="@color/blue"
+                        android:drawableLeft="@drawable/outline_phone_android_24"
+                        />
+
+                    <TextView
+                        android:id="@+id/Contact"
+                        android:layout_width="90dp"
+                        android:textSize="13sp"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tvIdType"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/outline_assignment_ind_24"
+                        android:drawableTint="@color/blue"
+                        android:text="ID Type"
+                        android:textColor="@color/blue"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/IdType"
+                        android:layout_width="68dp"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    >
+
+                    <!-- Customer Valid ID -->
+                    <ImageView
+                        android:id="@+id/ivCustValidId"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        android:src="@drawable/pikeslogo"
+                        android:layout_marginStart="8dp"/>
+
+                    <!-- Customer GCash QR -->
+                    <ImageView
+                        android:id="@+id/ivCustGcashQr"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        android:layout_toEndOf="@id/ivCustValidId"
+                        android:src="@drawable/pikeslogo"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:layout_marginTop="460dp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginStart="10dp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="490dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/whitebackground"
+        android:elevation="4dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Orders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:drawableRight="@drawable/baseline_chevron_right_24"
+            android:drawableTint="@color/blue"
+            android:text="Orders / Requests"
+            android:textColor="@color/blue"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="535dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/whitebackground"
+        android:elevation="4dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Cart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:drawableRight="@drawable/baseline_chevron_right_24"
+            android:drawableTint="@color/blue"
+            android:text="My Cart"
+            android:textColor="@color/blue"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="580dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/whitebackground"
+        android:elevation="4dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Deceased"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:drawableRight="@drawable/baseline_chevron_right_24"
+            android:drawableTint="@color/blue"
+            android:text="Deceased"
+            android:textColor="@color/blue"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="625dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/whitebackground"
+        android:elevation="4dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Requestz"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:drawableRight="@drawable/baseline_chevron_right_24"
+            android:drawableTint="@color/blue"
+            android:text="Request"
+            android:textColor="@color/blue"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="685dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/whitebackground"
+        android:elevation="4dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:textAlignment="center"
+            android:text="Logout"
+            android:textColor="@color/blue"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Bottom Navigation View -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_navigation_menu" />
+
+</RelativeLayout>

@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+        tools:context=".DeceasedaddActivity">
+
+        <TextView
+            android:id="@+id/addDeceasedLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Deceased"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:id="@+id/fnameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/addDeceasedLabel"
+            android:text="First Name"/>
+        <EditText
+            android:id="@+id/fname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fnameLabel"
+            android:hint="First Name"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/mnameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fname"
+            android:text="Middle Name"/>
+        <EditText
+            android:id="@+id/mname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mnameLabel"
+            android:hint="Middle Name"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/lnameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mname"
+            android:text="Last Name"/>
+        <EditText
+            android:id="@+id/lname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lnameLabel"
+            android:hint="Last Name"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/relationshipLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lname"
+            android:text="Relationship"/>
+        <EditText
+            android:id="@+id/relationship"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/relationshipLabel"
+            android:hint="Relationship"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/causeofdeathLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/relationship"
+            android:text="Cause of Death"/>
+        <EditText
+            android:id="@+id/causeofdeath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/causeofdeathLabel"
+            android:hint="Cause of Death"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/sexLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/causeofdeath"
+            android:text="Sex"/>
+        <EditText
+            android:id="@+id/sex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sexLabel"
+            android:hint="Sex"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/religionLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sex"
+            android:text="Religion"/>
+        <EditText
+            android:id="@+id/religion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/religionLabel"
+            android:hint="Religion"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/ageLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/religion"
+            android:text="Age"/>
+        <EditText
+            android:id="@+id/age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ageLabel"
+            android:hint="Age"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/dateofbirthLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/age"
+            android:text="Date of Birth"/>
+        <EditText
+            android:id="@+id/dateofbirth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dateofbirthLabel"
+            android:hint="Date of Birth"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/dateofdeathLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dateofbirth"
+            android:text="Date of Death"/>
+        <EditText
+            android:id="@+id/dateofdeath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dateofdeathLabel"
+            android:hint="Date of Death"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/placeofdeathLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dateofdeath"
+            android:text="Place of Death"/>
+        <EditText
+            android:id="@+id/placeofdeath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/placeofdeathLabel"
+            android:hint="Place of Death"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/citizenshipLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/placeofdeath"
+            android:text="Citizenship"/>
+        <EditText
+            android:id="@+id/citizenship"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/citizenshipLabel"
+            android:hint="Citizenship"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/addressLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/citizenship"
+            android:text="Address"/>
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/addressLabel"
+            android:hint="Address"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/civilstatusLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/address"
+            android:text="Civil Status"/>
+        <EditText
+            android:id="@+id/civilstatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/civilstatusLabel"
+            android:hint="Civil Status"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/occupationLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/civilstatus"
+            android:text="Occupation"/>
+        <EditText
+            android:id="@+id/occupation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/occupationLabel"
+            android:hint="Occupation"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/namecemeteryLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/occupation"
+            android:text="Cemetery Name"/>
+        <EditText
+            android:id="@+id/namecemetery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/namecemeteryLabel"
+            android:hint="Cemetery Name"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/addresscemeteryLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/namecemetery"
+            android:text="Cemetery Address"/>
+        <EditText
+            android:id="@+id/addresscemetery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/addresscemeteryLabel"
+            android:hint="Cemetery Address"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/nameFatherLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/addresscemetery"
+            android:text="Father Name"/>
+        <EditText
+            android:id="@+id/nameFather"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nameFatherLabel"
+            android:hint="Father Name"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/nameMotherLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nameFather"
+            android:text="Mother Name"/>
+        <EditText
+            android:id="@+id/nameMother"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nameMotherLabel"
+            android:hint="Mother Name"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <Button
+            android:id="@+id/addDeceased"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nameMother"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:text="Add Deceased" />
+
+
+
+    </RelativeLayout>
+</ScrollView>

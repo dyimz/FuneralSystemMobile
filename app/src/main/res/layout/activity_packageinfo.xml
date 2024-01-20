@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            tools:context=".PackageinfoActivity">
+
+            <TextView
+                android:id="@+id/nameLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true" />
+
+            <ImageView
+                android:id="@+id/packageImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@id/nameLabel"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/addimage"/>
+
+            <TextView
+                android:id="@+id/priceLabel"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_marginTop="8dp"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_below="@id/packageImage"
+                android:layout_alignParentRight="true" />
+
+            <TextView
+                android:id="@+id/descriptionLabel"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/priceLabel"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Inclusions "
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginTop="15dp"
+                android:layout_below="@id/descriptionLabel"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/inclusionsLabel"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="140dp"
+                android:layout_below="@id/Label"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"/>
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/Inquire"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="90dp"
+        android:text="Inquire" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:menu="@menu/bottom_navigation_menu" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

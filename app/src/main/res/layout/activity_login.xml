@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="16dp"
+    tools:context=".LoginActivity"
+    android:background="@drawable/frontbg">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="113dp"
+        android:layout_height="119dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/pikeslogo" />
+<!--    <TextView-->
+<!--        android:id="@+id/LoginLabel"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Login"-->
+<!--        android:textSize="30sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:layout_marginBottom="30dp"/>-->
+
+    <TextView
+        android:id="@+id/tvEmailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:layout_marginTop="10dp"
+        android:text="Email"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="14sp"/>
+
+    <EditText
+        android:id="@+id/etUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvEmailLabel"
+        android:hint="example@gmail.com"
+        android:inputType="text"
+        android:padding="8dp"
+        android:background="#30ffffff"
+        android:drawableLeft="@drawable/baseline_mail_outline_24"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:textColor="@color/white"
+        android:textColorHint="@color/light"/>
+
+    <TextView
+        android:id="@+id/tvPasswordLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etUsername"
+        android:layout_marginTop="16dp"
+        android:text="Password"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="14sp"/>
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvPasswordLabel"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:padding="8dp"
+        android:background="#30ffffff"
+        android:drawableLeft="@drawable/outline_lock_24"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:textColor="@color/white"
+        android:textColorHint="@color/light"/>
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etPassword"
+        android:layout_marginTop="45dp"
+        android:text="Login"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/blue"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/txtRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnLogin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Don't have an account? Register here"
+        android:textColor="@android:color/white"
+        />
+
+</RelativeLayout>
