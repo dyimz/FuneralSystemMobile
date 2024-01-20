@@ -18,6 +18,17 @@
         android:layout_marginTop="4dp"/>
 
     <TextView
+        android:id="@+id/textViewQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quantity"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="4dp"
+        android:gravity="end"/>
+
+    <TextView
         android:id="@+id/textViewPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,4 +37,7 @@
         android:textColor="@android:color/black"
         android:layout_marginTop="4dp"
         android:gravity="end"/>
+
+
+
 </LinearLayout>

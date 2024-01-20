@@ -28,7 +28,10 @@ public class CheckoutAdapter extends ArrayAdapter<Product> {
         textViewName.setText(product.getName());
 
         TextView textViewPrice = view.findViewById(R.id.textViewPrice);
-        textViewPrice.setText("Price: " + product.getPrice());
+        textViewPrice.setText("     Price: " + product.getPrice());
+
+        TextView textViewQuantity = view.findViewById(R.id.textViewQuantity);
+        textViewQuantity.setText("Qty: " + product.getQuantity());
 
         // Add more TextViews for other properties
 

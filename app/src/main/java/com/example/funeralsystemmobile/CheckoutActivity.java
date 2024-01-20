@@ -97,7 +97,7 @@ public class CheckoutActivity extends AppCompatActivity {
                                 product.setPrice(productObject.getInt("price"));
                                 product.setImg(productObject.getString("img"));
                                 product.setCategory(productObject.getString("category"));
-                                product.setStock(productObject.getInt("stock"));
+                                product.setQuantity(productObject.getInt("quantity"));
                                 // Set other properties similarly
                                 productList.add(product);
                             }
