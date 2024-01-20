@@ -82,11 +82,10 @@ public class OrderActivity extends AppCompatActivity {
 
                                 // Extract data from JSON and set it in the Deceased object
                                 order.setId(productObject.getInt("id"));
-                                order.setCustomerID(productObject.getInt("customerID"));
                                 order.setName(productObject.getString("name"));
                                 order.setAddress(productObject.getString("address"));
                                 order.setContact(productObject.getString("contact"));
-                                order.setTotal(productObject.getInt("total"));
+                                order.setTotal(productObject.getInt("total_price"));
                                 order.setType(productObject.getString("type"));
                                 order.setMOP(productObject.getString("MOP"));
                                 order.setStatus(productObject.getString("status"));
