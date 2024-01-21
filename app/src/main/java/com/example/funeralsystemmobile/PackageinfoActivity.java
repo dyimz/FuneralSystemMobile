@@ -141,7 +141,6 @@ public class PackageinfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                    Toast.makeText(getApplicationContext(), productId, Toast.LENGTH_SHORT).show();
-//                    Toast.makeText(getApplicationContext(), scustid, Toast.LENGTH_SHORT).show();
             }
         });
 
