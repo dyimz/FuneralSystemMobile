@@ -80,6 +80,8 @@ public class PackageinfoActivity extends AppCompatActivity {
                                 String name = response.getString("name");
                                 String description = response.getString("description");
                                 String inclusions = response.getString("inclusions");
+                                String[] inclusionArray = inclusions.split(", ");
+                                String formattedInclusions = String.join("\n", inclusionArray);
                                 String img = response.getString("img");
                                 String price = String.valueOf(response.getInt("price"));
                                 String category = response.getString("category");
@@ -97,7 +99,7 @@ public class PackageinfoActivity extends AppCompatActivity {
                                 TextView priceLabel = findViewById(R.id.priceLabel);
                                 priceLabel.setText("Php: " + price);
                                 TextView inclusionsLabel = findViewById(R.id.inclusionsLabel);
-                                inclusionsLabel.setText(inclusions);
+                                inclusionsLabel.setText(formattedInclusions );
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
