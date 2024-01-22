@@ -87,7 +87,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/Inquire"
+        android:id="@+id/InquirePackage"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"

@@ -1,5 +1,6 @@
 package com.example.funeralsystemmobile;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,7 +30,7 @@ import org.json.JSONObject;
 
 public class PackageinfoActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
-    private String packageID;
+    private String packageID, name, inclusions, price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,13 +80,13 @@ public class PackageinfoActivity extends AppCompatActivity {
                             // Handle the response from the profile endpoint
                             try {
                                 // Parse and use profile information
-                                String name = response.getString("name");
+                                name = response.getString("name");
                                 String description = response.getString("description");
-                                String inclusions = response.getString("inclusions");
+                                inclusions = response.getString("inclusions");
                                 String[] inclusionArray = inclusions.split(", ");
                                 String formattedInclusions = String.join("\n", inclusionArray);
                                 String img = response.getString("img");
-                                String price = String.valueOf(response.getInt("price"));
+                                price = String.valueOf(response.getInt("price"));
                                 String category = response.getString("category");
 
                                 // Update your UI with profile information
@@ -136,11 +137,21 @@ public class PackageinfoActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Error Fetching Data", Toast.LENGTH_SHORT).show();
         }
 
-        Button AddToCart = findViewById(R.id.Inquire);
-        AddToCart.setOnClickListener(new View.OnClickListener() {
+        Button InquirePackage = findViewById(R.id.InquirePackage);
+        InquirePackage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                    Toast.makeText(getApplicationContext(), productId, Toast.LENGTH_SHORT).show();
+                // Create an Intent to start the NewActivity
+                Intent intent = new Intent(getApplicationContext(), InquireActivity.class);
+
+                // Put the packageID as an extra in the intent
+                intent.putExtra("packageID", packageID);
+                intent.putExtra("name", name);
+                intent.putExtra("price", price);
+                intent.putExtra("inclusions", inclusions);
+
+                // Start the new activity
+                startActivity(intent);
             }
         });
 

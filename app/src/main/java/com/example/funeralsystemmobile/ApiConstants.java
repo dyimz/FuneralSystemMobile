@@ -28,4 +28,7 @@ public class ApiConstants {
     public static final String checkoutURL = BASE_URL + "api/checkout/";
     public static final String orderListURL = BASE_URL + "api/orderList/";
 
+    public static final String inquirePackageURL = BASE_URL + "api/inquirePackage/";
+
+
 }
