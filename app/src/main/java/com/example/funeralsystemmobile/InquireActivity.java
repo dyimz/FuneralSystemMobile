@@ -75,7 +75,7 @@ public class InquireActivity extends AppCompatActivity {
         transferPermit = findViewById(R.id.transferPermit);
         swabTest = findViewById(R.id.swabTest);
         proofOfDeath = findViewById(R.id.proofOfDeath);
-        description = findViewById(R.id.description);
+//        description = findViewById(R.id.description);
 
         packageName.setText("Package: " + name);
         packagePrice.setText("Price: " + price);

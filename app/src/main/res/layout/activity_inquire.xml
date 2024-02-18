@@ -4,9 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:paddingTop="20dp"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
@@ -57,13 +58,12 @@
             android:id="@+id/fnameLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/deceasedInfo"
             android:text="First Name"/>
+
         <EditText
             android:id="@+id/fname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/fnameLabel"
             android:hint="First Name"
             android:inputType="text"
             android:padding="8dp" />
@@ -72,13 +72,12 @@
             android:id="@+id/mnameLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/fname"
             android:text="Middle Name"/>
+
         <EditText
             android:id="@+id/mname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/mnameLabel"
             android:hint="Middle Name"
             android:inputType="text"
             android:padding="8dp" />
@@ -87,44 +86,13 @@
             android:id="@+id/lnameLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/mname"
             android:text="Last Name"/>
+
         <EditText
             android:id="@+id/lname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/lnameLabel"
             android:hint="Last Name"
-            android:inputType="text"
-            android:padding="8dp" />
-
-        <TextView
-            android:id="@+id/relationshipLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/lname"
-            android:text="Relationship"/>
-        <EditText
-            android:id="@+id/relationship"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/relationshipLabel"
-            android:hint="Relationship"
-            android:inputType="text"
-            android:padding="8dp" />
-
-        <TextView
-            android:id="@+id/causeofdeathLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/relationship"
-            android:text="Cause of Death"/>
-        <EditText
-            android:id="@+id/causeofdeath"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/causeofdeathLabel"
-            android:hint="Cause of Death"
             android:inputType="text"
             android:padding="8dp" />
 
@@ -132,44 +100,13 @@
             android:id="@+id/sexLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/causeofdeath"
             android:text="Sex"/>
+
         <EditText
             android:id="@+id/sex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/sexLabel"
             android:hint="Sex"
-            android:inputType="text"
-            android:padding="8dp" />
-
-        <TextView
-            android:id="@+id/religionLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/sex"
-            android:text="Religion"/>
-        <EditText
-            android:id="@+id/religion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/religionLabel"
-            android:hint="Religion"
-            android:inputType="text"
-            android:padding="8dp" />
-
-        <TextView
-            android:id="@+id/ageLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/religion"
-            android:text="Age"/>
-        <EditText
-            android:id="@+id/age"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/ageLabel"
-            android:hint="Age"
             android:inputType="text"
             android:padding="8dp" />
 
@@ -177,89 +114,13 @@
             android:id="@+id/dateofbirthLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/age"
             android:text="Date of Birth"/>
+
         <EditText
             android:id="@+id/dateofbirth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/dateofbirthLabel"
             android:hint="Date of Birth"
-            android:inputType="text"
-            android:padding="8dp" />
-
-        <TextView
-            android:id="@+id/dateofdeathLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/dateofbirth"
-            android:text="Date of Death"/>
-        <EditText
-            android:id="@+id/dateofdeath"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/dateofdeathLabel"
-            android:hint="Date of Death"
-            android:inputType="text"
-            android:padding="8dp" />
-
-        <TextView
-            android:id="@+id/placeofdeathLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/dateofdeath"
-            android:text="Place of Death"/>
-        <EditText
-            android:id="@+id/placeofdeath"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/placeofdeathLabel"
-            android:hint="Place of Death"
-            android:inputType="text"
-            android:padding="8dp" />
-
-        <TextView
-            android:id="@+id/citizenshipLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/placeofdeath"
-            android:text="Citizenship"/>
-        <EditText
-            android:id="@+id/citizenship"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/citizenshipLabel"
-            android:hint="Citizenship"
-            android:inputType="text"
-            android:padding="8dp" />
-
-        <TextView
-            android:id="@+id/addressLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/citizenship"
-            android:text="Address"/>
-        <EditText
-            android:id="@+id/address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/addressLabel"
-            android:hint="Address"
-            android:inputType="text"
-            android:padding="8dp" />
-
-        <TextView
-            android:id="@+id/civilstatusLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/address"
-            android:text="Civil Status"/>
-        <EditText
-            android:id="@+id/civilstatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/civilstatusLabel"
-            android:hint="Civil Status"
             android:inputType="text"
             android:padding="8dp" />
 
@@ -267,74 +128,27 @@
             android:id="@+id/occupationLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/civilstatus"
             android:text="Occupation"/>
+
         <EditText
             android:id="@+id/occupation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/occupationLabel"
             android:hint="Occupation"
             android:inputType="text"
             android:padding="8dp" />
 
         <TextView
-            android:id="@+id/namecemeteryLabel"
+            android:id="@+id/imageLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/occupation"
-            android:text="Cemetery Name"/>
-        <EditText
-            android:id="@+id/namecemetery"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/namecemeteryLabel"
-            android:hint="Cemetery Name"
-            android:inputType="text"
-            android:padding="8dp" />
+            android:text="Image"/>
 
-        <TextView
-            android:id="@+id/addresscemeteryLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/namecemetery"
-            android:text="Cemetery Address"/>
         <EditText
-            android:id="@+id/addresscemetery"
+            android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/addresscemeteryLabel"
-            android:hint="Cemetery Address"
-            android:inputType="text"
-            android:padding="8dp" />
-
-        <TextView
-            android:id="@+id/nameFatherLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/addresscemetery"
-            android:text="Father Name"/>
-        <EditText
-            android:id="@+id/nameFather"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/nameFatherLabel"
-            android:hint="Father Name"
-            android:inputType="text"
-            android:padding="8dp" />
-
-        <TextView
-            android:id="@+id/nameMotherLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/nameFather"
-            android:text="Mother Name"/>
-        <EditText
-            android:id="@+id/nameMother"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/nameMotherLabel"
-            android:hint="Mother Name"
+            android:hint="Image"
             android:inputType="text"
             android:padding="8dp" />
 
@@ -342,13 +156,12 @@
             android:id="@+id/idTypeLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/nameMother"
             android:text="ID Type"/>
+
         <EditText
             android:id="@+id/idType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/idTypeLabel"
             android:hint="ID Type"
             android:inputType="text"
             android:padding="8dp" />
@@ -357,59 +170,153 @@
             android:id="@+id/validIdLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/idType"
             android:text="Valid ID"/>
+
         <EditText
             android:id="@+id/validId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/validIdLabel"
             android:hint="Valid ID"
             android:inputType="text"
             android:padding="8dp" />
 
         <TextView
-            android:id="@+id/imageLabel"
+            android:id="@+id/relationshipLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/validId"
-            android:text="Image"/>
+            android:text="Relationship"/>
+
         <EditText
-            android:id="@+id/image"
+            android:id="@+id/relationship"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/imageLabel"
-            android:hint="Image"
+            android:hint="Relationship"
             android:inputType="text"
             android:padding="8dp" />
 
         <TextView
-            android:id="@+id/transferPermitLabel"
+            android:id="@+id/religionLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/image"
-            android:text="Transfer Permit"/>
+            android:text="Religion"/>
+
         <EditText
-            android:id="@+id/transferPermit"
+            android:id="@+id/religion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/transferPermitLabel"
-            android:hint="Transfer Permit"
+            android:hint="Religion"
             android:inputType="text"
             android:padding="8dp" />
 
         <TextView
-            android:id="@+id/swabTestLabel"
+            android:id="@+id/addressLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/transferPermit"
-            android:text="Swab Test"/>
+            android:text="Address"/>
+
         <EditText
-            android:id="@+id/swabTest"
+            android:id="@+id/address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/swabTestLabel"
-            android:hint="Swab Test"
+            android:hint="Address"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/citizenshipLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Citizenship"/>
+
+        <EditText
+            android:id="@+id/citizenship"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Citizenship"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/civilstatusLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Civil Status"/>
+
+        <EditText
+            android:id="@+id/civilstatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Civil Status"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/nameMotherLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mother's Name"/>
+
+        <EditText
+            android:id="@+id/nameMother"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mother's Name"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/nameFatherLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Father's Name"/>
+
+        <EditText
+            android:id="@+id/nameFather"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Father's Name"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/optionDeathLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Option Death"/>
+
+        <EditText
+            android:id="@+id/optionDeath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="HOSPITAL/HOUSE/PUBLIC"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/dateofdeathLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date of Death"/>
+
+        <EditText
+            android:id="@+id/dateofdeath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="HOSPITAL/HOUSE/PUBLIC/date"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/causeofdeathLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cause of Death"/>
+
+        <EditText
+            android:id="@+id/causeofdeath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="HOSPITAL/HOUSE/PUBLIC/text"
             android:inputType="text"
             android:padding="8dp" />
 
@@ -417,42 +324,499 @@
             android:id="@+id/proofOfDeathLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/swabTest"
             android:text="Proof of Death"/>
+
         <EditText
             android:id="@+id/proofOfDeath"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/proofOfDeathLabel"
-            android:hint="Proof of Death"
+            android:hint="HOSPITAL/HOUSE/PUBLIC/imagename"
             android:inputType="text"
             android:padding="8dp" />
 
         <TextView
-            android:id="@+id/descriptionLabel"
+            android:id="@+id/placeofdeathLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/proofOfDeath"
-            android:text="Description"/>
+            android:text="Place of Death"/>
+
         <EditText
-            android:id="@+id/description"
+            android:id="@+id/placeofdeath"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/descriptionLabel"
-            android:hint="Description"
+            android:hint="HOSPITAL/PUBLIC/txt"
             android:inputType="text"
             android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/transferPermitLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Transfer Permit"/>
+
+        <EditText
+            android:id="@+id/transferPermit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="HOSPITAL/HOUSE/image name"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/swabTestLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Swab Test"/>
+
+        <EditText
+            android:id="@+id/swabTest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="HOSPITAL/imagename"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/otherDocumentsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Other Documents"/>
+
+        <EditText
+            android:id="@+id/otherDocuments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="PUBLIC"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/casketSizeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Size of Casket"/>
+
+        <EditText
+            android:id="@+id/casketSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="INFANT/CHILD/STANDARD/OVERSIZED"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/removeGlassLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remove the Glass"/>
+
+        <EditText
+            android:id="@+id/removeGlass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="YES/NO"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/addLightsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Lights"/>
+
+        <EditText
+            android:id="@+id/addLights"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="YES/NO"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/clothesSizeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Size of Clothes"/>
+
+        <EditText
+            android:id="@+id/clothesSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="INFANT/CHILD/STANDARD/OVERSIZED"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/injectFormalinLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inject Formalin"/>
+
+        <EditText
+            android:id="@+id/injectFormalin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="YES/NO"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/haveMakeUpLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Have Make-Up"/>
+
+        <EditText
+            android:id="@+id/haveMakeUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="YES/NO"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/availHearsesLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Avail Hearses"/>
+
+        <EditText
+            android:id="@+id/availHearses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="YES/NO"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/crematedLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cremated"/>
+
+        <EditText
+            android:id="@+id/cremated"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="YES/NO"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/standingFlowersLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Standing Flowers"/>
+
+        <EditText
+            android:id="@+id/standingFlowers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="YES/NO"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/lightsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lights"/>
+
+        <EditText
+            android:id="@+id/lights"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="0/1"
+            android:inputType="number"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/candleStandLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Candle Stand"/>
+
+        <EditText
+            android:id="@+id/candleStand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="0/1"
+            android:inputType="number"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/flooringFlowersLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Flooring Flowers"/>
+
+        <EditText
+            android:id="@+id/flooringFlowers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="0/1"
+            android:inputType="number"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/crossLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cross"/>
+
+        <EditText
+            android:id="@+id/cross"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="0/1"
+            android:inputType="number"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/tarpaulinLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tarpaulin"/>
+
+        <EditText
+            android:id="@+id/tarpaulin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="0/1"
+            android:inputType="number"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/curtainsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Curtains"/>
+
+        <EditText
+            android:id="@+id/curtains"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="0/1"
+            android:inputType="number"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/candlesLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Candles"/>
+
+        <EditText
+            android:id="@+id/candles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="0/1"
+            android:inputType="number"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/balloonsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Balloons"/>
+
+        <EditText
+            android:id="@+id/balloons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="0/1"
+            android:inputType="number"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/messageLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Message"/>
+
+        <EditText
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:hint="Enter your message here"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/noteLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Note"/>
+
+        <EditText
+            android:id="@+id/note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:hint="Enter any additional notes"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/locationFromLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location From"/>
+
+        <EditText
+            android:id="@+id/locationFrom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="LOCATION"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/locationToLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location To"/>
+
+        <EditText
+            android:id="@+id/locationTo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="LOCATION"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/wakeFromLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wake From"/>
+
+        <EditText
+            android:id="@+id/wakeFrom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="DATE"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/wakeToLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wake To"/>
+
+        <EditText
+            android:id="@+id/wakeTo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="DATE"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/nameCemeteryLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name of Cemetery"/>
+
+        <EditText
+            android:id="@+id/nameCemetery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/addressCemeteryLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address of Cemetery"/>
+
+        <EditText
+            android:id="@+id/addressCemetery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/obituaryDescriptionLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Obituary Description"/>
+
+        <EditText
+            android:id="@+id/obituaryDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/valuablePropertyLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Valuable Property for Collateral"/>
+
+        <EditText
+            android:id="@+id/valuableProperty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/proofOwnershipLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Proof That You Own the Property"/>
+
+        <EditText
+            android:id="@+id/proofOwnership"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="image name"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/uploadSignatureLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload Image of Signature"/>
+
+        <EditText
+            android:id="@+id/uploadSignature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="image name"
+            android:inputType="text"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/modeOfPaymentLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mode of Payment"/>
+
+        <EditText
+            android:id="@+id/modeOfPayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="CASH/GCASH"
+            android:inputType="text"
+            android:padding="8dp" />
+
+
 
         <Button
             android:id="@+id/orderPackage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/description"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="30dp"
             android:text="Order Package" />
 
 
 
-    </RelativeLayout>
+    </LinearLayout>
 </ScrollView>
