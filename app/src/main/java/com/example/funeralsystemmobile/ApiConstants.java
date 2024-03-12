@@ -1,7 +1,7 @@
 package com.example.funeralsystemmobile;
 
 public class ApiConstants {
-    public static final String BASE_URL = "http://192.168.254.143:8080/";
+    public static final String BASE_URL = "https://pikesfuneral.com/";
 
     public static final String loginURL = BASE_URL + "api/login";
     public static final String registerURL = BASE_URL + "api/customerregister";
@@ -28,7 +28,7 @@ public class ApiConstants {
     public static final String checkoutURL = BASE_URL + "api/checkout/";
     public static final String orderListURL = BASE_URL + "api/orderList/";
 
-    public static final String inquirePackageURL = BASE_URL + "api/inquirePackage/";
+    public static final String inquirePackageURL = BASE_URL + "api/inquirePackage";
 
 
 }

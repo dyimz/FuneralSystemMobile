@@ -116,12 +116,15 @@
             android:layout_height="wrap_content"
             android:text="Date of Birth"/>
 
+
         <EditText
             android:id="@+id/dateofbirth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Date of Birth"
-            android:inputType="text"
+            android:hint="Date of Birth (dd/mm/yyyy)"
+            android:drawableEnd="@drawable/ic_calendar"
+            android:focusable="false"
+            android:inputType="none"
             android:padding="8dp" />
 
         <TextView
@@ -144,13 +147,28 @@
             android:layout_height="wrap_content"
             android:text="Image"/>
 
-        <EditText
-            android:id="@+id/image"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Image"
-            android:inputType="text"
-            android:padding="8dp" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/buttonChooseImage"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Choose Image"/>
+
+            <TextView
+                android:id="@+id/textViewImage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text=""
+                android:gravity="start"/>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/idTypeLabel"
@@ -172,13 +190,28 @@
             android:layout_height="wrap_content"
             android:text="Valid ID"/>
 
-        <EditText
-            android:id="@+id/validId"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Valid ID"
-            android:inputType="text"
-            android:padding="8dp" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/buttonChooseValidId"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Choose Image"/>
+
+            <TextView
+                android:id="@+id/textViewValidId"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text=""
+                android:gravity="start"/>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/relationshipLabel"
@@ -242,12 +275,10 @@
             android:layout_height="wrap_content"
             android:text="Civil Status"/>
 
-        <EditText
+        <Spinner
             android:id="@+id/civilstatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Civil Status"
-            android:inputType="text"
             android:padding="8dp" />
 
         <TextView
@@ -279,17 +310,54 @@
             android:padding="8dp" />
 
         <TextView
+            android:id="@+id/deathInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Death Information"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="25dp"/>
+
+        <TextView
             android:id="@+id/optionDeathLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Option Death"/>
+            android:text="Death Option"/>
 
-        <EditText
-            android:id="@+id/optionDeath"
+        <RadioGroup
+            android:id="@+id/radioGroupoptionDeath"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="HOSPITAL/HOUSE/PUBLIC"
-            android:inputType="text"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/radioButtonHospital"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hospital"
+                android:checked="true"/>
+            <RadioButton
+                android:id="@+id/radioButtonHouse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="House"/>
+            <RadioButton
+                android:id="@+id/radioButtonPublic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Public"/>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/categoryDeathLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Category of Death"/>
+
+        <Spinner
+            android:id="@+id/categoryDeath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:padding="8dp" />
 
         <TextView
@@ -302,8 +370,10 @@
             android:id="@+id/dateofdeath"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="HOSPITAL/HOUSE/PUBLIC/date"
-            android:inputType="text"
+            android:hint="Date of Death (dd/mm/yyyy)"
+            android:drawableEnd="@drawable/ic_calendar"
+            android:focusable="false"
+            android:inputType="none"
             android:padding="8dp" />
 
         <TextView
@@ -326,13 +396,29 @@
             android:layout_height="wrap_content"
             android:text="Proof of Death"/>
 
-        <EditText
-            android:id="@+id/proofOfDeath"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="HOSPITAL/HOUSE/PUBLIC/imagename"
-            android:inputType="text"
-            android:padding="8dp" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/buttonChooseProofOfDeath"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Choose Image"/>
+
+            <TextView
+                android:id="@+id/textViewProofOfDeath"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text=""
+                android:gravity="start"/>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/placeofdeathLabel"
@@ -354,13 +440,28 @@
             android:layout_height="wrap_content"
             android:text="Transfer Permit"/>
 
-        <EditText
-            android:id="@+id/transferPermit"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="HOSPITAL/HOUSE/image name"
-            android:inputType="text"
-            android:padding="8dp" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/buttonChooseTransferPermit"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Choose Image"/>
+
+            <TextView
+                android:id="@+id/textViewTransferPermit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text=""
+                android:gravity="start"/>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/swabTestLabel"
@@ -368,13 +469,29 @@
             android:layout_height="wrap_content"
             android:text="Swab Test"/>
 
-        <EditText
-            android:id="@+id/swabTest"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="HOSPITAL/imagename"
-            android:inputType="text"
-            android:padding="8dp" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/buttonSwabTest"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Choose Image"/>
+
+            <TextView
+                android:id="@+id/textViewSwabTest"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text=""
+                android:gravity="start"/>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/otherDocumentsLabel"
@@ -382,13 +499,38 @@
             android:layout_height="wrap_content"
             android:text="Other Documents"/>
 
-        <EditText
-            android:id="@+id/otherDocuments"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="PUBLIC"
-            android:inputType="text"
-            android:padding="8dp" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/buttonOtherDocuments"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Choose Image"/>
+
+            <TextView
+                android:id="@+id/textViewOtherDocuments"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text=""
+                android:gravity="start"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/servicesInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Services"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="25dp"/>
 
         <TextView
             android:id="@+id/casketSizeLabel"
@@ -396,13 +538,33 @@
             android:layout_height="wrap_content"
             android:text="Size of Casket"/>
 
-        <EditText
-            android:id="@+id/casketSize"
+        <RadioGroup
+            android:id="@+id/radioGroupCasketSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="INFANT/CHILD/STANDARD/OVERSIZED"
-            android:inputType="text"
-            android:padding="8dp" />
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/radioButtonInfantCasket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Infant"/>
+            <RadioButton
+                android:id="@+id/radioButtonChildCasket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Child"/>
+            <RadioButton
+                android:id="@+id/radioButtonStandardCasket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Standard"
+                android:checked="true"/>
+            <RadioButton
+                android:id="@+id/radioButtonOversizedCasket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Oversized"/>
+        </RadioGroup>
 
         <TextView
             android:id="@+id/removeGlassLabel"
@@ -410,13 +572,23 @@
             android:layout_height="wrap_content"
             android:text="Remove the Glass"/>
 
-        <EditText
-            android:id="@+id/removeGlass"
+        <RadioGroup
+            android:id="@+id/radioGroupRemoveGlass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="YES/NO"
-            android:inputType="text"
-            android:padding="8dp" />
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/radioButtonRemoveGlassYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"/>
+            <RadioButton
+                android:id="@+id/radioButtonRemoveGlassNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:checked="true"/>
+        </RadioGroup>
 
         <TextView
             android:id="@+id/addLightsLabel"
@@ -424,13 +596,24 @@
             android:layout_height="wrap_content"
             android:text="Add Lights"/>
 
-        <EditText
-            android:id="@+id/addLights"
+        <RadioGroup
+            android:id="@+id/radioGroupAddLights"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="YES/NO"
-            android:inputType="text"
-            android:padding="8dp" />
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/radioButtonAddLightsYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                />
+            <RadioButton
+                android:id="@+id/radioButtonAddLightsNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:checked="true"/>
+        </RadioGroup>
 
         <TextView
             android:id="@+id/clothesSizeLabel"
@@ -438,13 +621,33 @@
             android:layout_height="wrap_content"
             android:text="Size of Clothes"/>
 
-        <EditText
-            android:id="@+id/clothesSize"
+        <RadioGroup
+            android:id="@+id/radioGroupClothesSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="INFANT/CHILD/STANDARD/OVERSIZED"
-            android:inputType="text"
-            android:padding="8dp" />
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/radioButtonClothesInfant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Infant"/>
+            <RadioButton
+                android:id="@+id/radioButtonClothesChild"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Child"/>
+            <RadioButton
+                android:id="@+id/radioButtonClothesStandard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Standard"
+                android:checked="true"/>
+            <RadioButton
+                android:id="@+id/radioButtonClothesOversized"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Oversized"/>
+        </RadioGroup>
 
         <TextView
             android:id="@+id/injectFormalinLabel"
@@ -452,13 +655,23 @@
             android:layout_height="wrap_content"
             android:text="Inject Formalin"/>
 
-        <EditText
-            android:id="@+id/injectFormalin"
+        <RadioGroup
+            android:id="@+id/radioGroupInjectFormalin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="YES/NO"
-            android:inputType="text"
-            android:padding="8dp" />
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/radioButtonInjectFormalinYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"/>
+            <RadioButton
+                android:id="@+id/radioButtonInjectFormalinNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:checked="true"/>
+        </RadioGroup>
 
         <TextView
             android:id="@+id/haveMakeUpLabel"
@@ -466,13 +679,23 @@
             android:layout_height="wrap_content"
             android:text="Have Make-Up"/>
 
-        <EditText
-            android:id="@+id/haveMakeUp"
+        <RadioGroup
+            android:id="@+id/radioGroupHaveMakeup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="YES/NO"
-            android:inputType="text"
-            android:padding="8dp" />
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/radioButtonMakeupYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"/>
+            <RadioButton
+                android:id="@+id/radioButtonMakeupNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:checked="true"/>
+        </RadioGroup>
 
         <TextView
             android:id="@+id/availHearsesLabel"
@@ -480,13 +703,23 @@
             android:layout_height="wrap_content"
             android:text="Avail Hearses"/>
 
-        <EditText
-            android:id="@+id/availHearses"
+        <RadioGroup
+            android:id="@+id/radioGroupAvailableHearses"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="YES/NO"
-            android:inputType="text"
-            android:padding="8dp" />
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/radioButtonHearsesYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"/>
+            <RadioButton
+                android:id="@+id/radioButtonHearsesNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:checked="true"/>
+        </RadioGroup>
 
         <TextView
             android:id="@+id/crematedLabel"
@@ -494,13 +727,23 @@
             android:layout_height="wrap_content"
             android:text="Cremated"/>
 
-        <EditText
-            android:id="@+id/cremated"
+        <RadioGroup
+            android:id="@+id/radioGroupCremated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="YES/NO"
-            android:inputType="text"
-            android:padding="8dp" />
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/radioButtonCrematedYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"/>
+            <RadioButton
+                android:id="@+id/radioButtonCrematedNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:checked="true"/>
+        </RadioGroup>
 
         <TextView
             android:id="@+id/standingFlowersLabel"
@@ -512,9 +755,10 @@
             android:id="@+id/standingFlowers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="YES/NO"
+            android:hint="0/1"
             android:inputType="text"
             android:padding="8dp" />
+
 
         <TextView
             android:id="@+id/lightsLabel"
@@ -657,6 +901,16 @@
             android:padding="8dp" />
 
         <TextView
+            android:id="@+id/wakeInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wake/Burial Information"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="25dp"/>
+
+        <TextView
             android:id="@+id/locationFromLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -694,9 +948,11 @@
             android:id="@+id/wakeFrom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="DATE"
-            android:inputType="text"
-            android:padding="8dp" />
+            android:hint="Date of Death (dd/mm/yyyy)"
+            android:drawableEnd="@drawable/ic_calendar"
+            android:focusable="false"
+            android:inputType="none"
+            android:padding="8dp"/>
 
         <TextView
             android:id="@+id/wakeToLabel"
@@ -708,9 +964,11 @@
             android:id="@+id/wakeTo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="DATE"
-            android:inputType="text"
-            android:padding="8dp" />
+            android:hint="Date of Death (dd/mm/yyyy)"
+            android:drawableEnd="@drawable/ic_calendar"
+            android:focusable="false"
+            android:inputType="none"
+            android:padding="8dp"/>
 
         <TextView
             android:id="@+id/nameCemeteryLabel"
@@ -752,6 +1010,16 @@
             android:padding="8dp" />
 
         <TextView
+            android:id="@+id/paymentInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Payment Details"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="25dp"/>
+
+        <TextView
             android:id="@+id/valuablePropertyLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -770,13 +1038,28 @@
             android:layout_height="wrap_content"
             android:text="Proof That You Own the Property"/>
 
-        <EditText
-            android:id="@+id/proofOwnership"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="image name"
-            android:inputType="text"
-            android:padding="8dp" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/buttonProofOwnership"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Choose Image"/>
+
+            <TextView
+                android:id="@+id/textViewProofOwnership"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text=""
+                android:gravity="start"/>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/uploadSignatureLabel"
@@ -784,13 +1067,27 @@
             android:layout_height="wrap_content"
             android:text="Upload Image of Signature"/>
 
-        <EditText
-            android:id="@+id/uploadSignature"
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/buttonUploadSignature"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:hint="image name"
-            android:inputType="text"
-            android:padding="8dp" />
+            android:layout_weight="1"
+            android:text="Choose Image"/>
+
+        <TextView
+            android:id="@+id/textViewUploadSignature"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text=""
+            android:gravity="start"/>
+    </LinearLayout>
 
         <TextView
             android:id="@+id/modeOfPaymentLabel"
@@ -798,12 +1095,10 @@
             android:layout_height="wrap_content"
             android:text="Mode of Payment"/>
 
-        <EditText
+        <Spinner
             android:id="@+id/modeOfPayment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="CASH/GCASH"
-            android:inputType="text"
             android:padding="8dp" />
 
 

@@ -1,15 +1,28 @@
 package com.example.funeralsystemmobile;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,14 +36,56 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class InquireActivity extends AppCompatActivity {
-    private EditText fname, mname, lname, relationship, causeofdeath, sex, religion, age, dateofbirth,
-            dateofdeath, placeofdeath, citizenship, address, civilstatus, occupation, namecemetery, addresscemetery, nameFather, nameMother,
-            idType, validId, image, transferPermit, swabTest, proofOfDeath, description,
-            MOP;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.util.Calendar;
+import java.util.Locale;
 
+public class InquireActivity extends AppCompatActivity {
+    private EditText fname, mname, lname, relationship, causeofdeath, sex, religion,
+            placeofdeath, citizenship, address, occupation,nameFather, nameMother, idType;
+    private EditText standingflowers, lights, candleStand, flooringFlowers, cross, tarpaulin, curtains, candles, balloons, message,
+            note, locationFrom, locationTo, nameCemetery, addressCemetery, obituaryDescription, valuableProperty;
+
+    private RadioGroup radioGroupDeathLocation;
+    private RadioGroup radioGroupCasketSize, radioGroupRemoveGlass, radioGroupAddLights,
+            radioGroupClothesSize, radioGroupInjectFormalin, radioGroupAvailableHearses,
+            radioGroupHaveMakeup, radioGroupCremated;
+    private String optionDeath;
+    private String casketSize, removeGlass, addLights, clothesSize, injectFormalin,
+            availableHearses, haveMakeup, cremated;
+
+    private EditText editTextDateOfBirth;
+    private EditText editTextDateOfDeath;
+    private EditText editTextWakeFrom;
+    private EditText editTextWakeTo;
+    private Spinner spinnerCivilStatus;
+    private Spinner spinnerCategoryOfDeath;
+    private Spinner spinnerModeOfPayment;
+    private String selectedDateOfBirth = "";
+    private String selectedDateOfDeath = "";
+    private String selectedWakeFrom = "";
+    private String selectedWakeTo = "";
+    private String selectedCivilStatus;
+    private String selectedCategoryOfDeath;
+    private String selectedModeOfPayment;
     private Integer custid, packageID;
     private String token, name, price, inclusions;
+    private static final int PICK_IMAGE_IMAGE = 100;
+    private static final int PICK_IMAGE_VALID_ID = 101;
+    private static final int PICK_IMAGE_PROOF_OF_DEATH = 102;
+    private static final int PICK_IMAGE_TRANSFER_PERMIT = 103;
+    private static final int PICK_IMAGE_SWAB_TEST = 104;
+    private static final int PICK_IMAGE_OTHER_DOCUMENTS = 105;
+    private static final int PICK_IMAGE_PROOF_OWNERSHIP = 106;
+    private static final int PICK_IMAGE_SIGNATURE = 107;
+    private TextView textViewImage, textViewValidId, textViewProofOfDeath, textViewTransferPermit,
+            textViewSwabTest, textViewOtherDocuments, textViewProofOwnership, textViewUploadSignature;
+
+    // Variables to hold the base64 encoded images
+    private String encodedImagee = "", encodedValidId = "", encodedProofOfDeath = "", encodedTransferPermit = "",
+            encodedSwabTest = "", encodedOtherDocuments = "", encodedProofOwnership = "", encodedSignature = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,39 +102,87 @@ public class InquireActivity extends AppCompatActivity {
         TextView packageName = findViewById(R.id.packageName);
         TextView packagePrice = findViewById(R.id.packagePrice);
         TextView packageInclusions = findViewById(R.id.packageInclusions);
+        packageName.setText("Package: " + name);
+        packagePrice.setText("Price: " + price);
+        packageInclusions.setText("Inclusions: " + inclusions);
+
+        editTextDateOfBirth = findViewById(R.id.dateofbirth);
+        editTextDateOfDeath = findViewById(R.id.dateofdeath);
+        editTextWakeFrom = findViewById(R.id.wakeFrom);
+        editTextWakeTo = findViewById(R.id.wakeTo);
+        setupDatePicker(editTextDateOfBirth);
+        setupDatePicker(editTextDateOfDeath);
+        setupDatePicker(editTextWakeFrom);
+        setupDatePicker(editTextWakeTo);
+
+        spinnerCivilStatus = findViewById(R.id.civilstatus);
+        spinnerCategoryOfDeath = findViewById(R.id.categoryDeath);
+        spinnerModeOfPayment = findViewById(R.id.modeOfPayment);
+        setupSpinner(spinnerCivilStatus, R.array.civil_status_array);
+        setupSpinner(spinnerCategoryOfDeath, R.array.category_of_death_array);
+        setupSpinner(spinnerModeOfPayment, R.array.mode_of_payment_array);
+
+        radioGroupDeathLocation = findViewById(R.id.radioGroupoptionDeath);
+        radioGroupCasketSize = findViewById(R.id.radioGroupCasketSize);
+        radioGroupRemoveGlass = findViewById(R.id.radioGroupRemoveGlass);
+        radioGroupAddLights = findViewById(R.id.radioGroupAddLights);
+        radioGroupClothesSize = findViewById(R.id.radioGroupClothesSize);
+        radioGroupInjectFormalin = findViewById(R.id.radioGroupInjectFormalin);
+        radioGroupAvailableHearses = findViewById(R.id.radioGroupAvailableHearses);
+        radioGroupHaveMakeup = findViewById(R.id.radioGroupHaveMakeup);
+        radioGroupCremated = findViewById(R.id.radioGroupCremated);
+
+        textViewImage = findViewById(R.id.textViewImage);
+        textViewValidId = findViewById(R.id.textViewValidId);
+        textViewProofOfDeath = findViewById(R.id.textViewProofOfDeath);
+        textViewTransferPermit = findViewById(R.id.textViewTransferPermit);
+        textViewSwabTest = findViewById(R.id.textViewSwabTest);
+        textViewOtherDocuments = findViewById(R.id.textViewOtherDocuments);
+        textViewProofOwnership = findViewById(R.id.textViewProofOwnership);
+        textViewUploadSignature = findViewById(R.id.textViewUploadSignature);
+
+        setButtonClickListener(R.id.buttonChooseImage, PICK_IMAGE_IMAGE);
+        setButtonClickListener(R.id.buttonChooseValidId, PICK_IMAGE_VALID_ID);
+        setButtonClickListener(R.id.buttonChooseProofOfDeath, PICK_IMAGE_PROOF_OF_DEATH);
+        setButtonClickListener(R.id.buttonChooseTransferPermit, PICK_IMAGE_TRANSFER_PERMIT);
+        setButtonClickListener(R.id.buttonSwabTest, PICK_IMAGE_SWAB_TEST);
+        setButtonClickListener(R.id.buttonOtherDocuments, PICK_IMAGE_OTHER_DOCUMENTS);
+        setButtonClickListener(R.id.buttonProofOwnership, PICK_IMAGE_PROOF_OWNERSHIP);
+        setButtonClickListener(R.id.buttonUploadSignature, PICK_IMAGE_SIGNATURE);
 
         fname = findViewById(R.id.fname);
         mname = findViewById(R.id.mname);
         lname = findViewById(R.id.lname);
-        relationship = findViewById(R.id.relationship);
-        causeofdeath = findViewById(R.id.causeofdeath);
         sex = findViewById(R.id.sex);
-        religion = findViewById(R.id.religion);
-        age = findViewById(R.id.age);
-        dateofbirth = findViewById(R.id.dateofbirth);
-
-        dateofdeath = findViewById(R.id.dateofdeath);
-        placeofdeath = findViewById(R.id.placeofdeath);
-        citizenship = findViewById(R.id.citizenship);
-        address = findViewById(R.id.address);
-        civilstatus = findViewById(R.id.civilstatus);
         occupation = findViewById(R.id.occupation);
-        namecemetery = findViewById(R.id.namecemetery);
-        addresscemetery = findViewById(R.id.addresscemetery);
-        nameFather = findViewById(R.id.nameFather);
-        nameMother = findViewById(R.id.nameMother);
-
         idType = findViewById(R.id.idType);
-        validId = findViewById(R.id.validId);
-        image = findViewById(R.id.image);
-        transferPermit = findViewById(R.id.transferPermit);
-        swabTest = findViewById(R.id.swabTest);
-        proofOfDeath = findViewById(R.id.proofOfDeath);
-//        description = findViewById(R.id.description);
+        relationship = findViewById(R.id.relationship);
+        religion = findViewById(R.id.religion);
+        address = findViewById(R.id.address);
+        citizenship = findViewById(R.id.citizenship);
+        nameMother = findViewById(R.id.nameMother);
+        nameFather = findViewById(R.id.nameFather);
+        causeofdeath = findViewById(R.id.causeofdeath);
+        placeofdeath = findViewById(R.id.placeofdeath);
+        standingflowers = findViewById(R.id.standingFlowers);
+        lights = findViewById(R.id.lights);
+        candleStand = findViewById(R.id.candleStand);
+        flooringFlowers = findViewById(R.id.flooringFlowers);
+        cross = findViewById(R.id.cross);
+        tarpaulin = findViewById(R.id.tarpaulin);
+        curtains = findViewById(R.id.curtains);
+        candles = findViewById(R.id.candles);
+        balloons = findViewById(R.id.balloons);
+        message = findViewById(R.id.message);
+        note = findViewById(R.id.note);
+        locationFrom = findViewById(R.id.locationFrom);
+        locationTo = findViewById(R.id.locationTo);
+        nameCemetery = findViewById(R.id.nameCemetery);
+        addressCemetery = findViewById(R.id.addressCemetery);
+        obituaryDescription = findViewById(R.id.obituaryDescription);
+        valuableProperty = findViewById(R.id.valuableProperty);
 
-        packageName.setText("Package: " + name);
-        packagePrice.setText("Price: " + price);
-        packageInclusions.setText("Inclusions: " + inclusions);
+
 
         Button orderPackage = findViewById(R.id.orderPackage);
         orderPackage.setOnClickListener(new View.OnClickListener() {
@@ -91,53 +194,105 @@ public class InquireActivity extends AppCompatActivity {
     }
 
     private void orderInquiredPackage() {
+        selectedDateOfBirth = editTextDateOfBirth.getText().toString();
+        selectedDateOfDeath = editTextDateOfDeath.getText().toString();
+        selectedWakeFrom = editTextWakeFrom.getText().toString();
+        selectedWakeTo = editTextWakeTo.getText().toString();
+
+        selectedCivilStatus = spinnerCivilStatus.getSelectedItem().toString();
+        selectedCategoryOfDeath = spinnerCategoryOfDeath.getSelectedItem().toString();
+        selectedModeOfPayment = spinnerModeOfPayment.getSelectedItem().toString();
+
+        optionDeath = getSelectedOptionText(radioGroupDeathLocation);
+        casketSize = getSelectedOptionText(radioGroupCasketSize);
+        removeGlass = getSelectedOptionText(radioGroupRemoveGlass);
+        addLights = getSelectedOptionText(radioGroupAddLights);
+        clothesSize = getSelectedOptionText(radioGroupClothesSize);
+        injectFormalin = getSelectedOptionText(radioGroupInjectFormalin);
+        availableHearses = getSelectedOptionText(radioGroupAvailableHearses);
+        haveMakeup = getSelectedOptionText(radioGroupHaveMakeup);
+        cremated = getSelectedOptionText(radioGroupCremated);
+
         String sfname = fname.getText().toString().trim();
         String smname = mname.getText().toString().trim();
         String slname = lname.getText().toString().trim();
-        String srelationship = relationship.getText().toString().trim();
-        String scauseofdeath = causeofdeath.getText().toString().trim();
         String ssex = sex.getText().toString().trim();
-        String sreligion = religion.getText().toString().trim();
-        String sage = age.getText().toString().trim();
-        String sdateofbirth = dateofbirth.getText().toString().trim();
-        String sdateofdeath = dateofdeath.getText().toString().trim();
-        String splaceofdeath = placeofdeath.getText().toString().trim();
-        String scitizenship = citizenship.getText().toString().trim();
-        String saddress = address.getText().toString().trim();
-        String scivilstatus = civilstatus.getText().toString().trim();
+        //selectedDateOfBirth
         String soccupation = occupation.getText().toString().trim();
-        String snamecemetery = namecemetery.getText().toString().trim();
-        String saddresscemetery = addresscemetery.getText().toString().trim();
-        String snameFather = nameFather.getText().toString().trim();
+        //encodedImagee
+        String sidType = idType.getText().toString().trim();
+        //encodedValidId
+        String srelationship = relationship.getText().toString().trim();
+        String sreligion = religion.getText().toString().trim();
+        String saddress = address.getText().toString().trim();
+        String scitizenship = citizenship.getText().toString().trim();
+        //selectedCivilStatus
         String snameMother = nameMother.getText().toString().trim();
-        String sidType = "PWD Card";
-        String svalidId = "storage/images/old1.jpg";
-        String simage = "storage/images/old1.jpg";
-        String stransferPermit = "storage/images/old1.jpg";
-        String sswabTest = "storage/images/old1.jpg";
-        String sproofOfDeath = "storage/images/old1.jpg";
-        String sdescription = "Passed away peacefully in his sleep on blablabla, concluding a brave battle against cancer and various health challenges. His enduring positive attitude and resilience serve as a lasting tribute to his spirit. Born in St. Louis, MO, on May 1, 1944, he graduated from Mercy High School in 1962.  Survived by a loving spouse of over 56 years, he leaves behind cherished children and grandchildren. He was the son of late parents, a sibling, and a beloved figure to many in various roles.  Known for his distinctive humor, he found value in every day. A past member of organizations and clubs, he pursued interests in fishing, woodworking, and other hobbies. An avid follower of history and politics, he never missed voting or watching debates. His insightful commentaries on life will be missed. Above all, he held deep affection for family and friends. He embraced each day fully, leaving a positive impact on the world.  Gratitude is extended to the compassionate healthcare staff for their kindness over the years.  A private burial is planned, with a Memorial Mass scheduled at a local church, followed by an open house luncheon to celebrate his life. In lieu of flowers, donations can be made to a local parish with a designated memo line.";
+        String snameFather = nameFather.getText().toString().trim();
 
-        String sdiscounted = "NO";
-        String sMOP = "GCASH";
-        String sPOP = "storage/images/old1.jpg";
-        String smessage = "This is my message";
-        String scascketsize = "STANDARD";
-        String scremate = "YES";
-        String sformalin = "YES";
-        String smemorialproducts = "YES";
-        String smakeup = "YES";
-        String snote = "This is my note";
-        String slocationfrom = "Taguig";
-        String slocationto = "Manila Memorial";
-        String sdurationfrom = "01/23/2024";
-        String sdurationto = "01/31/2024";
-        String spaymentstatus = "NOT PAID";
+        //optionDeath
+        //selectedCategoryOfDeath
+        //selectedDateOfDeath
+        String scauseofdeath = causeofdeath.getText().toString().trim();
+        //encodedProofOfDeath
+        String splaceofdeath = placeofdeath.getText().toString().trim();
+        //encodedTransferPermit
+        //encodedSwabTest
+        //encodedOtherDocuments
 
-        if (!sfname.isEmpty() && !smname.isEmpty() && !slname.isEmpty() && !srelationship.isEmpty() && !ssex.isEmpty() && !scauseofdeath.isEmpty()
-                && !sreligion.isEmpty() && !sage.isEmpty() && !sdateofbirth.isEmpty() && !sdateofdeath.isEmpty() && !splaceofdeath.isEmpty()
-                && !scitizenship.isEmpty() && !saddress.isEmpty() && !scivilstatus.isEmpty() && !soccupation.isEmpty() && !snamecemetery.isEmpty()
-                && !saddresscemetery.isEmpty() && !snameFather.isEmpty() && !snameMother.isEmpty() ) {
+        //casketSize
+        //removeGlass
+        //addLights
+        //clothesSize
+        //injectFormalin
+        //availableHearses
+        //haveMakeup
+        //cremated
+        String sstandingflowers = standingflowers.getText().toString().trim();
+        String slights = lights.getText().toString().trim();
+        String scandleStand = candleStand.getText().toString().trim();
+        String sflooringFlowers = flooringFlowers.getText().toString().trim();
+        String scross = cross.getText().toString().trim();
+        String starpaulin = tarpaulin.getText().toString().trim();
+        String scurtains = curtains.getText().toString().trim();
+        String scandles = candles.getText().toString().trim();
+        String sballoons = balloons.getText().toString().trim();
+        String smessage = message.getText().toString().trim();
+        String snote = note.getText().toString().trim();
+
+        String slocationFrom = locationFrom.getText().toString().trim();
+        String slocationTo = locationTo.getText().toString().trim();
+        //selectedWakeFrom
+        //selectedWakeTo
+        String snameCemetery = nameCemetery.getText().toString().trim();
+        String saddressCemetery = addressCemetery.getText().toString().trim();
+        String sobituaryDescription = obituaryDescription.getText().toString().trim();
+
+        String svaluableProperty = valuableProperty.getText().toString().trim();
+        //encodedProofOwnership
+        //encodedSignature
+        //selectedModeOfPayment
+
+        if (!sfname.isEmpty() && !smname.isEmpty() && !slname.isEmpty() && !ssex.isEmpty() && !selectedDateOfBirth.isEmpty()
+                && !soccupation.isEmpty() && !encodedImagee.isEmpty() && !sidType.isEmpty() && !encodedValidId.isEmpty()
+                && !srelationship.isEmpty() && !sreligion.isEmpty() && !saddress.isEmpty() && !scitizenship.isEmpty()
+                && !snameMother.isEmpty() && !snameFather.isEmpty()
+
+                && !selectedCategoryOfDeath.isEmpty() && !selectedDateOfDeath.isEmpty()
+                && !scauseofdeath.isEmpty() && !encodedProofOfDeath.isEmpty()
+
+                && !sstandingflowers.isEmpty() && !slights.isEmpty() && !scandleStand.isEmpty()
+                && !sflooringFlowers.isEmpty() && !scross.isEmpty() && !starpaulin.isEmpty()
+                && !scurtains.isEmpty() && !scandles.isEmpty() && !sballoons.isEmpty()
+                && !smessage.isEmpty() && !snote.isEmpty()
+
+                && !slocationFrom.isEmpty() && !slocationTo.isEmpty() && !selectedWakeFrom.isEmpty()
+                && !selectedWakeTo.isEmpty() && !snameCemetery.isEmpty() && !saddressCemetery.isEmpty()
+                && !sobituaryDescription.isEmpty()
+
+                && !svaluableProperty.isEmpty() && !encodedProofOwnership.isEmpty() && !encodedSignature.isEmpty()
+                && !selectedModeOfPayment.isEmpty()
+        ) {
 
             JSONObject requestBody = new JSONObject();
             try {
@@ -145,59 +300,84 @@ public class InquireActivity extends AppCompatActivity {
                 requestBody.put("fname", sfname);
                 requestBody.put("mname", smname);
                 requestBody.put("lname", slname);
-                requestBody.put("relationship", srelationship);
-                requestBody.put("causeofdeath", scauseofdeath);
                 requestBody.put("sex", ssex);
-                requestBody.put("religion", sreligion);
-                requestBody.put("age", sage);
-                requestBody.put("dateofbirth", sdateofbirth);
-                requestBody.put("dateofdeath", sdateofdeath);
-                requestBody.put("placeofdeath", splaceofdeath);
-                requestBody.put("citizenship", scitizenship);
-                requestBody.put("address", saddress);
-                requestBody.put("civilstatus", scivilstatus);
+                requestBody.put("dateOfBirth", selectedDateOfBirth);
                 requestBody.put("occupation", soccupation);
-                requestBody.put("namecemetery", snamecemetery);
-                requestBody.put("addresscemetery", saddresscemetery);
-                requestBody.put("nameFather", snameFather);
-                requestBody.put("nameMother", snameMother);
-
+                requestBody.put("image", encodedImagee);
+//                requestBody.put("image", "encodedImagee");
                 requestBody.put("idType", sidType);
-                requestBody.put("validId", svalidId);
-                requestBody.put("image", simage);
-                requestBody.put("transferPermit", stransferPermit);
-                requestBody.put("swabTest", sswabTest);
-                requestBody.put("proofOfDeath", sproofOfDeath);
-                requestBody.put("description", sdescription);
+                requestBody.put("validId", encodedValidId);
+//                requestBody.put("validId", "encodedValidId");
+                requestBody.put("relationship", srelationship);
+                requestBody.put("religion", sreligion);
+                requestBody.put("address", saddress);
+                requestBody.put("citizenship", scitizenship);
+                requestBody.put("civilStatus", selectedCivilStatus);
+                requestBody.put("nameMother", snameMother);
+                requestBody.put("nameFather", snameFather);
 
-                requestBody.put("discounted", sdiscounted);
-                requestBody.put("subtotal", price);
-                requestBody.put("total_price", price);
-                requestBody.put("MOP", sMOP);
-                requestBody.put("POP", sPOP);
-                requestBody.put("packageID", packageID);
+                requestBody.put("optionDeath", optionDeath);
+                requestBody.put("categoryOfDeath", selectedCategoryOfDeath);
+                requestBody.put("dateOfDeath", selectedDateOfDeath);
+                requestBody.put("causeofdeath", scauseofdeath);
+                requestBody.put("proofOfDeath", encodedProofOfDeath);
+//                requestBody.put("proofOfDeath", "encodedProofOfDeath");
+                requestBody.put("placeofdeath", splaceofdeath);
+                requestBody.put("transferPermit", encodedTransferPermit);
+                requestBody.put("swabTest", encodedSwabTest);
+                requestBody.put("otherDocuments", encodedOtherDocuments);
+//                requestBody.put("transferPermit", "encodedTransferPermit");
+//                requestBody.put("swabTest", "encodedSwabTest");
+//                requestBody.put("otherDocuments", "encodedOtherDocuments");
+
+                requestBody.put("casketSize", casketSize);
+                requestBody.put("removeGlass", removeGlass);
+                requestBody.put("addLights", addLights);
+                requestBody.put("clothesSize", clothesSize);
+                requestBody.put("injectFormalin", injectFormalin);
+                requestBody.put("availHearses", availableHearses);
+                requestBody.put("haveMakeup", haveMakeup);
+                requestBody.put("cremated", cremated);
+                requestBody.put("standingflowers", sstandingflowers);
+                requestBody.put("lights", slights);
+                requestBody.put("scandleStand", scandleStand);
+                requestBody.put("flooringFlowers", sflooringFlowers);
+                requestBody.put("cross", scross);
+                requestBody.put("tarpaulin", starpaulin);
+                requestBody.put("curtains", scurtains);
+                requestBody.put("candles", scandles);
+                requestBody.put("balloons", sballoons);
                 requestBody.put("message", smessage);
-                requestBody.put("cascketsize", scascketsize);
-                requestBody.put("cremate", scremate);
-                requestBody.put("formalin", sformalin);
-                requestBody.put("memorialproducts", smemorialproducts);
-                requestBody.put("makeup", smakeup);
                 requestBody.put("note", snote);
-                requestBody.put("locationfrom", slocationfrom);
-                requestBody.put("locationto", slocationto);
-                requestBody.put("durationfrom", sdurationfrom);
-                requestBody.put("durationto", sdurationto);
-                requestBody.put("paymentstatus", spaymentstatus);
+
+                requestBody.put("locationFrom", slocationFrom);
+                requestBody.put("locationTo", slocationTo);
+                requestBody.put("wakeFrom", selectedWakeFrom);
+                requestBody.put("wakeTo", selectedWakeTo);
+                requestBody.put("nameCemetery", snameCemetery);
+                requestBody.put("addressCemetery", saddressCemetery);
+                requestBody.put("obituaryDescription", sobituaryDescription);
+
+                requestBody.put("valuableProperty", svaluableProperty);
+                requestBody.put("proofOwnership", encodedProofOwnership);
+                requestBody.put("signature", encodedSignature);
+//                requestBody.put("proofOwnership", "encodedProofOwnership");
+//                requestBody.put("signature", "encodedSignature");
+                requestBody.put("MOP", selectedModeOfPayment);
+
+                requestBody.put("price", price);
+                requestBody.put("packageID", packageID);
 
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            Toast.makeText(getApplicationContext(), "Adding ... ", Toast.LENGTH_SHORT).show();
+
 
             // Make a POST request to the login API endpoint
             String url = ApiConstants.inquirePackageURL; // Replace with your actual login API endpoint
+            Toast.makeText(getApplicationContext(), "Adding ... ", Toast.LENGTH_SHORT).show();
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, requestBody,
                     new Response.Listener<JSONObject>() {
                         @Override
@@ -250,5 +430,115 @@ public class InquireActivity extends AppCompatActivity {
         // Retrieve the token from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         return sharedPreferences.getString("token", "");
+    }
+
+    private void setupDatePicker(final EditText editText) {
+        final Calendar calendar = Calendar.getInstance();
+        final DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                // Note: month is zero-based
+                String selectedDate = String.format(Locale.getDefault(), "%02d/%02d/%04d", dayOfMonth, month + 1, year);
+                editText.setText(selectedDate);
+            }
+        };
+
+        editText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(InquireActivity.this, dateSetListener,
+                        calendar.get(Calendar.YEAR),
+                        calendar.get(Calendar.MONTH),
+                        calendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+    }
+
+    private void setupSpinner(Spinner spinner, int arrayResourceId) {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                arrayResourceId,
+                android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
+
+    private String getSelectedOptionText(RadioGroup radioGroup) {
+        int selectedId = radioGroup.getCheckedRadioButtonId();
+        RadioButton radioButton = findViewById(selectedId);
+        return radioButton != null ? radioButton.getText().toString() : "Not selected";
+    }
+
+    private void setButtonClickListener(int buttonId, final int requestCode) {
+        Button button = findViewById(buttonId);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openImageChooser(requestCode);
+            }
+        });
+    }
+
+    private void openImageChooser(int requestCode) {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, requestCode);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK && data != null) {
+            Uri selectedImageUri = data.getData();
+            if (selectedImageUri != null) {
+                try {
+                    InputStream imageStream = getContentResolver().openInputStream(selectedImageUri);
+                    Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                    String encodedImage = encodeImage(selectedImage);
+                    switch (requestCode) {
+                        case PICK_IMAGE_IMAGE:
+                            textViewImage.setText(selectedImageUri.toString());
+                            encodedImagee = encodedImage;
+                            break;
+                        case PICK_IMAGE_VALID_ID:
+                            textViewValidId.setText(selectedImageUri.toString());
+                            encodedValidId = encodedImage;
+                            break;
+                        case PICK_IMAGE_PROOF_OF_DEATH:
+                            textViewProofOfDeath.setText(selectedImageUri.toString());
+                            encodedProofOfDeath = encodedImage;
+                            break;
+                        case PICK_IMAGE_TRANSFER_PERMIT:
+                            textViewTransferPermit.setText(selectedImageUri.toString());
+                            encodedTransferPermit = encodedImage;
+                            break;
+                        case PICK_IMAGE_SWAB_TEST:
+                            textViewSwabTest.setText(selectedImageUri.toString());
+                            encodedSwabTest = encodedImage;
+                            break;
+                        case PICK_IMAGE_OTHER_DOCUMENTS:
+                            textViewOtherDocuments.setText(selectedImageUri.toString());
+                            encodedOtherDocuments = encodedImage;
+                            break;
+                        case PICK_IMAGE_PROOF_OWNERSHIP:
+                            textViewProofOwnership.setText(selectedImageUri.toString());
+                            encodedProofOwnership = encodedImage;
+                            break;
+                        case PICK_IMAGE_SIGNATURE:
+                            textViewUploadSignature.setText(selectedImageUri.toString());
+                            encodedSignature = encodedImage;
+                            break;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private String encodeImage(Bitmap bitmap) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+        byte[] byteArray = outputStream.toByteArray();
+        return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }
 }

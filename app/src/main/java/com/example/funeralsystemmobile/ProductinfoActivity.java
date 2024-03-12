@@ -68,7 +68,7 @@ public class ProductinfoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null) {
             productId = intent.getStringExtra("productID");
-
+            Toast.makeText(getApplicationContext(), productId, Toast.LENGTH_SHORT).show();
 
             // Now you have the productId, you can use it as needed
             String token = getTokenFromSharedPreferences();
@@ -82,7 +82,7 @@ public class ProductinfoActivity extends AppCompatActivity {
                                 // Parse and use profile information
                                 String name = response.getString("name");
                                 String description = response.getString("description");
-                                String details = response.getString("details");
+//                                String details = response.getString("details");
                                 String img = response.getString("img");
                                 String price = String.valueOf(response.getInt("price"));
                                 String category = response.getString("category");
@@ -103,7 +103,7 @@ public class ProductinfoActivity extends AppCompatActivity {
                                 TextView priceLabel = findViewById(R.id.priceLabel);
                                 priceLabel.setText("Php: " + price);
                                 TextView detailsLabel = findViewById(R.id.detailsLabel);
-                                detailsLabel.setText(details);
+                                detailsLabel.setText(category);
 
                             } catch (JSONException e) {
                                 e.printStackTrace();

@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="110dp"
+        android:layout_marginStart="130dp"
         android:layout_marginTop="180dp"
         android:text=""
         android:textColor="@color/white"
@@ -127,7 +127,7 @@
 
             <TextView
                 android:id="@+id/Address"
-                android:layout_width="68dp"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:text=""
                 android:textSize="12sp"
@@ -257,7 +257,7 @@
 
                     <TextView
                         android:id="@+id/IdType"
-                        android:layout_width="68dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textSize="15sp" />
