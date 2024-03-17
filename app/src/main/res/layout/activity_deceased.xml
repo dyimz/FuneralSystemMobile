@@ -32,19 +32,19 @@
         android:layout_marginTop="25dp"
         android:dividerHeight="2dp"/>
 
-    <!-- Button for adding new deceased -->
-    <Button
-        android:id="@+id/addDeceasedButton"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:background="@drawable/baseline_add_circle_24"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="100dp"
-        android:text="+"
-        android:textSize="24sp"
-        android:textColor="@android:color/white"/>
+<!--    &lt;!&ndash; Button for adding new deceased &ndash;&gt;-->
+<!--    <Button-->
+<!--        android:id="@+id/addDeceasedButton"-->
+<!--        android:layout_width="56dp"-->
+<!--        android:layout_height="56dp"-->
+<!--        android:background="@drawable/baseline_add_circle_24"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:layout_marginBottom="100dp"-->
+<!--        android:text="+"-->
+<!--        android:textSize="24sp"-->
+<!--        android:textColor="@android:color/white"/>-->
 
     <!-- Bottom Navigation View -->
     <com.google.android.material.bottomnavigation.BottomNavigationView

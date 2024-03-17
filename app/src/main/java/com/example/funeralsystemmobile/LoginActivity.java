@@ -91,7 +91,17 @@ public class LoginActivity extends AppCompatActivity {
                         public void onResponse(JSONObject response) {
                             try {
                                 String message = response.getString("message");
-                                if (message.equals("success")) {
+                                if (message.equals("admin")) {
+                                    // Assuming the API returns a token upon successful login
+//                                    String userid = response.getString("userid");
+//                                    String custid = response.getString("custid");
+//                                    String token = response.getString("token");
+                                    Toast.makeText(getApplicationContext(), "Login Successful ", Toast.LENGTH_SHORT).show();
+                                    // You can save the token or navigate to another activity
+//                                    saveTokenToSharedPreferences(userid, custid, token);
+                                    // For example, start a new activity after successful login
+//                                    startActivity(new Intent(LoginActivity.this, LandingActivity.class));
+                                } else if (message.equals("success")) {
                                     // Assuming the API returns a token upon successful login
                                     String userid = response.getString("userid");
                                     String custid = response.getString("custid");

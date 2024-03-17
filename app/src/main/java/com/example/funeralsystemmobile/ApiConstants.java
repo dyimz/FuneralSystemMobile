@@ -21,11 +21,11 @@ public class ApiConstants {
     public static final String AllinpackagesListURL = BASE_URL + "api/AllinpackagesList";
     public static final String productInfoURL = BASE_URL + "api/productInfo/";
     public static final String packageInfoURL = BASE_URL + "api/packageInfo/";
-    public static final String addToCartURL = BASE_URL + "api/addToCart/";
+    public static final String addToCartURL = BASE_URL + "api/addToCart";
     public static final String cartListURL = BASE_URL + "api/cartList/";
     public static final String cartTotalURL = BASE_URL + "api/cartTotal/";
-    public static final String cartDeleteURL = BASE_URL + "api/cartDelete/";
-    public static final String checkoutURL = BASE_URL + "api/checkout/";
+    public static final String cartDeleteURL = BASE_URL + "api/cartDelete";
+    public static final String checkoutURL = BASE_URL + "api/checkout";
     public static final String orderListURL = BASE_URL + "api/orderList/";
 
     public static final String inquirePackageURL = BASE_URL + "api/inquirePackage";

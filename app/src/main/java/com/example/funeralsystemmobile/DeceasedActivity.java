@@ -44,13 +44,13 @@ public class DeceasedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deceased);
 
-        addDeceasedButton = findViewById(R.id.addDeceasedButton);
-        addDeceasedButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(DeceasedActivity.this, DeceasedaddActivity.class));
-            }
-        });
+//        addDeceasedButton = findViewById(R.id.addDeceasedButton);
+//        addDeceasedButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(DeceasedActivity.this, DeceasedaddActivity.class));
+//            }
+//        });
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.nav_profile);

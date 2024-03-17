@@ -1,20 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!-- Your existing layout XML -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:background="@drawable/rounded_corner_background"> <!-- Apply the border background here -->
 
+    <!-- Product Image -->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
+        android:scaleType="centerCrop"
         android:src="@drawable/pikeslogo" />
 
+    <!-- Product Details -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -22,6 +25,7 @@
         android:orientation="vertical"
         android:layout_marginStart="8dp">
 
+        <!-- Product Name -->
         <TextView
             android:id="@+id/textViewName"
             android:layout_width="match_parent"
@@ -31,6 +35,7 @@
             android:textColor="@android:color/black"
             android:layout_marginTop="4dp"/>
 
+        <!-- Product Price -->
         <TextView
             android:id="@+id/textViewPrice"
             android:layout_width="match_parent"
@@ -40,6 +45,7 @@
             android:textColor="@android:color/black"
             android:layout_marginTop="4dp"/>
 
+        <!-- Product Quantity -->
         <TextView
             android:id="@+id/textViewQuantity"
             android:layout_width="match_parent"
@@ -50,6 +56,7 @@
             android:layout_marginTop="4dp"/>
     </LinearLayout>
 
+    <!-- Delete Button -->
     <ImageButton
         android:id="@+id/btnDelete"
         android:layout_width="48dp"

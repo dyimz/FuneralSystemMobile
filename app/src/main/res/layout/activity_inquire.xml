@@ -14,35 +14,50 @@
         android:paddingBottom="16dp"
         tools:context=".InquireActivity">
 
+        <!-- Package Name -->
         <TextView
             android:id="@+id/packageName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="packageName"
+            android:text="Package Name"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginTop="15dp"/>
 
+        <!-- Package Price -->
         <TextView
             android:id="@+id/packagePrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/packageName"
-            android:text="packagePrice"
+            android:layout_marginTop="8dp"
+            android:text="Package Price"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginTop="5dp"/>
+            android:textStyle="bold"/>
 
+        <!-- Package Inclusions -->
         <TextView
             android:id="@+id/packageInclusions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/packagePrice"
-            android:text="packageInclusions"
+            android:layout_marginTop="8dp"
+            android:text="Package Inclusions"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginTop="5dp"/>
+            android:textStyle="bold"/>
 
+
+    <!-- Deceased Information -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/rounded_corner_background"
+        android:elevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
         <TextView
             android:id="@+id/deceasedInfo"
             android:layout_width="wrap_content"
@@ -308,7 +323,21 @@
             android:hint="Father's Name"
             android:inputType="text"
             android:padding="8dp" />
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/rounded_corner_background"
+        android:elevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
         <TextView
             android:id="@+id/deathInfo"
             android:layout_width="wrap_content"
@@ -386,7 +415,7 @@
             android:id="@+id/causeofdeath"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="HOSPITAL/HOUSE/PUBLIC/text"
+            android:hint="Cause of Death"
             android:inputType="text"
             android:padding="8dp" />
 
@@ -430,7 +459,7 @@
             android:id="@+id/placeofdeath"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="HOSPITAL/PUBLIC/txt"
+            android:hint="Place of Death"
             android:inputType="text"
             android:padding="8dp" />
 
@@ -521,6 +550,22 @@
                 android:gravity="start"/>
 
         </LinearLayout>
+
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/rounded_corner_background"
+        android:elevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
             android:id="@+id/servicesInfo"
@@ -755,8 +800,8 @@
             android:id="@+id/standingFlowers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="0/1"
-            android:inputType="text"
+            android:hint="quantity"
+            android:inputType="number"
             android:padding="8dp" />
 
 
@@ -770,7 +815,7 @@
             android:id="@+id/lights"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="0/1"
+            android:hint="quantity"
             android:inputType="number"
             android:padding="8dp" />
 
@@ -784,7 +829,7 @@
             android:id="@+id/candleStand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="0/1"
+            android:hint="quantity"
             android:inputType="number"
             android:padding="8dp" />
 
@@ -798,7 +843,7 @@
             android:id="@+id/flooringFlowers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="0/1"
+            android:hint="quantity"
             android:inputType="number"
             android:padding="8dp" />
 
@@ -812,7 +857,7 @@
             android:id="@+id/cross"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="0/1"
+            android:hint="quantity"
             android:inputType="number"
             android:padding="8dp" />
 
@@ -826,7 +871,7 @@
             android:id="@+id/tarpaulin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="0/1"
+            android:hint="quantity"
             android:inputType="number"
             android:padding="8dp" />
 
@@ -840,7 +885,7 @@
             android:id="@+id/curtains"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="0/1"
+            android:hint="quantity"
             android:inputType="number"
             android:padding="8dp" />
 
@@ -854,7 +899,7 @@
             android:id="@+id/candles"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="0/1"
+            android:hint="quantity"
             android:inputType="number"
             android:padding="8dp" />
 
@@ -868,7 +913,7 @@
             android:id="@+id/balloons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="0/1"
+            android:hint="quantity"
             android:inputType="number"
             android:padding="8dp" />
 
@@ -900,6 +945,22 @@
             android:hint="Enter any additional notes"
             android:padding="8dp" />
 
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/rounded_corner_background"
+        android:elevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
         <TextView
             android:id="@+id/wakeInfo"
             android:layout_width="wrap_content"
@@ -920,7 +981,7 @@
             android:id="@+id/locationFrom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="LOCATION"
+            android:hint="Location From"
             android:inputType="text"
             android:padding="8dp" />
 
@@ -934,7 +995,7 @@
             android:id="@+id/locationTo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="LOCATION"
+            android:hint="Location To"
             android:inputType="text"
             android:padding="8dp" />
 
@@ -981,6 +1042,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:hint="Name of Cemetery"
             android:padding="8dp" />
 
         <TextView
@@ -994,6 +1056,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:hint="Address of Cemetery"
             android:padding="8dp" />
 
         <TextView
@@ -1007,8 +1070,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
+            android:hint="Obituary Description"
             android:padding="8dp" />
 
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/rounded_corner_background"
+        android:elevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
         <TextView
             android:id="@+id/paymentInfo"
             android:layout_width="wrap_content"
@@ -1030,6 +1109,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:hint="Collateral"
             android:padding="8dp" />
 
         <TextView
@@ -1101,7 +1181,8 @@
             android:layout_height="wrap_content"
             android:padding="8dp" />
 
-
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
         <Button
             android:id="@+id/orderPackage"

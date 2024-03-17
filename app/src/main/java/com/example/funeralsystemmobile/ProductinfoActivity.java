@@ -68,7 +68,7 @@ public class ProductinfoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null) {
             productId = intent.getStringExtra("productID");
-            Toast.makeText(getApplicationContext(), productId, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getApplicationContext(), productId, Toast.LENGTH_SHORT).show();
 
             // Now you have the productId, you can use it as needed
             String token = getTokenFromSharedPreferences();
@@ -139,8 +139,7 @@ public class ProductinfoActivity extends AppCompatActivity {
             AddToCart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-//                    Toast.makeText(getApplicationContext(), productId, Toast.LENGTH_SHORT).show();
-//                    Toast.makeText(getApplicationContext(), scustid, Toast.LENGTH_SHORT).show();
+
                     JSONObject atcrequestBody = new JSONObject();
                     try {
                         atcrequestBody.put("customerID", scustid);
@@ -151,6 +150,8 @@ public class ProductinfoActivity extends AppCompatActivity {
                     }
 
                     String addToCartURL = ApiConstants.addToCartURL;
+                    Toast.makeText(getApplicationContext(), productId, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), scustid, Toast.LENGTH_SHORT).show();
                     JsonObjectRequest atcrequest = new JsonObjectRequest(Request.Method.POST, addToCartURL, atcrequestBody,
                             new Response.Listener<JSONObject>() {
                                 @Override

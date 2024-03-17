@@ -86,13 +86,13 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        TextView Requestz = findViewById(R.id.Requestz);
-        Requestz.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ProfileActivity.this, RequestzActivity.class));
-            }
-        });
+//        TextView Requestz = findViewById(R.id.Requestz);
+//        Requestz.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(ProfileActivity.this, RequestzActivity.class));
+//            }
+//        });
 
         TextView Logout = findViewById(R.id.Logout);
         Logout.setOnClickListener(new View.OnClickListener() {
