@@ -30,5 +30,8 @@ public class ApiConstants {
 
     public static final String inquirePackageURL = BASE_URL + "api/inquirePackage";
 
-
+    public static final String imagevalidid = BASE_URL + "api/imagevalidid";
+    public static final String proofofdeathtransferpermit = BASE_URL + "api/proofofdeathtransferpermit";
+    public static final String swabtestotherdocuments = BASE_URL + "api/swabtestotherdocuments";
+    public static final String proofofownershipsignature = BASE_URL + "api/proofofownershipsignature";
 }

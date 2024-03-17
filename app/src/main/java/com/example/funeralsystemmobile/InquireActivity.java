@@ -54,7 +54,12 @@ public class InquireActivity extends AppCompatActivity {
     private String optionDeath;
     private String casketSize, removeGlass, addLights, clothesSize, injectFormalin,
             availableHearses, haveMakeup, cremated;
+    private String sfname,smname,slname,ssex,soccupation,sidType,srelationship,sreligion,saddress,scitizenship,
+        snameMother,snameFather,scauseofdeath,splaceofdeath,sstandingflowers,slights,scandleStand,
+        sflooringFlowers,scross,starpaulin,scurtains,scandles,sballoons,smessage,snote,
+        slocationFrom,slocationTo,snameCemetery,saddressCemetery,sobituaryDescription,svaluableProperty;
 
+    private String deceasedID, orderID;
     private EditText editTextDateOfBirth;
     private EditText editTextDateOfDeath;
     private EditText editTextWakeFrom;
@@ -213,29 +218,29 @@ public class InquireActivity extends AppCompatActivity {
         haveMakeup = getSelectedOptionText(radioGroupHaveMakeup);
         cremated = getSelectedOptionText(radioGroupCremated);
 
-        String sfname = fname.getText().toString().trim();
-        String smname = mname.getText().toString().trim();
-        String slname = lname.getText().toString().trim();
-        String ssex = sex.getText().toString().trim();
+         sfname = fname.getText().toString().trim();
+         smname = mname.getText().toString().trim();
+         slname = lname.getText().toString().trim();
+         ssex = sex.getText().toString().trim();
         //selectedDateOfBirth
-        String soccupation = occupation.getText().toString().trim();
+         soccupation = occupation.getText().toString().trim();
         //encodedImagee
-        String sidType = idType.getText().toString().trim();
+         sidType = idType.getText().toString().trim();
         //encodedValidId
-        String srelationship = relationship.getText().toString().trim();
-        String sreligion = religion.getText().toString().trim();
-        String saddress = address.getText().toString().trim();
-        String scitizenship = citizenship.getText().toString().trim();
+         srelationship = relationship.getText().toString().trim();
+         sreligion = religion.getText().toString().trim();
+         saddress = address.getText().toString().trim();
+         scitizenship = citizenship.getText().toString().trim();
         //selectedCivilStatus
-        String snameMother = nameMother.getText().toString().trim();
-        String snameFather = nameFather.getText().toString().trim();
+         snameMother = nameMother.getText().toString().trim();
+         snameFather = nameFather.getText().toString().trim();
 
         //optionDeath
         //selectedCategoryOfDeath
         //selectedDateOfDeath
-        String scauseofdeath = causeofdeath.getText().toString().trim();
+         scauseofdeath = causeofdeath.getText().toString().trim();
         //encodedProofOfDeath
-        String splaceofdeath = placeofdeath.getText().toString().trim();
+         splaceofdeath = placeofdeath.getText().toString().trim();
         //encodedTransferPermit
         //encodedSwabTest
         //encodedOtherDocuments
@@ -248,27 +253,27 @@ public class InquireActivity extends AppCompatActivity {
         //availableHearses
         //haveMakeup
         //cremated
-        String sstandingflowers = standingflowers.getText().toString().trim();
-        String slights = lights.getText().toString().trim();
-        String scandleStand = candleStand.getText().toString().trim();
-        String sflooringFlowers = flooringFlowers.getText().toString().trim();
-        String scross = cross.getText().toString().trim();
-        String starpaulin = tarpaulin.getText().toString().trim();
-        String scurtains = curtains.getText().toString().trim();
-        String scandles = candles.getText().toString().trim();
-        String sballoons = balloons.getText().toString().trim();
-        String smessage = message.getText().toString().trim();
-        String snote = note.getText().toString().trim();
+         sstandingflowers = standingflowers.getText().toString().trim();
+         slights = lights.getText().toString().trim();
+         scandleStand = candleStand.getText().toString().trim();
+         sflooringFlowers = flooringFlowers.getText().toString().trim();
+         scross = cross.getText().toString().trim();
+         starpaulin = tarpaulin.getText().toString().trim();
+         scurtains = curtains.getText().toString().trim();
+         scandles = candles.getText().toString().trim();
+         sballoons = balloons.getText().toString().trim();
+         smessage = message.getText().toString().trim();
+         snote = note.getText().toString().trim();
 
-        String slocationFrom = locationFrom.getText().toString().trim();
-        String slocationTo = locationTo.getText().toString().trim();
+         slocationFrom = locationFrom.getText().toString().trim();
+         slocationTo = locationTo.getText().toString().trim();
         //selectedWakeFrom
         //selectedWakeTo
-        String snameCemetery = nameCemetery.getText().toString().trim();
-        String saddressCemetery = addressCemetery.getText().toString().trim();
-        String sobituaryDescription = obituaryDescription.getText().toString().trim();
+         snameCemetery = nameCemetery.getText().toString().trim();
+         saddressCemetery = addressCemetery.getText().toString().trim();
+         sobituaryDescription = obituaryDescription.getText().toString().trim();
 
-        String svaluableProperty = valuableProperty.getText().toString().trim();
+         svaluableProperty = valuableProperty.getText().toString().trim();
         //encodedProofOwnership
         //encodedSignature
         //selectedModeOfPayment
@@ -293,131 +298,373 @@ public class InquireActivity extends AppCompatActivity {
                 && !svaluableProperty.isEmpty() && !encodedProofOwnership.isEmpty() && !encodedSignature.isEmpty()
                 && !selectedModeOfPayment.isEmpty()
         ) {
+            createOrder();
 
-            JSONObject requestBody = new JSONObject();
-            try {
-                requestBody.put("customerID", custid);
-                requestBody.put("fname", sfname);
-                requestBody.put("mname", smname);
-                requestBody.put("lname", slname);
-                requestBody.put("sex", ssex);
-                requestBody.put("dateOfBirth", selectedDateOfBirth);
-                requestBody.put("occupation", soccupation);
-                requestBody.put("image", encodedImagee);
-//                requestBody.put("image", "encodedImagee");
-                requestBody.put("idType", sidType);
-                requestBody.put("validId", encodedValidId);
-//                requestBody.put("validId", "encodedValidId");
-                requestBody.put("relationship", srelationship);
-                requestBody.put("religion", sreligion);
-                requestBody.put("address", saddress);
-                requestBody.put("citizenship", scitizenship);
-                requestBody.put("civilStatus", selectedCivilStatus);
-                requestBody.put("nameMother", snameMother);
-                requestBody.put("nameFather", snameFather);
-
-                requestBody.put("optionDeath", optionDeath);
-                requestBody.put("categoryOfDeath", selectedCategoryOfDeath);
-                requestBody.put("dateOfDeath", selectedDateOfDeath);
-                requestBody.put("causeofdeath", scauseofdeath);
-                requestBody.put("proofOfDeath", encodedProofOfDeath);
-//                requestBody.put("proofOfDeath", "encodedProofOfDeath");
-                requestBody.put("placeofdeath", splaceofdeath);
-                requestBody.put("transferPermit", encodedTransferPermit);
-                requestBody.put("swabTest", encodedSwabTest);
-                requestBody.put("otherDocuments", encodedOtherDocuments);
-//                requestBody.put("transferPermit", "encodedTransferPermit");
-//                requestBody.put("swabTest", "encodedSwabTest");
-//                requestBody.put("otherDocuments", "encodedOtherDocuments");
-
-                requestBody.put("casketSize", casketSize);
-                requestBody.put("removeGlass", removeGlass);
-                requestBody.put("addLights", addLights);
-                requestBody.put("clothesSize", clothesSize);
-                requestBody.put("injectFormalin", injectFormalin);
-                requestBody.put("availHearses", availableHearses);
-                requestBody.put("haveMakeup", haveMakeup);
-                requestBody.put("cremated", cremated);
-                requestBody.put("standingflowers", sstandingflowers);
-                requestBody.put("lights", slights);
-                requestBody.put("scandleStand", scandleStand);
-                requestBody.put("flooringFlowers", sflooringFlowers);
-                requestBody.put("cross", scross);
-                requestBody.put("tarpaulin", starpaulin);
-                requestBody.put("curtains", scurtains);
-                requestBody.put("candles", scandles);
-                requestBody.put("balloons", sballoons);
-                requestBody.put("message", smessage);
-                requestBody.put("note", snote);
-
-                requestBody.put("locationFrom", slocationFrom);
-                requestBody.put("locationTo", slocationTo);
-                requestBody.put("wakeFrom", selectedWakeFrom);
-                requestBody.put("wakeTo", selectedWakeTo);
-                requestBody.put("nameCemetery", snameCemetery);
-                requestBody.put("addressCemetery", saddressCemetery);
-                requestBody.put("obituaryDescription", sobituaryDescription);
-
-                requestBody.put("valuableProperty", svaluableProperty);
-                requestBody.put("proofOwnership", encodedProofOwnership);
-                requestBody.put("signature", encodedSignature);
-//                requestBody.put("proofOwnership", "encodedProofOwnership");
-//                requestBody.put("signature", "encodedSignature");
-                requestBody.put("MOP", selectedModeOfPayment);
-
-                requestBody.put("price", price);
-                requestBody.put("packageID", packageID);
-
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-
-
-            // Make a POST request to the login API endpoint
-            String url = ApiConstants.inquirePackageURL; // Replace with your actual login API endpoint
-            Toast.makeText(getApplicationContext(), "Adding ... ", Toast.LENGTH_SHORT).show();
-            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, requestBody,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            try {
-                                // Assuming the API returns a message upon successful add
-                                String message = response.getString("message");
-                                Toast.makeText(getApplicationContext(), "Added Successfully ", Toast.LENGTH_SHORT).show();
-                                // For example, start a new activity after successful add
-                                startActivity(new Intent(InquireActivity.this, ProfileActivity.class));
-                            } catch (JSONException e) {
-                                Toast.makeText(getApplicationContext(), "Check Internet Connection ", Toast.LENGTH_SHORT).show();
-                                e.printStackTrace();
-                            }
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            // Handle error response
-                            Log.e("DeceasedaddActivity", "Error fetching profile: " + error.getMessage());
-                        }
-                    }) {
-                @Override
-                public java.util.Map<String, String> getHeaders() {
-                    // Add the token to the headers of the request
-                    java.util.Map<String, String> headers = new java.util.HashMap<>();
-                    headers.put("Authorization", "Bearer " + token);
-                    return headers;
-                }
-            };
-            // Create a request queue using Volley.newRequestQueue
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
-            // Add the request to the Volley request queue
-            requestQueue.add(request);
 
         } else {
             Toast.makeText(getApplicationContext(), "Please Fill out all fields", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+
+    private void createOrder(){
+        JSONObject requestBody = new JSONObject();
+        try {
+            requestBody.put("customerID", custid);
+            requestBody.put("fname", sfname);
+            requestBody.put("mname", smname);
+            requestBody.put("lname", slname);
+            requestBody.put("sex", ssex);
+            requestBody.put("dateOfBirth", selectedDateOfBirth);
+            requestBody.put("occupation", soccupation);
+//            requestBody.put("image", encodedImagee);
+//                requestBody.put("image", "encodedImagee");
+            requestBody.put("idType", sidType);
+//            requestBody.put("validId", encodedValidId);
+//                requestBody.put("validId", "encodedValidId");
+            requestBody.put("relationship", srelationship);
+            requestBody.put("religion", sreligion);
+            requestBody.put("address", saddress);
+            requestBody.put("citizenship", scitizenship);
+            requestBody.put("civilStatus", selectedCivilStatus);
+            requestBody.put("nameMother", snameMother);
+            requestBody.put("nameFather", snameFather);
+
+            requestBody.put("optionDeath", optionDeath);
+            requestBody.put("categoryOfDeath", selectedCategoryOfDeath);
+            requestBody.put("dateOfDeath", selectedDateOfDeath);
+            requestBody.put("causeofdeath", scauseofdeath);
+//            requestBody.put("proofOfDeath", encodedProofOfDeath);
+//                requestBody.put("proofOfDeath", "encodedProofOfDeath");
+            requestBody.put("placeofdeath", splaceofdeath);
+//            requestBody.put("transferPermit", encodedTransferPermit);
+//            requestBody.put("swabTest", encodedSwabTest);
+//            requestBody.put("otherDocuments", encodedOtherDocuments);
+//                requestBody.put("transferPermit", "encodedTransferPermit");
+//                requestBody.put("swabTest", "encodedSwabTest");
+//                requestBody.put("otherDocuments", "encodedOtherDocuments");
+
+            requestBody.put("casketSize", casketSize);
+            requestBody.put("removeGlass", removeGlass);
+            requestBody.put("addLights", addLights);
+            requestBody.put("clothesSize", clothesSize);
+            requestBody.put("injectFormalin", injectFormalin);
+            requestBody.put("availHearses", availableHearses);
+            requestBody.put("haveMakeup", haveMakeup);
+            requestBody.put("cremated", cremated);
+            requestBody.put("standingflowers", sstandingflowers);
+            requestBody.put("lights", slights);
+            requestBody.put("scandleStand", scandleStand);
+            requestBody.put("flooringFlowers", sflooringFlowers);
+            requestBody.put("cross", scross);
+            requestBody.put("tarpaulin", starpaulin);
+            requestBody.put("curtains", scurtains);
+            requestBody.put("candles", scandles);
+            requestBody.put("balloons", sballoons);
+            requestBody.put("message", smessage);
+            requestBody.put("note", snote);
+
+            requestBody.put("locationFrom", slocationFrom);
+            requestBody.put("locationTo", slocationTo);
+            requestBody.put("wakeFrom", selectedWakeFrom);
+            requestBody.put("wakeTo", selectedWakeTo);
+            requestBody.put("nameCemetery", snameCemetery);
+            requestBody.put("addressCemetery", saddressCemetery);
+            requestBody.put("obituaryDescription", sobituaryDescription);
+
+            requestBody.put("valuableProperty", svaluableProperty);
+//            requestBody.put("proofOwnership", encodedProofOwnership);
+//            requestBody.put("signature", encodedSignature);
+//                requestBody.put("proofOwnership", "encodedProofOwnership");
+//                requestBody.put("signature", "encodedSignature");
+            requestBody.put("MOP", selectedModeOfPayment);
+
+            requestBody.put("price", price);
+            requestBody.put("packageID", packageID);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        // Make a POST request to the login API endpoint
+        String url = ApiConstants.inquirePackageURL; // Replace with your actual login API endpoint
+        Toast.makeText(getApplicationContext(), "Adding ... ", Toast.LENGTH_SHORT).show();
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, requestBody,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            // Assuming the API returns a message upon successful add
+                            String message = response.getString("message");
+                            deceasedID = response.getString("deceasedID");
+                            orderID = response.getString("orderID");
+                            if (deceasedID != null || orderID != null) {
+//                                Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
+                                imagevalidid();
+//                                Toast.makeText(getApplicationContext(), "proofofdeathtransferpermit", Toast.LENGTH_SHORT).show();
+                                proofofdeathtransferpermit();
+//                                Toast.makeText(getApplicationContext(), "swabtestotherdocuments", Toast.LENGTH_SHORT).show();
+                                swabtestotherdocuments();
+//                                Toast.makeText(getApplicationContext(), "proofofownershipsignature", Toast.LENGTH_SHORT).show();
+                                proofofownershipsignature();
+                                Toast.makeText(getApplicationContext(), "Inquired Successfully", Toast.LENGTH_SHORT).show();
+                            }
+                            // For example, start a new activity after successful add
+                            startActivity(new Intent(InquireActivity.this, ProfileActivity.class));
+                        } catch (JSONException e) {
+                            Toast.makeText(getApplicationContext(), "Check Internet Connection ", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Handle error response
+                        Log.e("DeceasedaddActivity", "Error fetching profile: " + error.getMessage());
+                    }
+                }) {
+            @Override
+            public java.util.Map<String, String> getHeaders() {
+                // Add the token to the headers of the request
+                java.util.Map<String, String> headers = new java.util.HashMap<>();
+                headers.put("Authorization", "Bearer " + token);
+                return headers;
+            }
+        };
+        // Create a request queue using Volley.newRequestQueue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        // Add the request to the Volley request queue
+        requestQueue.add(request);
+    }
+
+    private void imagevalidid(){
+        JSONObject requestBody = new JSONObject();
+        try {
+            requestBody.put("deceasedID", deceasedID);
+            requestBody.put("image", encodedImagee);
+            requestBody.put("validId", encodedValidId);
+//            requestBody.put("proofOfDeath", encodedProofOfDeath);
+//            requestBody.put("transferPermit", encodedTransferPermit);
+//            requestBody.put("swabTest", encodedSwabTest);
+//            requestBody.put("otherDocuments", encodedOtherDocuments);
+//            requestBody.put("proofOwnership", encodedProofOwnership);
+//            requestBody.put("signature", encodedSignature);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        // Make a POST request to the login API endpoint
+        String url = ApiConstants.imagevalidid; // Replace with your actual login API endpoint
+        Toast.makeText(getApplicationContext(), "Adding ... ", Toast.LENGTH_SHORT).show();
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, requestBody,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            // Assuming the API returns a message upon successful add
+                            String message = response.getString("message");
+                            // For example, start a new activity after successful add
+//                            startActivity(new Intent(InquireActivity.this, ProfileActivity.class));
+                        } catch (JSONException e) {
+                            Toast.makeText(getApplicationContext(), "Check Internet Connection ", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Handle error response
+                        Log.e("DeceasedaddActivity", "Error fetching profile: " + error.getMessage());
+                    }
+                }) {
+            @Override
+            public java.util.Map<String, String> getHeaders() {
+                // Add the token to the headers of the request
+                java.util.Map<String, String> headers = new java.util.HashMap<>();
+                headers.put("Authorization", "Bearer " + token);
+                return headers;
+            }
+        };
+        // Create a request queue using Volley.newRequestQueue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        // Add the request to the Volley request queue
+        requestQueue.add(request);
+    }
+
+    private void proofofdeathtransferpermit(){
+        JSONObject requestBody = new JSONObject();
+        try {
+            requestBody.put("deceasedID", deceasedID);
+//            requestBody.put("image", encodedImagee);
+//            requestBody.put("validId", encodedValidId);
+            requestBody.put("proofOfDeath", encodedProofOfDeath);
+            requestBody.put("transferPermit", encodedTransferPermit);
+//            requestBody.put("swabTest", encodedSwabTest);
+//            requestBody.put("otherDocuments", encodedOtherDocuments);
+//            requestBody.put("proofOwnership", encodedProofOwnership);
+//            requestBody.put("signature", encodedSignature);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        // Make a POST request to the login API endpoint
+        String url = ApiConstants.proofofdeathtransferpermit; // Replace with your actual login API endpoint
+        Toast.makeText(getApplicationContext(), "Adding ... ", Toast.LENGTH_SHORT).show();
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, requestBody,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            // Assuming the API returns a message upon successful add
+                            String message = response.getString("message");
+                            // For example, start a new activity after successful add
+//                            startActivity(new Intent(InquireActivity.this, ProfileActivity.class));
+                        } catch (JSONException e) {
+                            Toast.makeText(getApplicationContext(), "Check Internet Connection ", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Handle error response
+                        Log.e("DeceasedaddActivity", "Error fetching profile: " + error.getMessage());
+                    }
+                }) {
+            @Override
+            public java.util.Map<String, String> getHeaders() {
+                // Add the token to the headers of the request
+                java.util.Map<String, String> headers = new java.util.HashMap<>();
+                headers.put("Authorization", "Bearer " + token);
+                return headers;
+            }
+        };
+        // Create a request queue using Volley.newRequestQueue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        // Add the request to the Volley request queue
+        requestQueue.add(request);
+    }
+
+    private void swabtestotherdocuments(){
+        JSONObject requestBody = new JSONObject();
+        try {
+            requestBody.put("deceasedID", deceasedID);
+//            requestBody.put("image", encodedImagee);
+//            requestBody.put("validId", encodedValidId);
+//            requestBody.put("proofOfDeath", encodedProofOfDeath);
+//            requestBody.put("transferPermit", encodedTransferPermit);
+            requestBody.put("swabTest", encodedSwabTest);
+            requestBody.put("otherDocuments", encodedOtherDocuments);
+//            requestBody.put("proofOwnership", encodedProofOwnership);
+//            requestBody.put("signature", encodedSignature);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        // Make a POST request to the login API endpoint
+        String url = ApiConstants.swabtestotherdocuments; // Replace with your actual login API endpoint
+        Toast.makeText(getApplicationContext(), "Adding ... ", Toast.LENGTH_SHORT).show();
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, requestBody,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            // Assuming the API returns a message upon successful add
+                            String message = response.getString("message");
+                            // For example, start a new activity after successful add
+//                            startActivity(new Intent(InquireActivity.this, ProfileActivity.class));
+                        } catch (JSONException e) {
+                            Toast.makeText(getApplicationContext(), "Check Internet Connection ", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Handle error response
+                        Log.e("DeceasedaddActivity", "Error fetching profile: " + error.getMessage());
+                    }
+                }) {
+            @Override
+            public java.util.Map<String, String> getHeaders() {
+                // Add the token to the headers of the request
+                java.util.Map<String, String> headers = new java.util.HashMap<>();
+                headers.put("Authorization", "Bearer " + token);
+                return headers;
+            }
+        };
+        // Create a request queue using Volley.newRequestQueue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        // Add the request to the Volley request queue
+        requestQueue.add(request);
+    }
+
+    private void proofofownershipsignature(){
+        JSONObject requestBody = new JSONObject();
+        try {
+            requestBody.put("orderID", orderID);
+//            requestBody.put("image", encodedImagee);
+//            requestBody.put("validId", encodedValidId);
+//            requestBody.put("proofOfDeath", encodedProofOfDeath);
+//            requestBody.put("transferPermit", encodedTransferPermit);
+//            requestBody.put("swabTest", encodedSwabTest);
+//            requestBody.put("otherDocuments", encodedOtherDocuments);
+            requestBody.put("proofOwnership", encodedProofOwnership);
+            requestBody.put("signature", encodedSignature);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        // Make a POST request to the login API endpoint
+        String url = ApiConstants.proofofownershipsignature; // Replace with your actual login API endpoint
+        Toast.makeText(getApplicationContext(), "Adding ... ", Toast.LENGTH_SHORT).show();
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, requestBody,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            // Assuming the API returns a message upon successful add
+                            String message = response.getString("message");
+                            // For example, start a new activity after successful add
+//                            startActivity(new Intent(InquireActivity.this, ProfileActivity.class));
+                        } catch (JSONException e) {
+                            Toast.makeText(getApplicationContext(), "Check Internet Connection ", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Handle error response
+                        Log.e("DeceasedaddActivity", "Error fetching profile: " + error.getMessage());
+                    }
+                }) {
+            @Override
+            public java.util.Map<String, String> getHeaders() {
+                // Add the token to the headers of the request
+                java.util.Map<String, String> headers = new java.util.HashMap<>();
+                headers.put("Authorization", "Bearer " + token);
+                return headers;
+            }
+        };
+        // Create a request queue using Volley.newRequestQueue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        // Add the request to the Volley request queue
+        requestQueue.add(request);
     }
 
     private String getIdFromSharedPreferences() {
