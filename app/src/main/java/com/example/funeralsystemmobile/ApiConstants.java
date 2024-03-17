@@ -34,4 +34,7 @@ public class ApiConstants {
     public static final String proofofdeathtransferpermit = BASE_URL + "api/proofofdeathtransferpermit";
     public static final String swabtestotherdocuments = BASE_URL + "api/swabtestotherdocuments";
     public static final String proofofownershipsignature = BASE_URL + "api/proofofownershipsignature";
+    public static final String showmessages = BASE_URL + "api/showmessages/";
+    public static final String sendmessage = BASE_URL + "api/sendmessage";
+
 }

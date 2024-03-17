@@ -100,15 +100,16 @@ public class LoginActivity extends AppCompatActivity {
                                     // You can save the token or navigate to another activity
 //                                    saveTokenToSharedPreferences(userid, custid, token);
                                     // For example, start a new activity after successful login
-//                                    startActivity(new Intent(LoginActivity.this, LandingActivity.class));
+                                    startActivity(new Intent(LoginActivity.this, LiveActivity.class));
                                 } else if (message.equals("success")) {
                                     // Assuming the API returns a token upon successful login
                                     String userid = response.getString("userid");
+                                    String name = response.getString("name");
                                     String custid = response.getString("custid");
                                     String token = response.getString("token");
                                     Toast.makeText(getApplicationContext(), "Login Successful ", Toast.LENGTH_SHORT).show();
                                     // You can save the token or navigate to another activity
-                                    saveTokenToSharedPreferences(userid, custid, token);
+                                    saveTokenToSharedPreferences(userid, name, custid, token);
                                     // For example, start a new activity after successful login
                                     startActivity(new Intent(LoginActivity.this, LandingActivity.class));
                                 } else {
@@ -137,11 +138,12 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void saveTokenToSharedPreferences(String userid, String custid, String token) {
+    private void saveTokenToSharedPreferences(String userid, String name, String custid, String token) {
         // Save the token in SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("userid", userid);
+        editor.putString("name", name);
         editor.putString("custid", custid);
         editor.putString("token", token);
         editor.apply();

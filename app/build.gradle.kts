@@ -74,4 +74,7 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    implementation("com.github.ZEGOCLOUD:zego_uikit_prebuilt_live_streaming_android:+")
+    implementation("com.github.ZEGOCLOUD:zego_uikit_signaling_plugin_android:+")
+
 }
