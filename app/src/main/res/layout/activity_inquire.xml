@@ -327,6 +327,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -1180,6 +1181,64 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/tvCardNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CardNumber"/>
+
+        <EditText
+            android:id="@+id/CardNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="CardNumber"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/tvexp_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Exp Month"/>
+
+        <EditText
+            android:id="@+id/exp_month"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Exp Month"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/tvexp_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Exp Year"/>
+
+        <EditText
+            android:id="@+id/exp_year"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Exp Year"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/tvCVV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CVC"/>
+
+        <EditText
+            android:id="@+id/CVV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="CVC"
+            android:padding="8dp" />
+
+
 
     </LinearLayout>
     </androidx.cardview.widget.CardView>

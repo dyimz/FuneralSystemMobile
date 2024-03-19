@@ -150,8 +150,8 @@ public class ProductinfoActivity extends AppCompatActivity {
                     }
 
                     String addToCartURL = ApiConstants.addToCartURL;
-                    Toast.makeText(getApplicationContext(), productId, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getApplicationContext(), scustid, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getApplicationContext(), productId, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getApplicationContext(), scustid, Toast.LENGTH_SHORT).show();
                     JsonObjectRequest atcrequest = new JsonObjectRequest(Request.Method.POST, addToCartURL, atcrequestBody,
                             new Response.Listener<JSONObject>() {
                                 @Override

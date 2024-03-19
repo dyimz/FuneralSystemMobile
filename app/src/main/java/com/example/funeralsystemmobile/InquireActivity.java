@@ -16,6 +16,7 @@ import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -126,6 +127,20 @@ public class InquireActivity extends AppCompatActivity {
         setupSpinner(spinnerCivilStatus, R.array.civil_status_array);
         setupSpinner(spinnerCategoryOfDeath, R.array.category_of_death_array);
         setupSpinner(spinnerModeOfPayment, R.array.mode_of_payment_array);
+        hideCardDetails();
+        spinnerModeOfPayment.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedMode = parent.getItemAtPosition(position).toString();
+                if (selectedMode.equals("CARD")) {
+                    showCardDetails();
+                } else {
+                    hideCardDetails();
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
 
         radioGroupDeathLocation = findViewById(R.id.radioGroupoptionDeath);
         radioGroupCasketSize = findViewById(R.id.radioGroupCasketSize);
@@ -136,6 +151,19 @@ public class InquireActivity extends AppCompatActivity {
         radioGroupAvailableHearses = findViewById(R.id.radioGroupAvailableHearses);
         radioGroupHaveMakeup = findViewById(R.id.radioGroupHaveMakeup);
         radioGroupCremated = findViewById(R.id.radioGroupCremated);
+        deathOptionDefault();
+        radioGroupDeathLocation.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.radioButtonHospital) {
+                    showHospitalViews();
+                } else if (checkedId == R.id.radioButtonHouse) {
+                    showHouseViews();
+                } else if (checkedId == R.id.radioButtonPublic) {
+                    showPublicViews();
+                }
+            }
+        });
 
         textViewImage = findViewById(R.id.textViewImage);
         textViewValidId = findViewById(R.id.textViewValidId);
@@ -197,6 +225,136 @@ public class InquireActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void showCardDetails() {
+        TextView tvCVV = findViewById(R.id.tvCVV);
+        TextView tvCardNumber = findViewById(R.id.tvCardNumber);
+        TextView tvexp_month = findViewById(R.id.tvexp_month);
+        TextView tvexp_year = findViewById(R.id.tvexp_year);
+        EditText CVV = findViewById(R.id.CVV);
+        EditText CardNumber = findViewById(R.id.CardNumber);
+        EditText exp_month = findViewById(R.id.exp_month);
+        EditText exp_year = findViewById(R.id.exp_year);
+        tvCVV.setVisibility(View.VISIBLE);
+        tvCardNumber.setVisibility(View.VISIBLE);
+        tvexp_month.setVisibility(View.VISIBLE);
+        tvexp_year.setVisibility(View.VISIBLE);
+        CVV.setVisibility(View.VISIBLE);
+        CardNumber.setVisibility(View.VISIBLE);
+        exp_month.setVisibility(View.VISIBLE);
+        exp_year.setVisibility(View.VISIBLE);
+    }
+
+    private void hideCardDetails() {
+        TextView tvCVV = findViewById(R.id.tvCVV);
+        TextView tvCardNumber = findViewById(R.id.tvCardNumber);
+        TextView tvexp_month = findViewById(R.id.tvexp_month);
+        TextView tvexp_year = findViewById(R.id.tvexp_year);
+        EditText CVV = findViewById(R.id.CVV);
+        EditText CardNumber = findViewById(R.id.CardNumber);
+        EditText exp_month = findViewById(R.id.exp_month);
+        EditText exp_year = findViewById(R.id.exp_year);
+        tvCVV.setVisibility(View.GONE);
+        tvCardNumber.setVisibility(View.GONE);
+        tvexp_month.setVisibility(View.GONE);
+        tvexp_year.setVisibility(View.GONE);
+        CVV.setVisibility(View.GONE);
+        CardNumber.setVisibility(View.GONE);
+        exp_month.setVisibility(View.GONE);
+        exp_year.setVisibility(View.GONE);
+    }
+
+    private void deathOptionDefault() {
+
+        TextView placeofdeathLabel = findViewById(R.id.placeofdeathLabel);
+        EditText placeofdeath = findViewById(R.id.placeofdeath);
+        TextView transferPermitLabel = findViewById(R.id.transferPermitLabel);
+        Button buttonChooseTransferPermit = findViewById(R.id.buttonChooseTransferPermit);
+        TextView swabTestLabel = findViewById(R.id.swabTestLabel);
+        Button buttonSwabTest = findViewById(R.id.buttonSwabTest);
+        TextView otherDocumentsLabel = findViewById(R.id.otherDocumentsLabel);
+        Button buttonOtherDocuments = findViewById(R.id.buttonOtherDocuments);
+        // Show views related to hospital
+        placeofdeathLabel.setVisibility(View.VISIBLE);
+        placeofdeath.setVisibility(View.VISIBLE);
+        transferPermitLabel.setVisibility(View.VISIBLE);
+        buttonChooseTransferPermit.setVisibility(View.VISIBLE);
+        swabTestLabel.setVisibility(View.VISIBLE);
+        buttonSwabTest.setVisibility(View.VISIBLE);
+        // Show other views related to hospital
+        otherDocumentsLabel.setVisibility(View.GONE);
+        buttonOtherDocuments.setVisibility(View.GONE);
+        // Hide views not related to hospital
+    }
+    private void showHospitalViews() {
+
+        TextView placeofdeathLabel = findViewById(R.id.placeofdeathLabel);
+        EditText placeofdeath = findViewById(R.id.placeofdeath);
+        TextView transferPermitLabel = findViewById(R.id.transferPermitLabel);
+        Button buttonChooseTransferPermit = findViewById(R.id.buttonChooseTransferPermit);
+        TextView swabTestLabel = findViewById(R.id.swabTestLabel);
+        Button buttonSwabTest = findViewById(R.id.buttonSwabTest);
+        TextView otherDocumentsLabel = findViewById(R.id.otherDocumentsLabel);
+        Button buttonOtherDocuments = findViewById(R.id.buttonOtherDocuments);
+        // Show views related to hospital
+        placeofdeathLabel.setVisibility(View.VISIBLE);
+        placeofdeath.setVisibility(View.VISIBLE);
+        transferPermitLabel.setVisibility(View.VISIBLE);
+        buttonChooseTransferPermit.setVisibility(View.VISIBLE);
+        swabTestLabel.setVisibility(View.VISIBLE);
+        buttonSwabTest.setVisibility(View.VISIBLE);
+        // Show other views related to hospital
+        otherDocumentsLabel.setVisibility(View.GONE);
+        buttonOtherDocuments.setVisibility(View.GONE);
+        // Hide views not related to hospital
+    }
+
+    private void showHouseViews() {
+
+        TextView placeofdeathLabel = findViewById(R.id.placeofdeathLabel);
+        EditText placeofdeath = findViewById(R.id.placeofdeath);
+        TextView transferPermitLabel = findViewById(R.id.transferPermitLabel);
+        Button buttonChooseTransferPermit = findViewById(R.id.buttonChooseTransferPermit);
+        TextView swabTestLabel = findViewById(R.id.swabTestLabel);
+        Button buttonSwabTest = findViewById(R.id.buttonSwabTest);
+        TextView otherDocumentsLabel = findViewById(R.id.otherDocumentsLabel);
+        Button buttonOtherDocuments = findViewById(R.id.buttonOtherDocuments);
+        // Show views related to hospital
+        placeofdeathLabel.setVisibility(View.GONE);
+        placeofdeath.setVisibility(View.GONE);
+        transferPermitLabel.setVisibility(View.VISIBLE);
+        buttonChooseTransferPermit.setVisibility(View.VISIBLE);
+        swabTestLabel.setVisibility(View.GONE);
+        buttonSwabTest.setVisibility(View.GONE);
+        // Show other views related to hospital
+        otherDocumentsLabel.setVisibility(View.GONE);
+        buttonOtherDocuments.setVisibility(View.GONE);
+        // Hide views not related to hospital
+    }
+
+    private void showPublicViews() {
+
+        TextView placeofdeathLabel = findViewById(R.id.placeofdeathLabel);
+        EditText placeofdeath = findViewById(R.id.placeofdeath);
+        TextView transferPermitLabel = findViewById(R.id.transferPermitLabel);
+        Button buttonChooseTransferPermit = findViewById(R.id.buttonChooseTransferPermit);
+        TextView swabTestLabel = findViewById(R.id.swabTestLabel);
+        Button buttonSwabTest = findViewById(R.id.buttonSwabTest);
+        TextView otherDocumentsLabel = findViewById(R.id.otherDocumentsLabel);
+        Button buttonOtherDocuments = findViewById(R.id.buttonOtherDocuments);
+        // Show views related to hospital
+        placeofdeathLabel.setVisibility(View.VISIBLE);
+        placeofdeath.setVisibility(View.VISIBLE);
+        transferPermitLabel.setVisibility(View.GONE);
+        buttonChooseTransferPermit.setVisibility(View.GONE);
+        swabTestLabel.setVisibility(View.GONE);
+        buttonSwabTest.setVisibility(View.GONE);
+        // Show other views related to hospital
+        otherDocumentsLabel.setVisibility(View.VISIBLE);
+        buttonOtherDocuments.setVisibility(View.VISIBLE);
+        // Hide views not related to hospital
+    }
+
 
     private void orderInquiredPackage() {
         selectedDateOfBirth = editTextDateOfBirth.getText().toString();
@@ -298,6 +456,23 @@ public class InquireActivity extends AppCompatActivity {
                 && !svaluableProperty.isEmpty() && !encodedProofOwnership.isEmpty() && !encodedSignature.isEmpty()
                 && !selectedModeOfPayment.isEmpty()
         ) {
+
+            EditText CVV = findViewById(R.id.CVV);
+            EditText CardNumber = findViewById(R.id.CardNumber);
+            EditText exp_month = findViewById(R.id.exp_month);
+            EditText exp_year = findViewById(R.id.exp_year);
+
+            String sCVV = CVV.getText().toString().trim();
+            String sCardNumber = CardNumber.getText().toString().trim();
+            String sexp_month = exp_month.getText().toString().trim();
+            String sexp_year = exp_year.getText().toString().trim();
+
+            if (selectedModeOfPayment.equals("CARD")) {
+                if (sCardNumber.isEmpty() || sexp_month.isEmpty() || sexp_year.isEmpty() || sCVV.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Card Details Required ", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
             createOrder();
 
 
@@ -309,8 +484,20 @@ public class InquireActivity extends AppCompatActivity {
 
 
     private void createOrder(){
+
+        EditText CVV = findViewById(R.id.CVV);
+        EditText CardNumber = findViewById(R.id.CardNumber);
+        EditText exp_month = findViewById(R.id.exp_month);
+        EditText exp_year = findViewById(R.id.exp_year);
+
+        String sCVV = CVV.getText().toString().trim();
+        String sCardNumber = CardNumber.getText().toString().trim();
+        String sexp_month = exp_month.getText().toString().trim();
+        String sexp_year = exp_year.getText().toString().trim();
+
         JSONObject requestBody = new JSONObject();
         try {
+
             requestBody.put("customerID", custid);
             requestBody.put("fname", sfname);
             requestBody.put("mname", smname);
@@ -381,7 +568,15 @@ public class InquireActivity extends AppCompatActivity {
             requestBody.put("MOP", selectedModeOfPayment);
 
             requestBody.put("price", price);
+            requestBody.put("amount", price);
             requestBody.put("packageID", packageID);
+
+            if (selectedModeOfPayment.equals("CARD")) {
+                requestBody.put("card_number", sCardNumber);
+                requestBody.put("exp_month", sexp_month);
+                requestBody.put("exp_year", sexp_year);
+                requestBody.put("cvc", sCVV);
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -401,13 +596,21 @@ public class InquireActivity extends AppCompatActivity {
                             orderID = response.getString("orderID");
                             if (deceasedID != null || orderID != null) {
 //                                Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
+                                Log.d("WHAAAAAAAAAA", "imagevalidid: ");
                                 imagevalidid();
+                                Log.d("WHAAAAAAAAAA", "imagevalidid: done ");
+                                Log.d("WHAAAAAAAAAA", "proofofdeathtransferpermit:  ");
 //                                Toast.makeText(getApplicationContext(), "proofofdeathtransferpermit", Toast.LENGTH_SHORT).show();
                                 proofofdeathtransferpermit();
+                                Log.d("WHAAAAAAAAAA", "proofofdeathtransferpermit: done ");
+                                Log.d("WHAAAAAAAAAA", "swabtestotherdocuments:  ");
 //                                Toast.makeText(getApplicationContext(), "swabtestotherdocuments", Toast.LENGTH_SHORT).show();
                                 swabtestotherdocuments();
+                                Log.d("WHAAAAAAAAAA", "swabtestotherdocuments: done ");
+                                Log.d("WHAAAAAAAAAA", "proofofownershipsignature: ");
 //                                Toast.makeText(getApplicationContext(), "proofofownershipsignature", Toast.LENGTH_SHORT).show();
                                 proofofownershipsignature();
+                                Log.d("WHAAAAAAAAAA", "proofofownershipsignature: done ");
                                 Toast.makeText(getApplicationContext(), "Inquired Successfully", Toast.LENGTH_SHORT).show();
                             }
                             // For example, start a new activity after successful add
@@ -685,7 +888,7 @@ public class InquireActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 // Note: month is zero-based
-                String selectedDate = String.format(Locale.getDefault(), "%02d/%02d/%04d", dayOfMonth, month + 1, year);
+                String selectedDate = String.format(Locale.getDefault(), "%02d-%02d-%04d", dayOfMonth, month + 1, year);
                 editText.setText(selectedDate);
             }
         };

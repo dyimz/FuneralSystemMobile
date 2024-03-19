@@ -92,47 +92,101 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_below="@id/tvcartList"
-        android:layout_above="@id/MOP"
+        android:layout_above="@id/CardNumber"
         android:layout_weight="1"
         android:divider="@android:color/darker_gray"
         android:layout_marginTop="5dp"
         android:dividerHeight="2dp"/>
 
     <TextView
+        android:id="@+id/tvCardNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/exp_month"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentStart="true"
+        android:text="Card Number"
+        android:textStyle="bold"/>
+    <EditText
+        android:id="@+id/CardNumber"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="Card Number"
+        android:layout_above="@id/exp_month"
+        android:layout_marginStart="90dp"/>
+
+    <TextView
+        android:id="@+id/tvexp_month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tvexp_year"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentStart="true"
+        android:text="Exp Month"
+        android:textStyle="bold"/>
+    <EditText
+        android:id="@+id/exp_month"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="Exp Month"
+        android:layout_above="@id/tvexp_year"
+        android:layout_marginStart="90dp"/>
+
+    <TextView
+        android:id="@+id/tvexp_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/CVV"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentStart="true"
+        android:text="Exp Year"
+        android:textStyle="bold"/>
+    <EditText
+        android:id="@+id/exp_year"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="Exp Year"
+        android:layout_above="@id/CVV"
+        android:layout_marginStart="90dp"/>
+
+    <TextView
+        android:id="@+id/tvCVV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/modeOfPayment"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentStart="true"
+        android:text="CVC"
+        android:textStyle="bold"/>
+    <EditText
+        android:id="@+id/CVV"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="CVC"
+        android:layout_above="@id/modeOfPayment"
+        android:layout_marginStart="90dp"/>
+
+    <TextView
         android:id="@+id/tvMOP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/POP"
+        android:layout_above="@id/checkoutButton"
         android:layout_marginTop="10dp"
         android:layout_alignParentStart="true"
         android:text="Mode Of Pay"
         android:layout_marginBottom="10dp"
         android:textStyle="bold"/>
-    <EditText
-        android:id="@+id/MOP"
+    <Spinner
+        android:id="@+id/modeOfPayment"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:hint="Mode Of Pay"
-        android:layout_above="@id/POP"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="90dp"/>
-
-    <TextView
-        android:id="@+id/tvPOP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_above="@id/checkoutButton"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_alignParentStart="true"
-        android:text="Proof of Pay"
-        android:textStyle="bold"/>
-    <EditText
-        android:id="@+id/POP"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:hint="Proof of Pay"
-        android:layout_above="@id/checkoutButton"
         android:layout_marginStart="90dp"/>
 
     <!-- Button for checkout -->
@@ -143,7 +197,7 @@
         android:layout_above="@id/bottomNavigationView"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="8dp"
         android:text="Check Out"
         android:textSize="18sp"

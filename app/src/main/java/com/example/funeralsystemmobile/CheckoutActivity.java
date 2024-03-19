@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +38,7 @@ import java.util.List;
 public class CheckoutActivity extends AppCompatActivity {
 
     private String COName, COAddress, COPhone, COMOP, COPOP;
+    private Spinner spinnerModeOfPayment;
     private BottomNavigationView bottomNavigationView;
     private List<Product> productList = new ArrayList<>();
     private CheckoutAdapter adapter;
@@ -224,16 +228,50 @@ public class CheckoutActivity extends AppCompatActivity {
         // Add the request to the Volley request queue
         requestQueueee.add(requesttt);
 
+        spinnerModeOfPayment = findViewById(R.id.modeOfPayment);
+        setupSpinner(spinnerModeOfPayment, R.array.mode_of_payment_array);
+        hideCardDetails();
+        spinnerModeOfPayment.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedMode = parent.getItemAtPosition(position).toString();
+                if (selectedMode.equals("CARD")) {
+                    showCardDetails();
+                } else {
+                    hideCardDetails();
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
 
         RequestQueue requestQueueeee = Volley.newRequestQueue(this);
         checkoutButton = findViewById(R.id.checkoutButton);
         checkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText MOP = findViewById(R.id.MOP);
-                EditText POP = findViewById(R.id.POP);
-                COMOP = MOP.getText().toString().trim();
-                COPOP = POP.getText().toString().trim();
+                String selectedModeOfPayment = spinnerModeOfPayment.getSelectedItem().toString();
+
+                EditText CVV = findViewById(R.id.CVV);
+                EditText CardNumber = findViewById(R.id.CardNumber);
+                EditText exp_month = findViewById(R.id.exp_month);
+                EditText exp_year = findViewById(R.id.exp_year);
+
+                String sCVV = CVV.getText().toString().trim();
+                String sCardNumber = CardNumber.getText().toString().trim();
+                String sexp_month = exp_month.getText().toString().trim();
+                String sexp_year = exp_year.getText().toString().trim();
+
+
+                TextView totalLabel = findViewById(R.id.totalLabel);
+                String sTotal = totalLabel.getText().toString().trim();
+
+                if (selectedModeOfPayment.equals("CARD")) {
+                    if (sCardNumber.isEmpty() || sexp_month.isEmpty() || sexp_year.isEmpty() || sCVV.isEmpty()) {
+                        Toast.makeText(getApplicationContext(), "Card Details Required ", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
 
                 JSONObject requestBody = new JSONObject();
                 try {
@@ -241,8 +279,16 @@ public class CheckoutActivity extends AppCompatActivity {
                     requestBody.put("name", COName);
                     requestBody.put("address", COAddress);
                     requestBody.put("contact", COPhone);
-                    requestBody.put("modeofpayment", COMOP);
-                    requestBody.put("proofofpayment", COPOP);
+                    requestBody.put("total_price", sTotal);
+                    requestBody.put("amount", sTotal);
+                    requestBody.put("modeofpayment", selectedModeOfPayment);
+
+                    if (selectedModeOfPayment.equals("CARD")) {
+                        requestBody.put("card_number", sCardNumber);
+                        requestBody.put("exp_month", sexp_month);
+                        requestBody.put("exp_year", sexp_year);
+                        requestBody.put("cvc", sCVV);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -288,6 +334,44 @@ public class CheckoutActivity extends AppCompatActivity {
         });
     }
 
+    private void showCardDetails() {
+        TextView tvCVV = findViewById(R.id.tvCVV);
+        TextView tvCardNumber = findViewById(R.id.tvCardNumber);
+        TextView tvexp_month = findViewById(R.id.tvexp_month);
+        TextView tvexp_year = findViewById(R.id.tvexp_year);
+        EditText CVV = findViewById(R.id.CVV);
+        EditText CardNumber = findViewById(R.id.CardNumber);
+        EditText exp_month = findViewById(R.id.exp_month);
+        EditText exp_year = findViewById(R.id.exp_year);
+        tvCVV.setVisibility(View.VISIBLE);
+        tvCardNumber.setVisibility(View.VISIBLE);
+        tvexp_month.setVisibility(View.VISIBLE);
+        tvexp_year.setVisibility(View.VISIBLE);
+        CVV.setVisibility(View.VISIBLE);
+        CardNumber.setVisibility(View.VISIBLE);
+        exp_month.setVisibility(View.VISIBLE);
+        exp_year.setVisibility(View.VISIBLE);
+    }
+
+    private void hideCardDetails() {
+        TextView tvCVV = findViewById(R.id.tvCVV);
+        TextView tvCardNumber = findViewById(R.id.tvCardNumber);
+        TextView tvexp_month = findViewById(R.id.tvexp_month);
+        TextView tvexp_year = findViewById(R.id.tvexp_year);
+        EditText CVV = findViewById(R.id.CVV);
+        EditText CardNumber = findViewById(R.id.CardNumber);
+        EditText exp_month = findViewById(R.id.exp_month);
+        EditText exp_year = findViewById(R.id.exp_year);
+        tvCVV.setVisibility(View.GONE);
+        tvCardNumber.setVisibility(View.GONE);
+        tvexp_month.setVisibility(View.GONE);
+        tvexp_year.setVisibility(View.GONE);
+        CVV.setVisibility(View.GONE);
+        CardNumber.setVisibility(View.GONE);
+        exp_month.setVisibility(View.GONE);
+        exp_year.setVisibility(View.GONE);
+    }
+
     private String getIdFromSharedPreferences() {
         // Retrieve the id from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
@@ -297,6 +381,15 @@ public class CheckoutActivity extends AppCompatActivity {
         // Retrieve the token from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         return sharedPreferences.getString("token", "");
+    }
+
+    private void setupSpinner(Spinner spinner, int arrayResourceId) {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                arrayResourceId,
+                android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
     }
 
 }
