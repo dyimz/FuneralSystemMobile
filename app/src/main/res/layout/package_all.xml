@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="100dp"
-    android:layout_height="wrap_content"
+    android:layout_height="110dp"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:paddingTop="15dp"
+    android:background="@drawable/whitebackground">
 
     <ImageView
         android:id="@+id/iconImageView"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:src="@drawable/pikeslogo"
+        android:src="@drawable/allpackagesi"
         android:scaleType="fitCenter"
         android:layout_gravity="center"/>
 
@@ -20,6 +21,8 @@
         android:text="All Packages"
         android:textSize="14sp"
         android:textColor="@android:color/black"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:paddingTop="8dp"/>
 
 </LinearLayout>

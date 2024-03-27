@@ -73,7 +73,7 @@ public class ProductsActivity extends AppCompatActivity {
 
         LinearLayout categoryCaskets = horizontalLinearLayout.findViewById(R.id.categoryCaskets);
         LinearLayout categoryDressings = horizontalLinearLayout.findViewById(R.id.categoryDressings);
-        LinearLayout categoryFlowers = horizontalLinearLayout.findViewById(R.id.categoryFlowers);
+//        LinearLayout categoryFlowers = horizontalLinearLayout.findViewById(R.id.categoryFlowers);
         LinearLayout categoryUrn = horizontalLinearLayout.findViewById(R.id.categoryUrn);
 
         categoryCaskets.setOnClickListener(new View.OnClickListener() {
@@ -90,12 +90,12 @@ public class ProductsActivity extends AppCompatActivity {
             }
         });
 
-        categoryFlowers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ProductsActivity.this, FlowerActivity.class));
-            }
-        });
+//        categoryFlowers.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(ProductsActivity.this, FlowerActivity.class));
+//            }
+//        });
 
         categoryUrn.setOnClickListener(new View.OnClickListener() {
             @Override

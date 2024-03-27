@@ -13,6 +13,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -197,6 +199,7 @@ public class InquireActivity extends AppCompatActivity {
         nameFather = findViewById(R.id.nameFather);
         causeofdeath = findViewById(R.id.causeofdeath);
         placeofdeath = findViewById(R.id.placeofdeath);
+
         standingflowers = findViewById(R.id.standingFlowers);
         lights = findViewById(R.id.lights);
         candleStand = findViewById(R.id.candleStand);
@@ -206,6 +209,27 @@ public class InquireActivity extends AppCompatActivity {
         curtains = findViewById(R.id.curtains);
         candles = findViewById(R.id.candles);
         balloons = findViewById(R.id.balloons);
+
+        standingflowers.setText("1");
+        lights.setText("1");
+        candleStand.setText("1");
+        flooringFlowers.setText("1");
+        cross.setText("1");
+        tarpaulin.setText("1");
+        curtains.setText("1");
+        candles.setText("1");
+        balloons.setText("1");
+
+        standingflowers.setFilters(new InputFilter[]{new QuantityInputFilter()});
+        lights.setFilters(new InputFilter[]{new QuantityInputFilter()});
+        candleStand.setFilters(new InputFilter[]{new QuantityInputFilter()});
+        flooringFlowers.setFilters(new InputFilter[]{new QuantityInputFilter()});
+        cross.setFilters(new InputFilter[]{new QuantityInputFilter()});
+        tarpaulin.setFilters(new InputFilter[]{new QuantityInputFilter()});
+        curtains.setFilters(new InputFilter[]{new QuantityInputFilter()});
+        candles.setFilters(new InputFilter[]{new QuantityInputFilter()});
+        balloons.setFilters(new InputFilter[]{new QuantityInputFilter()});
+
         message = findViewById(R.id.message);
         note = findViewById(R.id.note);
         locationFrom = findViewById(R.id.locationFrom);
@@ -224,6 +248,26 @@ public class InquireActivity extends AppCompatActivity {
                 orderInquiredPackage();
             }
         });
+    }
+
+    private class QuantityInputFilter implements InputFilter {
+
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            String input = dest.subSequence(0, dstart) + source.toString() + dest.subSequence(dend, dest.length());
+            int quantity;
+            try {
+                quantity = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                return ""; // Empty string indicates no change
+            }
+
+            if (quantity < 0 || quantity > 2) {
+                return ""; // Empty string indicates no change
+            }
+
+            return null; // Accept input
+        }
     }
 
     private void showCardDetails() {

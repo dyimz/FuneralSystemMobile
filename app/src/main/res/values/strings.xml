@@ -18,7 +18,7 @@
     </string-array>
 
     <string-array name="category_of_death_array">
-        <item>Accident</item>
+        <item>Accidents</item>
         <item>Behavioral Factor</item>
         <item>Environmental Factor</item>
         <item>Genetic</item>

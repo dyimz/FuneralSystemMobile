@@ -102,8 +102,8 @@ public class ProductinfoActivity extends AppCompatActivity {
                                 stocksLabel.setText("Stocks: " + stock);
                                 TextView priceLabel = findViewById(R.id.priceLabel);
                                 priceLabel.setText("Php: " + price);
-                                TextView detailsLabel = findViewById(R.id.detailsLabel);
-                                detailsLabel.setText(category);
+//                                TextView detailsLabel = findViewById(R.id.detailsLabel);
+//                                detailsLabel.setText(category);
 
                             } catch (JSONException e) {
                                 e.printStackTrace();

@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/productinfobg">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -19,6 +20,14 @@
             android:paddingRight="16dp"
             tools:context=".PackageinfoActivity">
 
+
+            <ImageView
+                android:id="@+id/packageImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="22dp"
+                android:src="@drawable/pikeslogo" />
+
             <TextView
                 android:id="@+id/nameLabel"
                 android:layout_width="wrap_content"
@@ -26,16 +35,10 @@
                 android:text=""
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_marginTop="20dp"
-                android:layout_centerHorizontal="true" />
-
-            <ImageView
-                android:id="@+id/packageImage"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_below="@id/nameLabel"
+                android:layout_marginTop="35dp"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/addimage"/>
+                android:layout_below="@id/packageImage"
+                android:textColor="@color/white"/>
 
             <TextView
                 android:id="@+id/priceLabel"
@@ -43,10 +46,11 @@
                 android:layout_height="wrap_content"
                 android:text=""
                 android:layout_marginTop="8dp"
-                android:textSize="30sp"
+                android:textSize="25sp"
                 android:textStyle="bold"
-                android:layout_below="@id/packageImage"
-                android:layout_alignParentRight="true" />
+                android:layout_below="@id/nameLabel"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/white"/>
 
             <TextView
                 android:id="@+id/descriptionLabel"
@@ -57,18 +61,19 @@
                 android:layout_marginTop="10dp"
                 android:layout_below="@id/priceLabel"
                 android:layout_centerHorizontal="true"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:textColor="@color/white"/>
 
             <TextView
                 android:id="@+id/Label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Inclusions "
+                android:text="Inclusions: "
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="25dp"
                 android:layout_below="@id/descriptionLabel"
-                android:layout_centerHorizontal="true" />
+                android:textColor="@color/white"/>
 
             <TextView
                 android:id="@+id/inclusionsLabel"
@@ -80,8 +85,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="140dp"
                 android:layout_below="@id/Label"
-                android:layout_centerHorizontal="true"
-                android:gravity="center"/>
+                android:textColor="@color/white"/>
 
         </RelativeLayout>
     </ScrollView>
@@ -93,7 +97,9 @@
         android:layout_gravity="bottom|center_horizontal"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="90dp"
-        android:text="Inquire" />
+        android:text="Inquire"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/blue"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"

@@ -78,13 +78,13 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        TextView Deceased = findViewById(R.id.Deceased);
-        Deceased.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ProfileActivity.this, DeceasedActivity.class));
-            }
-        });
+//        TextView Deceased = findViewById(R.id.Deceased);
+//        Deceased.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(ProfileActivity.this, DeceasedActivity.class));
+//            }
+//        });
 
         TextView watchLive = findViewById(R.id.watchLive);
         watchLive.setOnClickListener(new View.OnClickListener() {

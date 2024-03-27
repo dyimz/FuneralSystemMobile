@@ -11,4 +11,6 @@
     <color name="unselectedColor">#BDBDBD</color> <!-- Replace with your desired color for unselected state -->
     <color name="light">#30ffffff</color>
     <color name="blue">#293A89</color>
+    <color name="lightgray">#f7f7f7</color>
+    <color name="darkslightgray">#ededed</color>
 </resources>

@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="10dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
     tools:context=".ProductsActivity">
+    <!--    android:paddingLeft="16dp"-->
+    <!--    android:paddingRight="16dp"-->
 
     <TextView
         android:id="@+id/deceasedLabel"
@@ -19,10 +21,79 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:id="@+id/categoriesLabel"
+        android:id="@+id/packagesLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/deceasedLabel"
+        android:text="   Packages   "
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp"/>
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalscrollviewp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/packagesLabel"
+        android:layout_centerVertical="true"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="3dp">
+
+        <LinearLayout
+            android:id="@+id/horizontalLinearLayoutp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <!-- Include the custom item layouts for each item -->
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp">
+
+                <include layout="@layout/package_all"
+                    android:id="@+id/allpackage" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp">
+
+                <include layout="@layout/package_embalming"
+                    android:id="@+id/embalmingpackage" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp">
+
+                <include layout="@layout/package_cremation"
+                    android:id="@+id/cremationpackage" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp">
+
+                <include layout="@layout/package_allin"
+                    android:id="@+id/allinpackage" />
+            </FrameLayout>
+
+            <!-- Add more includes for each item -->
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/categoriesLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/horizontalscrollviewp"
         android:text="   Categories   "
         android:textSize="20sp"
         android:textStyle="bold"
@@ -33,7 +104,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/categoriesLabel"
-        android:layout_centerVertical="true">
+        android:layout_centerVertical="true"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="3dp"
+        >
 
         <LinearLayout
             android:id="@+id/horizontalLinearLayout"
@@ -46,8 +121,8 @@
                 android:id="@+id/categoryCaskets"/>
             <include layout="@layout/category_dressings"
                 android:id="@+id/categoryDressings"/>
-            <include layout="@layout/category_flowers"
-                android:id="@+id/categoryFlowers"/>
+            <!--            <include layout="@layout/category_flowers"-->
+            <!--                android:id="@+id/categoryFlowers"/>-->
             <include layout="@layout/category_urns"
                 android:id="@+id/categoryUrn"/>
 
@@ -56,49 +131,14 @@
         </LinearLayout>
     </HorizontalScrollView>
 
-    <TextView
-        android:id="@+id/packagesLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/horizontalscrollview"
-        android:text="   Packages   "
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginTop="8dp"/>
 
-    <HorizontalScrollView
-        android:id="@+id/horizontalscrollviewp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/packagesLabel"
-        android:layout_centerVertical="true">
-
-        <LinearLayout
-            android:id="@+id/horizontalLinearLayoutp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <!-- Include the custom item layouts for each item -->
-            <include layout="@layout/package_all"
-                android:id="@+id/allpackage"/>
-            <include layout="@layout/package_embalming"
-                android:id="@+id/embalmingpackage"/>
-            <include layout="@layout/package_cremation"
-                android:id="@+id/cremationpackage"/>
-            <include layout="@layout/package_allin"
-                android:id="@+id/allinpackage"/>
-            <!-- Add more includes for each item -->
-
-        </LinearLayout>
-    </HorizontalScrollView>
 
 
     <TextView
         android:id="@+id/allproductsLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/horizontalscrollviewp"
+        android:layout_below="@id/horizontalscrollview"
         android:text="   All Products   "
         android:textSize="20sp"
         android:textStyle="bold"
@@ -115,15 +155,24 @@
         android:numColumns="2"
         android:horizontalSpacing="10dp"
         android:verticalSpacing="10dp"
-        android:padding="5dp"
-        android:stretchMode="columnWidth"/>
+        android:padding="4dp"
+        android:stretchMode="columnWidth"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5pt"
+        android:background="@color/darkslightgray"
+        android:layout_above="@id/bottomNavigationView"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:menu="@menu/bottom_navigation_menu" />
+        android:layout_marginBottom="0dp"
+        app:menu="@menu/bottom_navigation_menu"
+        android:background="@color/lightgray"
+        />
 
 </RelativeLayout>
-
