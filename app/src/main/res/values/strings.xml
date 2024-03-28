@@ -19,10 +19,10 @@
 
     <string-array name="category_of_death_array">
         <item>Accidents</item>
-        <item>Behavioral Factor</item>
-        <item>Environmental Factor</item>
-        <item>Genetic</item>
-        <item>Aging</item>
+        <item>Behavioral Factors</item>
+        <item>Environmental Factors</item>
+        <item>Genetic/Hereditary Conditions</item>
+        <item>Aging-related Conditions</item>
         <item>Mental Disorder</item>
         <item>Others</item>
     </string-array>
@@ -30,6 +30,17 @@
     <string-array name="mode_of_payment_array">
         <item>CASH</item>
         <item>CARD</item>
+    </string-array>
+
+    <string-array name="sex_array">
+        <item>MALE</item>
+        <item>FEMALE</item>
+    </string-array>
+
+    <string-array name="valid_id_array">
+        <item>SENIOR CITIZEN ID</item>
+        <item>PWD ID</item>
+        <item>NONE</item>
     </string-array>
 
     <string name="lorem_ipsum">

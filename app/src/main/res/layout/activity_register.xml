@@ -117,28 +117,24 @@
             android:textColor="@color/white"
             android:textStyle="bold"/>
 
-        <EditText
-            android:id="@+id/etSex"
+        <Spinner
+            android:id="@+id/spinnerSex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tvSexLabel"
-            android:hint="Sex"
-            android:inputType="text"
+            android:layout_marginTop="8dp"
             android:padding="8dp"
-            android:drawableLeft="@drawable/baseline_person_outline_24"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:textColor="@color/white"
             android:background="#30ffffff"
+            android:textColor="@color/white"
             android:textColorHint="@color/light"/>
 
         <TextView
             android:id="@+id/tvAgeLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/etSex"
+            android:layout_below="@id/spinnerSex"
             android:layout_marginTop="16dp"
-            android:text="Age"
+            android:text="Birthday"
             android:textColor="@color/white"
             android:textStyle="bold"/>
 
@@ -147,15 +143,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tvAgeLabel"
-            android:hint="Age"
-            android:inputType="text"
+            android:hint="MM-DD-YYYY"
+            android:focusable="false"
+            android:clickable="true"
             android:padding="8dp"
             android:drawableLeft="@drawable/baseline_person_outline_24"
             android:drawablePadding="10dp"
             android:ems="10"
             android:textColor="@color/white"
             android:background="#30ffffff"
-            android:textColorHint="@color/light"/>
+            android:textColorHint="@color/light"
+            android:maxLines="1"
+            android:maxLength="10"
+            android:minLines="1"
+            android:imeOptions="actionDone"
+            android:imeActionLabel="Done"/>
 
         <TextView
             android:id="@+id/tvAddressLabel"
@@ -198,14 +200,16 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tvContactLabel"
             android:hint="Contact"
-            android:inputType="text"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:digits="0123456789"
             android:padding="8dp"
             android:background="#30ffffff"
             android:drawableLeft="@drawable/outline_smartphone_24"
             android:drawablePadding="10dp"
             android:ems="10"
             android:textColor="@color/white"
-            android:textColorHint="@color/light"/>
+            android:textColorHint="@color/light" />
 
         <TextView
             android:id="@+id/tvIdTypeLabel"
@@ -217,26 +221,25 @@
             android:textColor="@color/white"
             android:textStyle="bold"/>
 
-        <EditText
-            android:id="@+id/etIdType"
+        <Spinner
+            android:id="@+id/spinnerIdType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tvIdTypeLabel"
-            android:hint="Id Type"
-            android:inputType="text"
+            android:layout_marginTop="8dp"
             android:padding="8dp"
             android:background="#30ffffff"
             android:drawableLeft="@drawable/outline_assignment_ind_24"
             android:drawablePadding="10dp"
-            android:ems="10"
             android:textColor="@color/white"
             android:textColorHint="@color/light"/>
+
 
         <TextView
             android:id="@+id/tvValidIdLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/etIdType"
+            android:layout_below="@id/spinnerIdType"
             android:layout_marginTop="25dp"
             android:layout_marginLeft="90dp"
             android:text="Valid Id"
@@ -256,7 +259,7 @@
             android:id="@+id/tvGcashQrLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/etIdType"
+            android:layout_below="@id/spinnerIdType"
             android:layout_toRightOf="@id/tvValidIdLabel"
             android:layout_marginStart="88dp"
             android:layout_marginTop="25dp"
@@ -350,11 +353,21 @@
             android:textColor="@color/white"
             android:textColorHint="@color/light"/>
 
+        <CheckBox
+            android:id="@+id/checkBoxTerms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etConfirmPassword"
+            android:layout_marginTop="20dp"
+            android:text="I agree to the terms and conditions"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
         <Button
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/etConfirmPassword"
+            android:layout_below="@id/checkBoxTerms"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="25dp"
             android:text="Register"

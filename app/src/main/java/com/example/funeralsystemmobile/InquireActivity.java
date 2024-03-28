@@ -690,8 +690,17 @@ public class InquireActivity extends AppCompatActivity {
         JSONObject requestBody = new JSONObject();
         try {
             requestBody.put("deceasedID", deceasedID);
-            requestBody.put("image", encodedImagee);
-            requestBody.put("validId", encodedValidId);
+            if (encodedImagee != null && !encodedImagee.isEmpty()) {
+                requestBody.put("image", encodedImagee);
+            } else {
+                requestBody.put("image", null); // or remove this line if you want to omit null values
+            }
+
+            if (encodedValidId != null && !encodedValidId.isEmpty()) {
+                requestBody.put("validId", encodedValidId);
+            } else {
+                requestBody.put("validId", null); // or remove this line if you want to omit null values
+            }
 //            requestBody.put("proofOfDeath", encodedProofOfDeath);
 //            requestBody.put("transferPermit", encodedTransferPermit);
 //            requestBody.put("swabTest", encodedSwabTest);
@@ -749,8 +758,17 @@ public class InquireActivity extends AppCompatActivity {
             requestBody.put("deceasedID", deceasedID);
 //            requestBody.put("image", encodedImagee);
 //            requestBody.put("validId", encodedValidId);
-            requestBody.put("proofOfDeath", encodedProofOfDeath);
-            requestBody.put("transferPermit", encodedTransferPermit);
+            if (encodedProofOfDeath != null && !encodedProofOfDeath.isEmpty()) {
+                requestBody.put("proofOfDeath", encodedProofOfDeath);
+            } else {
+                requestBody.put("proofOfDeath", null); // or remove this line if you want to omit null values
+            }
+
+            if (encodedTransferPermit != null && !encodedTransferPermit.isEmpty()) {
+                requestBody.put("transferPermit", encodedTransferPermit);
+            } else {
+                requestBody.put("transferPermit", null); // or remove this line if you want to omit null values
+            }
 //            requestBody.put("swabTest", encodedSwabTest);
 //            requestBody.put("otherDocuments", encodedOtherDocuments);
 //            requestBody.put("proofOwnership", encodedProofOwnership);
@@ -808,8 +826,17 @@ public class InquireActivity extends AppCompatActivity {
 //            requestBody.put("validId", encodedValidId);
 //            requestBody.put("proofOfDeath", encodedProofOfDeath);
 //            requestBody.put("transferPermit", encodedTransferPermit);
-            requestBody.put("swabTest", encodedSwabTest);
-            requestBody.put("otherDocuments", encodedOtherDocuments);
+            if (encodedSwabTest != null && !encodedSwabTest.isEmpty()) {
+                requestBody.put("swabTest", encodedSwabTest);
+            } else {
+                requestBody.put("swabTest", null); // or remove this line if you want to omit null values
+            }
+
+            if (encodedOtherDocuments != null && !encodedOtherDocuments.isEmpty()) {
+                requestBody.put("otherDocuments", encodedOtherDocuments);
+            } else {
+                requestBody.put("otherDocuments", null); // or remove this line if you want to omit null values
+            }
 //            requestBody.put("proofOwnership", encodedProofOwnership);
 //            requestBody.put("signature", encodedSignature);
 
@@ -867,8 +894,17 @@ public class InquireActivity extends AppCompatActivity {
 //            requestBody.put("transferPermit", encodedTransferPermit);
 //            requestBody.put("swabTest", encodedSwabTest);
 //            requestBody.put("otherDocuments", encodedOtherDocuments);
-            requestBody.put("proofOwnership", encodedProofOwnership);
-            requestBody.put("signature", encodedSignature);
+            if (encodedProofOwnership != null && !encodedProofOwnership.isEmpty()) {
+                requestBody.put("proofOwnership", encodedProofOwnership);
+            } else {
+                requestBody.put("proofOwnership", null); // or remove this line if you want to omit null values
+            }
+
+            if (encodedSignature != null && !encodedSignature.isEmpty()) {
+                requestBody.put("signature", encodedSignature);
+            } else {
+                requestBody.put("signature", null); // or remove this line if you want to omit null values
+            }
 
 
         } catch (JSONException e) {

@@ -4,16 +4,22 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Base64;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -27,16 +33,23 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private ImageView customerImage, ValidId, GcashQr;
     private EditText etFirstName, etLastName, etSex, etAge, etAddress, etContact, etIdType, etEmail, etPassword, etConfirmPassword;
     private Button btnRegister;
+    private int age;
     private static final int PICK_IMAGE_REQUEST_CUSTOMER = 1;
     private static final int PICK_IMAGE_REQUEST_VALID_ID = 2;
     private static final int PICK_IMAGE_REQUEST_GCASH_QR = 3;
     private Bitmap selectedCustomerImage, selectedValidId, selectedGcashQr;
+    Spinner spinnerSex, spinnerValidId;
 
 
     @Override
@@ -50,11 +63,31 @@ public class RegisterActivity extends AppCompatActivity {
 
         etFirstName = findViewById(R.id.etFirstName);
         etLastName = findViewById(R.id.etLastName);
-        etSex = findViewById(R.id.etSex);
+
         etAge = findViewById(R.id.etAge);
+        etAge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePicker();
+            }
+        });
         etAddress = findViewById(R.id.etAddress);
         etContact = findViewById(R.id.etContact);
-        etIdType = findViewById(R.id.etIdType);
+        etContact.setFilters(new InputFilter[] {new InputFilter.LengthFilter(11), phoneNumberInputFilter});
+
+        spinnerSex = findViewById(R.id.spinnerSex);
+        spinnerValidId = findViewById(R.id.spinnerIdType);
+        ArrayAdapter<CharSequence> sexAdapter = ArrayAdapter.createFromResource(this,
+                R.array.sex_array, android.R.layout.simple_spinner_item);
+        sexAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerSex.setAdapter(sexAdapter);
+
+        // Populate spinner for Valid Id
+        ArrayAdapter<CharSequence> validIdAdapter = ArrayAdapter.createFromResource(this,
+                R.array.valid_id_array, android.R.layout.simple_spinner_item);
+        validIdAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerValidId.setAdapter(validIdAdapter);
+
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         etConfirmPassword = findViewById(R.id.etConfirmPassword);
@@ -80,14 +113,87 @@ public class RegisterActivity extends AppCompatActivity {
                 openImagePicker(PICK_IMAGE_REQUEST_GCASH_QR);
             }
         });
+        CheckBox checkBoxTerms = findViewById(R.id.checkBoxTerms);
+        checkBoxTerms.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            // Enable or disable the registration button based on whether the checkbox is checked
+            btnRegister.setEnabled(isChecked);
+        });
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registerUser();
+                if (checkBoxTerms.isChecked()) {
+                    registerUser();
+                } else {
+                   Toast.makeText(RegisterActivity.this, "Please agree to the terms and conditions", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }
+
+    private final InputFilter phoneNumberInputFilter = new InputFilter() {
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            // Ensure the input starts with "09"
+            if (dstart == 0 && source.length() > 0 && source.charAt(0) != '0') {
+                return "09" + source;
+            }
+            return null;
+        }
+    };
+
+    private void showDatePicker() {
+        Calendar calendar = Calendar.getInstance();
+        int currentYear = calendar.get(Calendar.YEAR);
+        int currentMonth = calendar.get(Calendar.MONTH);
+        int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                (view, year, month, dayOfMonth) -> {
+                    SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy", Locale.US);
+                    Date selectedDate = null;
+                    try {
+                        selectedDate = sdf.parse((month + 1) + "-" + dayOfMonth + "-" + year);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    Calendar selectedCalendar = Calendar.getInstance();
+                    selectedCalendar.setTime(selectedDate);
+
+                    Calendar minAgeCalendar = Calendar.getInstance();
+                    minAgeCalendar.add(Calendar.YEAR, -18);
+
+                    if (selectedCalendar.before(minAgeCalendar)) {
+                        etAge.setText(sdf.format(selectedCalendar.getTime()));
+                        calculateAge(selectedCalendar);
+                    } else {
+                        Toast.makeText(RegisterActivity.this, "You must be 18 or older.", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                currentYear,
+                currentMonth,
+                currentDay
+        );
+
+        // Set the maximum date allowed (18 years ago)
+        calendar.add(Calendar.YEAR, -18);
+        datePickerDialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+
+        datePickerDialog.show();
+    }
+    private void calculateAge(Calendar selectedCalendar) {
+        Calendar todayCalendar = Calendar.getInstance();
+
+        age = todayCalendar.get(Calendar.YEAR) - selectedCalendar.get(Calendar.YEAR);
+        if (todayCalendar.get(Calendar.DAY_OF_YEAR) < selectedCalendar.get(Calendar.DAY_OF_YEAR)) {
+            age--;
+        }
+//        Toast.makeText(RegisterActivity.this, "Age: " + age, Toast.LENGTH_SHORT).show();
+    }
+
 
     private void openImagePicker(int requestCode) {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -131,21 +237,25 @@ public class RegisterActivity extends AppCompatActivity {
     private void registerUser() {
         String FirstName = etFirstName.getText().toString().trim();
         String LastName = etLastName.getText().toString().trim();
-        String Sex = etSex.getText().toString().trim();
-        String Age = etAge.getText().toString().trim();
+        String Sex = spinnerSex.getSelectedItem().toString();
+        String Birthdate = etAge.getText().toString().trim();
+        String Agee = String.valueOf(age);
         String Address = etAddress.getText().toString().trim();
         String Contact = etContact.getText().toString().trim();
-        String IdType = etIdType.getText().toString().trim();
+        String IdType = spinnerValidId.getSelectedItem().toString();
         String Email = etEmail.getText().toString().trim();
         String Password = etPassword.getText().toString().trim();
         String ConfirmPassword = etConfirmPassword.getText().toString().trim();
 
-        if (!FirstName.isEmpty() && !LastName.isEmpty() && !Sex.isEmpty() && !Age.isEmpty() && !Address.isEmpty() && !Contact.isEmpty() && !IdType.isEmpty() && !Email.isEmpty() && !Password.isEmpty() && !ConfirmPassword.isEmpty()) {
+        if (!FirstName.isEmpty() && !LastName.isEmpty() && !Sex.isEmpty() && !Birthdate.isEmpty() && !Address.isEmpty() && !Contact.isEmpty() && !IdType.isEmpty() && !Email.isEmpty() && !Password.isEmpty() && !ConfirmPassword.isEmpty()) {
             if (Password.equals(ConfirmPassword)) {
-                if (selectedCustomerImage != null && selectedValidId != null && selectedGcashQr != null) {
+                if (selectedCustomerImage != null && selectedGcashQr != null) {
+                    String encodedValidId = null;
+                    if (selectedValidId != null){
+                        encodedValidId = encodeImage(selectedValidId);
+                    }
                     // Convert the Bitmap to a Base64 encoded string
                     String encodedCustomerImage = encodeImage(selectedCustomerImage);
-                    String encodedValidId = encodeImage(selectedValidId);
                     String encodedGcashQr = encodeImage(selectedGcashQr);
 
                 // Passwords match
@@ -157,13 +267,11 @@ public class RegisterActivity extends AppCompatActivity {
                     requestBody.put("fname", FirstName);
                     requestBody.put("lname", LastName);
                     requestBody.put("sex", Sex);
-                    requestBody.put("age", Age);
+                    requestBody.put("birthdate", Birthdate);
+                    requestBody.put("age", Agee);
                     requestBody.put("address", Address);
                     requestBody.put("contact", Contact);
                     requestBody.put("idtype", IdType);
-                    requestBody.put("custimage", "avatar.png");
-                    requestBody.put("custvalidid", "avatar.png");
-                    requestBody.put("custgcashqr", "avatar.png");
                     requestBody.put("email", Email);
                     requestBody.put("password", Password);
                     requestBody.put("customer_image", encodedCustomerImage);

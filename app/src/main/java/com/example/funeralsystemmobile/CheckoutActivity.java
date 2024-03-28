@@ -4,6 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.Spanned;
+import android.text.TextWatcher;
+import android.text.method.DigitsKeyListener;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -75,7 +80,6 @@ public class CheckoutActivity extends AppCompatActivity {
                 return false;
             }
         });
-
 
         Integer custid =  Integer.parseInt(getIdFromSharedPreferences());
         String token = getTokenFromSharedPreferences();
@@ -245,6 +249,79 @@ public class CheckoutActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {}
         });
 
+        EditText cardNumberEditText = findViewById(R.id.CardNumber);
+        cardNumberEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Not needed for this implementation
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Not needed for this implementation
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String text = editable.toString().replaceAll("\\D", ""); // Remove non-digit characters
+
+                // Limit input to 16 characters
+                if (text.length() > 16) {
+                    text = text.substring(0, 16);
+                }
+
+                StringBuilder formattedText = new StringBuilder();
+
+                // Format the text as ****-****-****-****
+                for (int i = 0; i < text.length(); i++) {
+                    formattedText.append(text.charAt(i));
+                    if ((i + 1) % 4 == 0 && (i + 1) < 16) {
+                        formattedText.append("-");
+                    }
+                }
+
+                cardNumberEditText.removeTextChangedListener(this);
+                cardNumberEditText.setText(formattedText.toString());
+                cardNumberEditText.setSelection(formattedText.length()); // Move cursor to the end
+                cardNumberEditText.addTextChangedListener(this);
+            }
+        });
+
+        EditText expMonthEditText = findViewById(R.id.exp_month);
+        expMonthEditText.setFilters(new InputFilter[] {new InputFilterMinMax("1", "12")});
+
+        EditText cvvEditText = findViewById(R.id.CVV);
+        cvvEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // Not needed for this implementation
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Not needed for this implementation
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String cvv = s.toString();
+                if (cvv.length() > 3) {
+                    cvv = cvv.substring(0, 3);
+                }
+
+                StringBuilder maskedCVV = new StringBuilder();
+                for (int i = 0; i < cvv.length(); i++) {
+                    maskedCVV.append('*');
+                }
+
+                cvvEditText.removeTextChangedListener(this);
+                cvvEditText.setText(maskedCVV.toString());
+                cvvEditText.setSelection(maskedCVV.length()); // Move cursor to the end
+                cvvEditText.addTextChangedListener(this);
+            }
+        });
+
+
         RequestQueue requestQueueeee = Volley.newRequestQueue(this);
         checkoutButton = findViewById(R.id.checkoutButton);
         checkoutButton.setOnClickListener(new View.OnClickListener() {
@@ -258,7 +335,7 @@ public class CheckoutActivity extends AppCompatActivity {
                 EditText exp_year = findViewById(R.id.exp_year);
 
                 String sCVV = CVV.getText().toString().trim();
-                String sCardNumber = CardNumber.getText().toString().trim();
+                String sCardNumber = CardNumber.getText().toString().replaceAll("-", "");
                 String sexp_month = exp_month.getText().toString().trim();
                 String sexp_year = exp_year.getText().toString().trim();
 
@@ -370,6 +447,37 @@ public class CheckoutActivity extends AppCompatActivity {
         CardNumber.setVisibility(View.GONE);
         exp_month.setVisibility(View.GONE);
         exp_year.setVisibility(View.GONE);
+    }
+
+    private static class InputFilterMinMax implements InputFilter {
+        private int min, max;
+
+        InputFilterMinMax(int min, int max) {
+            this.min = min;
+            this.max = max;
+        }
+
+        InputFilterMinMax(String min, String max) {
+            this.min = Integer.parseInt(min);
+            this.max = Integer.parseInt(max);
+        }
+
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            try {
+                String inputStr = dest.toString().substring(0, dstart) + source.toString() + dest.toString().substring(dend);
+                int input = Integer.parseInt(inputStr);
+                if (isInRange(min, max, input))
+                    return null;
+            } catch (NumberFormatException nfe) {
+                // Not a valid number, do nothing
+            }
+            return "";
+        }
+
+        private boolean isInRange(int a, int b, int c) {
+            return b > a ? c >= a && c <= b : c >= b && c <= a;
+        }
     }
 
     private String getIdFromSharedPreferences() {
