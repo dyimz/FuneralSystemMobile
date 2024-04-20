@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,8 +14,11 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.text.Spanned;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +27,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -45,6 +50,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class InquireActivity extends AppCompatActivity {
+    Calendar calendar;
     private EditText fname, mname, lname, relationship, causeofdeath, sex, religion,
             placeofdeath, citizenship, address, occupation,nameFather, nameMother, idType;
     private EditText standingflowers, lights, candleStand, flooringFlowers, cross, tarpaulin, curtains, candles, balloons, message,
@@ -70,6 +76,7 @@ public class InquireActivity extends AppCompatActivity {
     private Spinner spinnerCivilStatus;
     private Spinner spinnerCategoryOfDeath;
     private Spinner spinnerModeOfPayment;
+    private Spinner spinnerSex;
     private String selectedDateOfBirth = "";
     private String selectedDateOfDeath = "";
     private String selectedWakeFrom = "";
@@ -120,8 +127,12 @@ public class InquireActivity extends AppCompatActivity {
         editTextWakeTo = findViewById(R.id.wakeTo);
         setupDatePicker(editTextDateOfBirth);
         setupDatePicker(editTextDateOfDeath);
-        setupDatePicker(editTextWakeFrom);
-        setupDatePicker(editTextWakeTo);
+        calendar = Calendar.getInstance();
+        editTextWakeFrom.setOnClickListener(v -> showDateTimePicker(editTextWakeFrom));
+        editTextWakeTo.setOnClickListener(v -> showDateTimePicker(editTextWakeTo));
+
+        spinnerSex = findViewById(R.id.sexSpinner);
+        setupSpinner(spinnerSex, R.array.sex_array);
 
         spinnerCivilStatus = findViewById(R.id.civilstatus);
         spinnerCategoryOfDeath = findViewById(R.id.categoryDeath);
@@ -167,14 +178,14 @@ public class InquireActivity extends AppCompatActivity {
             }
         });
 
-        textViewImage = findViewById(R.id.textViewImage);
-        textViewValidId = findViewById(R.id.textViewValidId);
-        textViewProofOfDeath = findViewById(R.id.textViewProofOfDeath);
-        textViewTransferPermit = findViewById(R.id.textViewTransferPermit);
-        textViewSwabTest = findViewById(R.id.textViewSwabTest);
-        textViewOtherDocuments = findViewById(R.id.textViewOtherDocuments);
-        textViewProofOwnership = findViewById(R.id.textViewProofOwnership);
-        textViewUploadSignature = findViewById(R.id.textViewUploadSignature);
+//        textViewImage = findViewById(R.id.textViewImage);
+//        textViewValidId = findViewById(R.id.textViewValidId);
+//        textViewProofOfDeath = findViewById(R.id.textViewProofOfDeath);
+//        textViewTransferPermit = findViewById(R.id.textViewTransferPermit);
+//        textViewSwabTest = findViewById(R.id.textViewSwabTest);
+//        textViewOtherDocuments = findViewById(R.id.textViewOtherDocuments);
+//        textViewProofOwnership = findViewById(R.id.textViewProofOwnership);
+//        textViewUploadSignature = findViewById(R.id.textViewUploadSignature);
 
         setButtonClickListener(R.id.buttonChooseImage, PICK_IMAGE_IMAGE);
         setButtonClickListener(R.id.buttonChooseValidId, PICK_IMAGE_VALID_ID);
@@ -188,7 +199,7 @@ public class InquireActivity extends AppCompatActivity {
         fname = findViewById(R.id.fname);
         mname = findViewById(R.id.mname);
         lname = findViewById(R.id.lname);
-        sex = findViewById(R.id.sex);
+//        sex = findViewById(R.id.sex);
         occupation = findViewById(R.id.occupation);
         idType = findViewById(R.id.idType);
         relationship = findViewById(R.id.relationship);
@@ -239,7 +250,50 @@ public class InquireActivity extends AppCompatActivity {
         obituaryDescription = findViewById(R.id.obituaryDescription);
         valuableProperty = findViewById(R.id.valuableProperty);
 
+        EditText cardNumberEditText = findViewById(R.id.CardNumber);
+        cardNumberEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Not needed for this implementation
+            }
 
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Not needed for this implementation
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String text = editable.toString().replaceAll("\\D", ""); // Remove non-digit characters
+
+                // Limit input to 16 characters
+                if (text.length() > 16) {
+                    text = text.substring(0, 16);
+                }
+
+                StringBuilder formattedText = new StringBuilder();
+
+                // Format the text as ****-****-****-****
+                for (int i = 0; i < text.length(); i++) {
+                    formattedText.append(text.charAt(i));
+                    if ((i + 1) % 4 == 0 && (i + 1) < 16) {
+                        formattedText.append("-");
+                    }
+                }
+
+                cardNumberEditText.removeTextChangedListener(this);
+                cardNumberEditText.setText(formattedText.toString());
+                cardNumberEditText.setSelection(formattedText.length()); // Move cursor to the end
+                cardNumberEditText.addTextChangedListener(this);
+            }
+        });
+
+        EditText expMonthEditText = findViewById(R.id.exp_month);
+        expMonthEditText.setFilters(new InputFilter[] {new InquireActivity.InputFilterMinMax("1", "12")});
+
+        EditText editText = findViewById(R.id.CVV);
+        editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+        editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
 
         Button orderPackage = findViewById(R.id.orderPackage);
         orderPackage.setOnClickListener(new View.OnClickListener() {
@@ -248,6 +302,37 @@ public class InquireActivity extends AppCompatActivity {
                 orderInquiredPackage();
             }
         });
+    }
+
+    private static class InputFilterMinMax implements InputFilter {
+        private int min, max;
+
+        InputFilterMinMax(int min, int max) {
+            this.min = min;
+            this.max = max;
+        }
+
+        InputFilterMinMax(String min, String max) {
+            this.min = Integer.parseInt(min);
+            this.max = Integer.parseInt(max);
+        }
+
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            try {
+                String inputStr = dest.toString().substring(0, dstart) + source.toString() + dest.toString().substring(dend);
+                int input = Integer.parseInt(inputStr);
+                if (isInRange(min, max, input))
+                    return null;
+            } catch (NumberFormatException nfe) {
+                // Not a valid number, do nothing
+            }
+            return "";
+        }
+
+        private boolean isInRange(int a, int b, int c) {
+            return b > a ? c >= a && c <= b : c >= b && c <= a;
+        }
     }
 
     private class QuantityInputFilter implements InputFilter {
@@ -406,6 +491,7 @@ public class InquireActivity extends AppCompatActivity {
         selectedWakeFrom = editTextWakeFrom.getText().toString();
         selectedWakeTo = editTextWakeTo.getText().toString();
 
+        ssex = spinnerSex.getSelectedItem().toString();
         selectedCivilStatus = spinnerCivilStatus.getSelectedItem().toString();
         selectedCategoryOfDeath = spinnerCategoryOfDeath.getSelectedItem().toString();
         selectedModeOfPayment = spinnerModeOfPayment.getSelectedItem().toString();
@@ -423,7 +509,7 @@ public class InquireActivity extends AppCompatActivity {
          sfname = fname.getText().toString().trim();
          smname = mname.getText().toString().trim();
          slname = lname.getText().toString().trim();
-         ssex = sex.getText().toString().trim();
+//         ssex = sex.getText().toString().trim();
         //selectedDateOfBirth
          soccupation = occupation.getText().toString().trim();
         //encodedImagee
@@ -507,7 +593,7 @@ public class InquireActivity extends AppCompatActivity {
             EditText exp_year = findViewById(R.id.exp_year);
 
             String sCVV = CVV.getText().toString().trim();
-            String sCardNumber = CardNumber.getText().toString().trim();
+            String sCardNumber = CardNumber.getText().toString().replaceAll("-", "");
             String sexp_month = exp_month.getText().toString().trim();
             String sexp_year = exp_year.getText().toString().trim();
 
@@ -535,7 +621,7 @@ public class InquireActivity extends AppCompatActivity {
         EditText exp_year = findViewById(R.id.exp_year);
 
         String sCVV = CVV.getText().toString().trim();
-        String sCardNumber = CardNumber.getText().toString().trim();
+        String sCardNumber = CardNumber.getText().toString().replaceAll("-", "");
         String sexp_month = exp_month.getText().toString().trim();
         String sexp_year = exp_year.getText().toString().trim();
 
@@ -625,7 +711,7 @@ public class InquireActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
+        Log.e("POTANGINA", String.valueOf(requestBody));
         // Make a POST request to the login API endpoint
         String url = ApiConstants.inquirePackageURL; // Replace with your actual login API endpoint
         Toast.makeText(getApplicationContext(), "Adding ... ", Toast.LENGTH_SHORT).show();
@@ -984,6 +1070,28 @@ public class InquireActivity extends AppCompatActivity {
         });
     }
 
+    private void showDateTimePicker(EditText editText) {
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                (view, selectedYear, selectedMonth, selectedDay) -> {
+                    calendar.set(selectedYear, selectedMonth, selectedDay);
+                    TimePickerDialog timePickerDialog = new TimePickerDialog(InquireActivity.this,
+                            (view1, selectedHour, selectedMinute) -> {
+                                calendar.set(Calendar.HOUR_OF_DAY, selectedHour);
+                                calendar.set(Calendar.MINUTE, selectedMinute);
+                                editText.setText(String.format("%02d-%02d-%d %02d:%02d", selectedDay, selectedMonth + 1, selectedYear, selectedHour, selectedMinute));
+                            }, hour, minute, true);
+                    timePickerDialog.show();
+                }, year, month, day);
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+        datePickerDialog.show();
+    }
+
     private void setupSpinner(Spinner spinner, int arrayResourceId) {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
@@ -1026,35 +1134,43 @@ public class InquireActivity extends AppCompatActivity {
                     String encodedImage = encodeImage(selectedImage);
                     switch (requestCode) {
                         case PICK_IMAGE_IMAGE:
-                            textViewImage.setText(selectedImageUri.toString());
+                            ImageView imageViewPreview = findViewById(R.id.imageViewPreview);
+                            imageViewPreview.setImageBitmap(selectedImage);
                             encodedImagee = encodedImage;
                             break;
                         case PICK_IMAGE_VALID_ID:
-                            textViewValidId.setText(selectedImageUri.toString());
+                            ImageView ValidIdViewPreview = findViewById(R.id.ValidIdViewPreview);
+                            ValidIdViewPreview.setImageBitmap(selectedImage);
                             encodedValidId = encodedImage;
                             break;
                         case PICK_IMAGE_PROOF_OF_DEATH:
-                            textViewProofOfDeath.setText(selectedImageUri.toString());
+                            ImageView ProofOfDeathViewPreview = findViewById(R.id.ProofOfDeathViewPreview);
+                            ProofOfDeathViewPreview.setImageBitmap(selectedImage);
                             encodedProofOfDeath = encodedImage;
                             break;
                         case PICK_IMAGE_TRANSFER_PERMIT:
-                            textViewTransferPermit.setText(selectedImageUri.toString());
+                            ImageView TransferPermitViewPreview = findViewById(R.id.TransferPermitViewPreview);
+                            TransferPermitViewPreview.setImageBitmap(selectedImage);
                             encodedTransferPermit = encodedImage;
                             break;
                         case PICK_IMAGE_SWAB_TEST:
-                            textViewSwabTest.setText(selectedImageUri.toString());
+                            ImageView SwabTestViewPreview = findViewById(R.id.SwabTestViewPreview);
+                            SwabTestViewPreview.setImageBitmap(selectedImage);
                             encodedSwabTest = encodedImage;
                             break;
                         case PICK_IMAGE_OTHER_DOCUMENTS:
-                            textViewOtherDocuments.setText(selectedImageUri.toString());
+                            ImageView OtherDocumentsViewPreview = findViewById(R.id.OtherDocumentsViewPreview);
+                            OtherDocumentsViewPreview.setImageBitmap(selectedImage);
                             encodedOtherDocuments = encodedImage;
                             break;
                         case PICK_IMAGE_PROOF_OWNERSHIP:
-                            textViewProofOwnership.setText(selectedImageUri.toString());
+                            ImageView ProofOfOwnershipViewPreview = findViewById(R.id.ProofOfOwnershipViewPreview);
+                            ProofOfOwnershipViewPreview.setImageBitmap(selectedImage);
                             encodedProofOwnership = encodedImage;
                             break;
                         case PICK_IMAGE_SIGNATURE:
-                            textViewUploadSignature.setText(selectedImageUri.toString());
+                            ImageView SignatureViewPreview = findViewById(R.id.SignatureViewPreview);
+                            SignatureViewPreview.setImageBitmap(selectedImage);
                             encodedSignature = encodedImage;
                             break;
                     }

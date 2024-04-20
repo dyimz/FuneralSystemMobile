@@ -115,15 +115,16 @@
             android:id="@+id/sexLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sex"/>
+            android:text="Sex" />
 
-        <EditText
-            android:id="@+id/sex"
+        <Spinner
+            android:id="@+id/sexSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Sex"
-            android:inputType="text"
+            android:entries="@array/sex_array"
             android:padding="8dp" />
+
 
         <TextView
             android:id="@+id/dateofbirthLabel"
@@ -173,15 +174,15 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Choose Image"/>
+                android:text="Choose Image" />
 
-            <TextView
-                android:id="@+id/textViewImage"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/imageViewPreview"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
                 android:layout_weight="2"
-                android:text=""
-                android:gravity="start"/>
+                android:scaleType="fitCenter" />
+
 
         </LinearLayout>
 
@@ -218,13 +219,12 @@
                 android:layout_weight="1"
                 android:text="Choose Image"/>
 
-            <TextView
-                android:id="@+id/textViewValidId"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/ValidIdViewPreview"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
                 android:layout_weight="2"
-                android:text=""
-                android:gravity="start"/>
+                android:scaleType="fitCenter" />
 
         </LinearLayout>
 
@@ -440,13 +440,12 @@
                 android:layout_weight="1"
                 android:text="Choose Image"/>
 
-            <TextView
-                android:id="@+id/textViewProofOfDeath"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/ProofOfDeathViewPreview"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
                 android:layout_weight="2"
-                android:text=""
-                android:gravity="start"/>
+                android:scaleType="fitCenter" />
 
         </LinearLayout>
 
@@ -483,13 +482,12 @@
                 android:layout_weight="1"
                 android:text="Choose Image"/>
 
-            <TextView
-                android:id="@+id/textViewTransferPermit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/TransferPermitViewPreview"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
                 android:layout_weight="2"
-                android:text=""
-                android:gravity="start"/>
+                android:scaleType="fitCenter" />
 
         </LinearLayout>
 
@@ -513,13 +511,12 @@
                 android:layout_weight="1"
                 android:text="Choose Image"/>
 
-            <TextView
-                android:id="@+id/textViewSwabTest"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/SwabTestViewPreview"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
                 android:layout_weight="2"
-                android:text=""
-                android:gravity="start"/>
+                android:scaleType="fitCenter" />
 
         </LinearLayout>
 
@@ -542,13 +539,12 @@
                 android:layout_weight="1"
                 android:text="Choose Image"/>
 
-            <TextView
-                android:id="@+id/textViewOtherDocuments"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/OtherDocumentsViewPreview"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
                 android:layout_weight="2"
-                android:text=""
-                android:gravity="start"/>
+                android:scaleType="fitCenter" />
 
         </LinearLayout>
 
@@ -1010,7 +1006,7 @@
             android:id="@+id/wakeFrom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Date of Death (dd/mm/yyyy)"
+            android:hint="Wake From (dd/mm/yyyy hh:mm)"
             android:drawableEnd="@drawable/ic_calendar"
             android:focusable="false"
             android:inputType="none"
@@ -1026,7 +1022,7 @@
             android:id="@+id/wakeTo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Date of Death (dd/mm/yyyy)"
+            android:hint="Wake To (dd/mm/yyyy hh:mm)"
             android:drawableEnd="@drawable/ic_calendar"
             android:focusable="false"
             android:inputType="none"
@@ -1132,13 +1128,12 @@
                 android:layout_weight="1"
                 android:text="Choose Image"/>
 
-            <TextView
-                android:id="@+id/textViewProofOwnership"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/ProofOfOwnershipViewPreview"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
                 android:layout_weight="2"
-                android:text=""
-                android:gravity="start"/>
+                android:scaleType="fitCenter" />
 
         </LinearLayout>
 
@@ -1161,13 +1156,12 @@
             android:layout_weight="1"
             android:text="Choose Image"/>
 
-        <TextView
-            android:id="@+id/textViewUploadSignature"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/SignatureViewPreview"
+            android:layout_width="10dp"
+            android:layout_height="50dp"
             android:layout_weight="2"
-            android:text=""
-            android:gravity="start"/>
+            android:scaleType="fitCenter" />
     </LinearLayout>
 
         <TextView
@@ -1234,7 +1228,7 @@
             android:id="@+id/CVV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:hint="CVC"
             android:padding="8dp" />
 

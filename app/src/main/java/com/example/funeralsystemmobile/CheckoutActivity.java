@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.method.DigitsKeyListener;
@@ -42,7 +43,7 @@ import java.util.List;
 
 public class CheckoutActivity extends AppCompatActivity {
 
-    private String COName, COAddress, COPhone, COMOP, COPOP;
+    private String COName, COAddress, COPhone, COMOP, COPOP, total;
     private Spinner spinnerModeOfPayment;
     private BottomNavigationView bottomNavigationView;
     private List<Product> productList = new ArrayList<>();
@@ -145,7 +146,7 @@ public class CheckoutActivity extends AppCompatActivity {
                         // Handle the response from the profile endpoint
                         try {
                             // Parse and use profile information
-                            String total = response.getString("message");
+                            total = response.getString("message");
 
                             // Update your UI with profile information
                             TextView totalLabel = findViewById(R.id.totalLabel);
@@ -290,36 +291,11 @@ public class CheckoutActivity extends AppCompatActivity {
         EditText expMonthEditText = findViewById(R.id.exp_month);
         expMonthEditText.setFilters(new InputFilter[] {new InputFilterMinMax("1", "12")});
 
-        EditText cvvEditText = findViewById(R.id.CVV);
-        cvvEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // Not needed for this implementation
-            }
+        EditText editText = findViewById(R.id.CVV);
+        editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+        editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // Not needed for this implementation
-            }
 
-            @Override
-            public void afterTextChanged(Editable s) {
-                String cvv = s.toString();
-                if (cvv.length() > 3) {
-                    cvv = cvv.substring(0, 3);
-                }
-
-                StringBuilder maskedCVV = new StringBuilder();
-                for (int i = 0; i < cvv.length(); i++) {
-                    maskedCVV.append('*');
-                }
-
-                cvvEditText.removeTextChangedListener(this);
-                cvvEditText.setText(maskedCVV.toString());
-                cvvEditText.setSelection(maskedCVV.length()); // Move cursor to the end
-                cvvEditText.addTextChangedListener(this);
-            }
-        });
 
 
         RequestQueue requestQueueeee = Volley.newRequestQueue(this);
@@ -328,7 +304,6 @@ public class CheckoutActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String selectedModeOfPayment = spinnerModeOfPayment.getSelectedItem().toString();
-
                 EditText CVV = findViewById(R.id.CVV);
                 EditText CardNumber = findViewById(R.id.CardNumber);
                 EditText exp_month = findViewById(R.id.exp_month);
@@ -339,16 +314,13 @@ public class CheckoutActivity extends AppCompatActivity {
                 String sexp_month = exp_month.getText().toString().trim();
                 String sexp_year = exp_year.getText().toString().trim();
 
-
-                TextView totalLabel = findViewById(R.id.totalLabel);
-                String sTotal = totalLabel.getText().toString().trim();
-
                 if (selectedModeOfPayment.equals("CARD")) {
                     if (sCardNumber.isEmpty() || sexp_month.isEmpty() || sexp_year.isEmpty() || sCVV.isEmpty()) {
                         Toast.makeText(getApplicationContext(), "Card Details Required ", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
+                Toast.makeText(getApplicationContext(), "Creating Order", Toast.LENGTH_SHORT).show();
 
                 JSONObject requestBody = new JSONObject();
                 try {
@@ -356,8 +328,8 @@ public class CheckoutActivity extends AppCompatActivity {
                     requestBody.put("name", COName);
                     requestBody.put("address", COAddress);
                     requestBody.put("contact", COPhone);
-                    requestBody.put("total_price", sTotal);
-                    requestBody.put("amount", sTotal);
+                    requestBody.put("total_price", total);
+                    requestBody.put("amount", total);
                     requestBody.put("modeofpayment", selectedModeOfPayment);
 
                     if (selectedModeOfPayment.equals("CARD")) {

@@ -168,7 +168,9 @@
         android:layout_height="40dp"
         android:hint="CVC"
         android:layout_above="@id/modeOfPayment"
-        android:layout_marginStart="90dp"/>
+        android:layout_marginStart="90dp"
+        android:inputType="textPassword"/>
+
 
     <TextView
         android:id="@+id/tvMOP"
