@@ -249,14 +249,17 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (!FirstName.isEmpty() && !LastName.isEmpty() && !Sex.isEmpty() && !Birthdate.isEmpty() && !Address.isEmpty() && !Contact.isEmpty() && !IdType.isEmpty() && !Email.isEmpty() && !Password.isEmpty() && !ConfirmPassword.isEmpty()) {
             if (Password.equals(ConfirmPassword)) {
-                if (selectedCustomerImage != null && selectedGcashQr != null) {
+                if (selectedCustomerImage != null) {
                     String encodedValidId = null;
+                    String encodedGcashQr = null;
                     if (selectedValidId != null){
                         encodedValidId = encodeImage(selectedValidId);
                     }
+                    if (selectedGcashQr != null){
+                        encodedGcashQr = encodeImage(selectedGcashQr);
+                    }
                     // Convert the Bitmap to a Base64 encoded string
                     String encodedCustomerImage = encodeImage(selectedCustomerImage);
-                    String encodedGcashQr = encodeImage(selectedGcashQr);
 
                 // Passwords match
                 // Your logic here, for example, proceed with registration or other actions
