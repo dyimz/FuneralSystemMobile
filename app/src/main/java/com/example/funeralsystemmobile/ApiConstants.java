@@ -6,6 +6,7 @@ public class ApiConstants {
     public static final String loginURL = BASE_URL + "api/login";
     public static final String registerURL = BASE_URL + "api/customerregister";
     public static final String profileURL = BASE_URL + "api/profile/";
+    public static final String editprofileURL = BASE_URL + "api/editprofile/";
     public static final String deceasedListURL = BASE_URL + "api/deceasedList/";
     public static final String addDeceasedURL = BASE_URL + "api/addDeceased";
     public static final String productsListURL = BASE_URL + "api/productsList";
@@ -14,7 +15,7 @@ public class ApiConstants {
     public static final String FlowerproductsListURL = BASE_URL + "api/FlowerproductsList";
     public static final String UrnproductsListURL = BASE_URL + "api/UrnproductsList";
     public static final String announcementsListURL = BASE_URL + "api/announcementsList";
-    public static final String notificationsListURL = BASE_URL + "api/notificationsList";
+    public static final String notificationsListURL = BASE_URL + "api/notificationsList/";
     public static final String packagesListURL = BASE_URL + "api/packagesList";
     public static final String EmbalmingpackagesListURL = BASE_URL + "api/EmbalmingpackagesList";
     public static final String CremationpackagesListURL = BASE_URL + "api/CremationpackagesList";
