@@ -70,8 +70,9 @@ public class NotificationActivity extends AppCompatActivity {
         notificationadapter = new NotificationAdapter(this, notificationList);
         notificationListView.setAdapter(notificationadapter);
 
+        Integer custid =  Integer.parseInt(getIdFromSharedPreferences());
         String token = getTokenFromSharedPreferences();
-        String url = ApiConstants.notificationsListURL;
+        String url = ApiConstants.notificationsListURL + custid;;
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -119,6 +120,11 @@ public class NotificationActivity extends AppCompatActivity {
 
     }
 
+    private String getIdFromSharedPreferences() {
+        // Retrieve the id from SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("custid", "");
+    }
     private String getTokenFromSharedPreferences() {
         // Retrieve the token from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
