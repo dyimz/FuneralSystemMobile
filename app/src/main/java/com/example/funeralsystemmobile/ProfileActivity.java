@@ -94,6 +94,24 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        TextView editProfile = findViewById(R.id.editProfile);
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ProfileActivity.this, EditprofileActivity.class));
+//                Toast.makeText(getApplicationContext(), "editProfile", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        TextView obituaries = findViewById(R.id.obituaries);
+        obituaries.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                startActivity(new Intent(ProfileActivity.this, WatchActivity.class));
+                Toast.makeText(getApplicationContext(), "obituaries", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         TextView Logout = findViewById(R.id.Logout);
         Logout.setOnClickListener(new View.OnClickListener() {
             @Override
