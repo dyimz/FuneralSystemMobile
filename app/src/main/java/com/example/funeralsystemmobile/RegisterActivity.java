@@ -4,7 +4,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -20,6 +22,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -130,6 +133,62 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
+
+        TextView tvTermsLink = findViewById(R.id.tvTermsLink);
+        tvTermsLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showTermsDialog();
+            }
+        });
+    }
+
+    private void showTermsDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Pike's Funeral Home Services - Terms and Conditions");
+        builder.setMessage("Please read the following terms and conditions carefully before availing the services of Pike's Funeral Home. By engaging in our services, you agree to be bound by the terms and conditions outlined below:\n" +
+                "\n" +
+                "1. General Agreement:\n" +
+                "1.1. Pike's Funeral Home Services Management System provides funeral services to individuals and families, subject to the terms and conditions outlined herein.\n" +
+                "\n" +
+                "2. Service Engagement:\n" +
+                "2.1. Clients engaging Pike's Funeral Home services must sign a service agreement.\n" +
+                "2.2. The signed service agreement signifies acceptance of the terms and conditions and acts as permission for the Company to carry out requested services.\n" +
+                "\n" +
+                "3. Personal Information:\n" +
+                "3.1. Clients are required to provide accurate and complete personal information for documentation and legal purposes.\n" +
+                "3.2. Pike's Funeral Home is committed to maintaining the confidentiality and security of all provided personal information.\n" +
+                "\n" +
+                "4. Signatures and Documentation:\n" +
+                "4.1. Clients may be required to submit signatures on relevant documents, including the service agreement and other legal forms, specifically for collateral purposes.\n" +
+                "4.2. Signatures serve as consent for the provision of funeral services, acknowledgment of understanding these terms and conditions, and as authorization for the use of collaterals as outlined in the service agreement.\n" +
+                "\n" +
+                "5. Collaterals:\n" +
+                "5.1. Clients may be required to provide collaterals for certain services or arrangements, in the event that the client is unable to fully pay for the services they have availed.\n" +
+                "5.2. Collaterals will be returned upon completion of the funeral services, subject to inspection for damages. Collateral documentation must be submitted by the client to facilitate this process.\n" +
+                "\n" +
+                "6. Damages and Liabilities:\n" +
+                "6.1. Pike's Funeral Home is not liable for damages resulting from circumstances beyond our control, including but not limited to natural disasters, accidents, or third-party negligence.\n" +
+                "6.2. Clients are responsible for damages caused by their own actions or the actions of their guests during the funeral service.\n" +
+                "6.3. Damages to any items provided by Pike's Funeral Home, such as lights, candle stands, or other equipment, due to client or guest fault, may result in additional charges.\n" +
+                "\n" +
+                "7. Fees and Payments:\n" +
+                "7.1. Clients agree to pay the agreed-upon fees for requested services as outlined in the service agreement.\n" +
+                "7.2. Additional charges may apply for damages caused by the client or their guests during the funeral service.\n" +
+                "\n" +
+                "8. Amendments to Terms and Conditions:\n" +
+                "8.1. Pike's Funeral Home reserves the right to amend these terms and conditions at any time.\n" +
+                "8.2. Clients will be notified of any changes to the terms and conditions, and continued use of our services implies acceptance of the modified terms.\n" +
+                "\n" +
+                "By engaging in Pike's Funeral Home services, you acknowledge that you have read, understood, and agreed to abide by these terms and conditions. If you have any questions or concerns, please contact us before clicking the 'Agree' button to proceed. If you do not agree with the terms and conditions, please click the 'Disagree' button. Your continued use or acceptance of the agreement implies your understanding and acceptance of the terms and conditions.");
+        builder.setPositiveButton("Close", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private final InputFilter phoneNumberInputFilter = new InputFilter() {
