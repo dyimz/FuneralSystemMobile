@@ -347,7 +347,7 @@ public class InquireActivity extends AppCompatActivity {
                 return ""; // Empty string indicates no change
             }
 
-            if (quantity < 0 || quantity > 2) {
+            if (quantity < 0 || quantity > 1) {
                 return ""; // Empty string indicates no change
             }
 
@@ -567,7 +567,7 @@ public class InquireActivity extends AppCompatActivity {
         //selectedModeOfPayment
 
         if (!sfname.isEmpty() && !smname.isEmpty() && !slname.isEmpty() && !ssex.isEmpty() && !selectedDateOfBirth.isEmpty()
-                && !soccupation.isEmpty() && !encodedImagee.isEmpty() && !sidType.isEmpty() && !encodedValidId.isEmpty()
+                && !soccupation.isEmpty() && !encodedImagee.isEmpty() && !sidType.isEmpty()
                 && !srelationship.isEmpty() && !sreligion.isEmpty() && !saddress.isEmpty() && !scitizenship.isEmpty()
                 && !snameMother.isEmpty() && !snameFather.isEmpty()
 
