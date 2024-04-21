@@ -19,6 +19,9 @@
         android:theme="@style/Theme.FuneralSystemMobile"
         tools:targetApi="31">
         <activity
+            android:name=".EditprofileActivity"
+            android:exported="false" />
+        <activity
             android:name=".WatchActivity"
             android:exported="false" />
         <activity
@@ -49,9 +52,6 @@
             android:name=".PackageActivity"
             android:exported="false" />
         <activity
-            android:name=".PackagesActivity"
-            android:exported="false" />
-        <activity
             android:name=".UrnActivity"
             android:exported="false" />
         <activity
@@ -66,11 +66,6 @@
         <activity
             android:name=".DeceasedaddActivity"
             android:exported="false" />
-        <activity
-            android:name=".TESTActivity"
-            android:exported="false"
-            android:label="@string/title_activity_testactivity"
-            android:theme="@style/Theme.FuneralSystemMobile" />
         <activity
             android:name=".RequestzActivity"
             android:exported="false" />
