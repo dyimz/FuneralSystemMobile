@@ -1,11 +1,13 @@
 package com.example.funeralsystemmobile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -22,6 +24,8 @@ public class OrderAdapter extends ArrayAdapter<Order> {
         Order order = getItem(position);
 
         // Set the product details to the grid item views
+        TextView OrderID = view.findViewById(R.id.OrderID);
+        OrderID.setText(String.valueOf(order.getId()));
 
         TextView FullName = view.findViewById(R.id.FullName);
         FullName.setText(order.getName());
@@ -51,10 +55,10 @@ public class OrderAdapter extends ArrayAdapter<Order> {
             @Override
             public void onClick(View v) {
                 // Handle the click event, for example, show a toast with the product name
-//                Toast.makeText(getContext(), "Clicked on " + product.getId(), Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(getContext(), ProductinfoActivity.class);
-//                intent.putExtra("productID", String.valueOf(product.getId()));
-//                getContext().startActivity(intent);
+//                Toast.makeText(getContext(), "Clicked on " + order.getId(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), OrderinfoActivity.class);
+                intent.putExtra("productID", String.valueOf(order.getId()));
+                getContext().startActivity(intent);
                 // You can also launch a new activity or perform any other action here
             }
         });
