@@ -28,14 +28,13 @@ public class ApiConstants {
     public static final String cartDeleteURL = BASE_URL + "api/cartDelete";
     public static final String checkoutURL = BASE_URL + "api/checkout";
     public static final String orderListURL = BASE_URL + "api/orderList/";
-
     public static final String inquirePackageURL = BASE_URL + "api/inquirePackage";
-
     public static final String imagevalidid = BASE_URL + "api/imagevalidid";
     public static final String proofofdeathtransferpermit = BASE_URL + "api/proofofdeathtransferpermit";
     public static final String swabtestotherdocuments = BASE_URL + "api/swabtestotherdocuments";
     public static final String proofofownershipsignature = BASE_URL + "api/proofofownershipsignature";
     public static final String showmessages = BASE_URL + "api/showmessages/";
     public static final String sendmessage = BASE_URL + "api/sendmessage";
+    public static final String orderDetails = BASE_URL + "api/orderDetails/";
 
 }
