@@ -82,25 +82,30 @@ public class OrderinfoActivity extends AppCompatActivity {
                             Button cancelButton = (Button) findViewById(R.id.cancelButton);
                             Button extendOrderButton = (Button) findViewById(R.id.extendOrderButton);
 
-                            packageRow.setVisibility(View.VISIBLE);
                             cancelButton.setVisibility(View.GONE);
                             extendOrderButton.setVisibility(View.GONE);
 
                             ((TextView) findViewById(R.id.packageTextView)).setText(packageName);
-                            if (packageName == "null") {
-//                                Toast.makeText(getApplicationContext(), "isnull", Toast.LENGTH_LONG).show();
-                                packageRow.setVisibility(View.GONE);
-                            }
-                            Toast.makeText(getApplicationContext(), status, Toast.LENGTH_LONG).show();
-                            Toast.makeText(getApplicationContext(), paid, Toast.LENGTH_LONG).show();
-                            if (status.equals("PLACED") && paid.equals("NOT PAID")) {
-//                                Toast.makeText(getApplicationContext(), "isnull", Toast.LENGTH_LONG).show();
-                                cancelButton.setVisibility(View.VISIBLE);
-                            }
 
-                            if (requeststatus.equals("PENDING")) {
+                            if (status.equals("CANCELLED")) {
+//                                Toast.makeText(getApplicationContext(), "cancelled", Toast.LENGTH_LONG).show();
+                                cancelButton.setVisibility(View.GONE);
+                                extendOrderButton.setVisibility(View.GONE);
+                            } else {
+                                if (packageName == "null") {
 //                                Toast.makeText(getApplicationContext(), "isnull", Toast.LENGTH_LONG).show();
-                                cancelButton.setVisibility(View.VISIBLE);
+                                    packageRow.setVisibility(View.GONE);
+                                }
+
+                                if (status.equals("PLACED") && paid.equals("NOT PAID")) {
+//                                Toast.makeText(getApplicationContext(), "isnull", Toast.LENGTH_LONG).show();
+                                    cancelButton.setVisibility(View.VISIBLE);
+                                }
+
+                                if (requeststatus.equals("null") && type.equals("PACKAGE") && status.equals("PLACED")) {
+//                                    Toast.makeText(getApplicationContext(), "isnull", Toast.LENGTH_LONG).show();
+                                    extendOrderButton.setVisibility(View.VISIBLE);
+                                }
                             }
 
                             JSONArray orderItemsArray = response.getJSONArray("orderlines");
@@ -122,6 +127,67 @@ public class OrderinfoActivity extends AppCompatActivity {
                             ListView listView = findViewById(R.id.productsListView);
                             OrderinfoAdapter adapter = new OrderinfoAdapter(OrderinfoActivity.this, orderItems);
                             listView.setAdapter(adapter);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.e("OrderinfoActivity", "Error parsing JSON response");
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Handle error response
+                        Toast.makeText(getApplicationContext(), "Check Internet Connection ", Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+            @Override
+            public java.util.Map<String, String> getHeaders() {
+                // Add the token to the headers of the request
+                java.util.Map<String, String> headers = new java.util.HashMap<>();
+                headers.put("Authorization", "Bearer " + token);
+                return headers;
+            }
+        };
+
+        // Create a request queue using Volley.newRequestQueue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        // Add the request to the Volley request queue
+        requestQueue.add(request);
+
+        Button cancelButton = findViewById(R.id.cancelButton);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cancelorder();
+            }
+        });
+
+        Button extendOrderButton = findViewById(R.id.extendOrderButton);
+        extendOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(OrderinfoActivity.this, ExtendorderActivity.class);
+                intent.putExtra("productID", productID);
+                startActivity(intent);
+            }
+        });
+    }
+    private void cancelorder() {
+        String token = getTokenFromSharedPreferences();
+        String url = ApiConstants.cancelOrder + productID;
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Handle the response from the profile endpoint
+                        try {
+                            String message = response.getString("message");
+                            if (message.equals("success")){
+                                Intent intent = new Intent(OrderinfoActivity.this, ProfileActivity.class);
+                                intent.putExtra("productID", productID);
+                                startActivity(intent);
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Log.e("OrderinfoActivity", "Error parsing JSON response");

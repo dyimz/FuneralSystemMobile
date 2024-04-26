@@ -670,6 +670,7 @@ public class InquireActivity extends AppCompatActivity {
             requestBody.put("availHearses", availableHearses);
             requestBody.put("haveMakeup", haveMakeup);
             requestBody.put("cremated", cremated);
+
             requestBody.put("standingflowers", sstandingflowers);
             requestBody.put("lights", slights);
             requestBody.put("scandleStand", scandleStand);
@@ -679,6 +680,7 @@ public class InquireActivity extends AppCompatActivity {
             requestBody.put("curtains", scurtains);
             requestBody.put("candles", scandles);
             requestBody.put("balloons", sballoons);
+
             requestBody.put("message", smessage);
             requestBody.put("note", snote);
 

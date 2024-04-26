@@ -36,5 +36,7 @@ public class ApiConstants {
     public static final String showmessages = BASE_URL + "api/showmessages/";
     public static final String sendmessage = BASE_URL + "api/sendmessage";
     public static final String orderDetails = BASE_URL + "api/orderDetails/";
+    public static final String cancelOrder = BASE_URL + "api/cancelOrder/";
+    public static final String extendOrder = BASE_URL + "api/extendOrder/";
 
 }
