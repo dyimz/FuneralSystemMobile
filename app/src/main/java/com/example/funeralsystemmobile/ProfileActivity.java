@@ -107,8 +107,8 @@ public class ProfileActivity extends AppCompatActivity {
         obituaries.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                startActivity(new Intent(ProfileActivity.this, WatchActivity.class));
-                Toast.makeText(getApplicationContext(), "obituaries", Toast.LENGTH_SHORT).show();
+              startActivity(new Intent(ProfileActivity.this, ObituariesActivity.class));
+//                Toast.makeText(getApplicationContext(), "obituaries", Toast.LENGTH_SHORT).show();
             }
         });
 
