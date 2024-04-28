@@ -140,6 +140,51 @@
                     android:layout_height="wrap_content" />
             </TableRow>
 
+            <TableRow
+                android:id="@+id/reqStatusRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Request Status"
+                    android:textStyle="bold"
+                    android:padding="3dp" />
+                <TextView
+                    android:id="@+id/reqStatusTextView"
+                    android:padding="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/wakeRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Wake(Start-End)"
+                    android:textStyle="bold"
+                    android:padding="3dp" />
+                <TextView
+                    android:id="@+id/wakeTextView"
+                    android:padding="1dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/appointmentRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Appointment"
+                    android:textStyle="bold"
+                    android:padding="3dp" />
+                <TextView
+                    android:id="@+id/appointmentTextView"
+                    android:padding="1dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
 
         </TableLayout>
 

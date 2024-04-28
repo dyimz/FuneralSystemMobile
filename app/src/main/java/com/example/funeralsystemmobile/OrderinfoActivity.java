@@ -62,9 +62,12 @@ public class OrderinfoActivity extends AppCompatActivity {
                             String status = order.getString("status");
                             String type = order.getString("type");
                             String paid = order.getString("paymentstatus");
-                            String packageName = order.getString("packageName");
                             String pendingbalance = order.getString("pendingbalance");
+
+                            String packageName = order.getString("packageName");
                             String requeststatus = order.getString("requeststatus");
+                            String wakefrom = order.getString("durationfrom");
+                            String waketo = order.getString("durationto");
 
                             ((TextView) findViewById(R.id.orderNumberTextView)).setText(orderNumber);
                             ((TextView) findViewById(R.id.addressTextView)).setText(address);
@@ -79,6 +82,9 @@ public class OrderinfoActivity extends AppCompatActivity {
                             ((TextView) findViewById(R.id.pendingTextView)).setText(pendingbalance);
 
                             TableRow packageRow = (TableRow) findViewById(R.id.packageRow);
+                            TableRow reqStatusRow = (TableRow) findViewById(R.id.reqStatusRow);
+                            TableRow wakeRow = (TableRow) findViewById(R.id.wakeRow);
+                            TableRow appointmentRow = (TableRow) findViewById(R.id.appointmentRow);
                             Button cancelButton = (Button) findViewById(R.id.cancelButton);
                             Button extendOrderButton = (Button) findViewById(R.id.extendOrderButton);
 
@@ -86,6 +92,12 @@ public class OrderinfoActivity extends AppCompatActivity {
                             extendOrderButton.setVisibility(View.GONE);
 
                             ((TextView) findViewById(R.id.packageTextView)).setText(packageName);
+                            ((TextView) findViewById(R.id.reqStatusTextView)).setText(requeststatus);
+                            if (requeststatus == "null") {
+                                ((TextView) findViewById(R.id.reqStatusTextView)).setText(" ");
+                            }
+                            ((TextView) findViewById(R.id.wakeTextView)).setText(wakefrom + "-" + waketo);
+                            ((TextView) findViewById(R.id.appointmentTextView)).setText(wakefrom + "-" + waketo);
 
                             if (status.equals("CANCELLED")) {
 //                                Toast.makeText(getApplicationContext(), "cancelled", Toast.LENGTH_LONG).show();
@@ -95,6 +107,9 @@ public class OrderinfoActivity extends AppCompatActivity {
                                 if (packageName == "null") {
 //                                Toast.makeText(getApplicationContext(), "isnull", Toast.LENGTH_LONG).show();
                                     packageRow.setVisibility(View.GONE);
+                                    reqStatusRow.setVisibility(View.GONE);
+                                    wakeRow.setVisibility(View.GONE);
+                                    appointmentRow.setVisibility(View.GONE);
                                 }
 
                                 if (status.equals("PLACED") && paid.equals("NOT PAID")) {
