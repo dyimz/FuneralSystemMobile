@@ -22,8 +22,8 @@ public class WatchActivity extends AppCompatActivity {
         String name = getNameFromSharedPreferences();
 
 
-        long appID = 1121715831;
-        String appSign = "f6e35761b8fe8730dfe4db678ee3ac203068ef209264c64bf1dc24c31cbc9580";
+        long appID = 775793137;
+        String appSign = "4f0202e395205f0e5f218dab09c12ab80364c1c710a1ccb360b8271f9eaef093";
         String userID = String.valueOf(custid);
         String userName = name;
 
