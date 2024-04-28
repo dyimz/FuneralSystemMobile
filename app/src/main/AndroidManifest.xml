@@ -19,6 +19,9 @@
         android:theme="@style/Theme.FuneralSystemMobile"
         tools:targetApi="31">
         <activity
+            android:name=".ObituariesActivity"
+            android:exported="false" />
+        <activity
             android:name=".ExtendorderActivity"
             android:exported="false" />
         <activity
