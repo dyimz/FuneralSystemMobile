@@ -161,6 +161,11 @@ public class ProfileActivity extends AppCompatActivity {
                             ImageView ivCustGcashQr = findViewById(R.id.ivCustGcashQr);
                             Picasso.get().load(custgcashqrUrl).into(ivCustGcashQr);
 
+                            SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("name", fname + " " + lname);
+                            editor.apply();
+
                             TextView FirstName = findViewById(R.id.FirstName);
                             FirstName.setText(fname);
                             TextView LastName = findViewById(R.id.LastName);
