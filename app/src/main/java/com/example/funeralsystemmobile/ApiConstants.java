@@ -38,5 +38,8 @@ public class ApiConstants {
     public static final String orderDetails = BASE_URL + "api/orderDetails/";
     public static final String cancelOrder = BASE_URL + "api/cancelOrder/";
     public static final String extendOrder = BASE_URL + "api/extendOrder/";
+    public static final String obituaries = BASE_URL + "api/obituaries";
+    public static final String showObituary = BASE_URL + "api/showObituary/";
+    public static final String commentobituaries = BASE_URL + "api/commentobituaries/";
 
 }
