@@ -12,6 +12,7 @@ public class Deceased {
     private String age;
     private String dateofbirth;
     private String dateofdeath;
+    private String optiondeath;
     private String placeofdeath;
     private String citizenship;
     private String address;
@@ -21,21 +22,25 @@ public class Deceased {
     private String addresscemetery;
     private String nameFather;
     private String nameMother;
+    private String image;
+    private String description;
 
     public Deceased() {
     }
 
-    public Deceased(int id, String fname, String mname, String lname, String relationship, String sex, String religion, String age, String dateofbirth, String dateofdeath, String placeofdeath, String citizenship, String address, String civilstatus, String occupation, String namecemetery, String addresscemetery, String nameFather, String nameMother) {
+    public Deceased(int id, String fname, String mname, String lname, String relationship, String causeofdeath, String sex, String religion, String age, String dateofbirth, String dateofdeath, String optiondeath, String placeofdeath, String citizenship, String address, String civilstatus, String occupation, String namecemetery, String addresscemetery, String nameFather, String nameMother, String image, String description) {
         this.id = id;
         this.fname = fname;
         this.mname = mname;
         this.lname = lname;
         this.relationship = relationship;
+        this.causeofdeath = causeofdeath;
         this.sex = sex;
         this.religion = religion;
         this.age = age;
         this.dateofbirth = dateofbirth;
         this.dateofdeath = dateofdeath;
+        this.optiondeath = optiondeath;
         this.placeofdeath = placeofdeath;
         this.citizenship = citizenship;
         this.address = address;
@@ -45,6 +50,8 @@ public class Deceased {
         this.addresscemetery = addresscemetery;
         this.nameFather = nameFather;
         this.nameMother = nameMother;
+        this.image = image;
+        this.description = description;
     }
 
     public int getId() {
@@ -135,6 +142,14 @@ public class Deceased {
         this.dateofdeath = dateofdeath;
     }
 
+    public String getOptiondeath() {
+        return optiondeath;
+    }
+
+    public void setOptiondeath(String optiondeath) {
+        this.optiondeath = optiondeath;
+    }
+
     public String getPlaceofdeath() {
         return placeofdeath;
     }
@@ -205,5 +220,21 @@ public class Deceased {
 
     public void setNameMother(String nameMother) {
         this.nameMother = nameMother;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
