@@ -18,100 +18,100 @@
                 <TextView
                     android:text="Order #"
                     android:textStyle="bold"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
                 <TextView
                     android:id="@+id/orderNumberTextView"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
             </TableRow>
 
             <TableRow>
                 <TextView
                     android:text="Address"
                     android:textStyle="bold"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
                 <TextView
                     android:id="@+id/addressTextView"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
             </TableRow>
 
             <TableRow>
                 <TextView
                     android:text="Contact"
                     android:textStyle="bold"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
                 <TextView
                     android:id="@+id/contactTextView"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
             </TableRow>
 
             <TableRow>
                 <TextView
                     android:text="Discounted"
                     android:textStyle="bold"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
                 <TextView
                     android:id="@+id/discountedTextView"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
             </TableRow>
 
             <TableRow>
                 <TextView
                     android:text="Subtotal"
                     android:textStyle="bold"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
                 <TextView
                     android:id="@+id/subtotalTextView"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
             </TableRow>
 
             <TableRow>
                 <TextView
                     android:text="Total"
                     android:textStyle="bold"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
                 <TextView
                     android:id="@+id/totalTextView"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
             </TableRow>
 
             <TableRow>
                 <TextView
                     android:text="Payment Method"
                     android:textStyle="bold"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
                 <TextView
                     android:id="@+id/paymentMethodTextView"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
             </TableRow>
 
             <TableRow>
                 <TextView
                     android:text="Status"
                     android:textStyle="bold"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
                 <TextView
                     android:id="@+id/statusTextView"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
             </TableRow>
 
             <TableRow>
                 <TextView
                     android:text="Type"
                     android:textStyle="bold"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
                 <TextView
                     android:id="@+id/typeTextView"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
             </TableRow>
 
             <TableRow>
                 <TextView
                     android:text="Paid"
                     android:textStyle="bold"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
                 <TextView
                     android:id="@+id/paidTextView"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
             </TableRow>
 
 
@@ -119,10 +119,10 @@
                 <TextView
                     android:text="Pending Balance"
                     android:textStyle="bold"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
                 <TextView
                     android:id="@+id/pendingTextView"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
             </TableRow>
 
             <TableRow
@@ -132,10 +132,10 @@
                 <TextView
                     android:text="Package"
                     android:textStyle="bold"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
                 <TextView
                     android:id="@+id/packageTextView"
-                    android:padding="3dp"
+                    android:padding="2dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </TableRow>
@@ -147,10 +147,10 @@
                 <TextView
                     android:text="Request Status"
                     android:textStyle="bold"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
                 <TextView
                     android:id="@+id/reqStatusTextView"
-                    android:padding="3dp"
+                    android:padding="2dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </TableRow>
@@ -162,10 +162,10 @@
                 <TextView
                     android:text="Wake(Start-End)"
                     android:textStyle="bold"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
                 <TextView
                     android:id="@+id/wakeTextView"
-                    android:padding="1dp"
+                    android:padding="2dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </TableRow>
@@ -177,10 +177,40 @@
                 <TextView
                     android:text="Appointment"
                     android:textStyle="bold"
-                    android:padding="3dp" />
+                    android:padding="2dp" />
                 <TextView
                     android:id="@+id/appointmentTextView"
-                    android:padding="1dp"
+                    android:padding="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/crematoriumRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Crematory"
+                    android:textStyle="bold"
+                    android:padding="2dp" />
+                <TextView
+                    android:id="@+id/crematoryTextView"
+                    android:padding="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/hearseRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Hearse"
+                    android:textStyle="bold"
+                    android:padding="2dp" />
+                <TextView
+                    android:id="@+id/hearseTextView"
+                    android:padding="2dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </TableRow>
@@ -203,7 +233,7 @@
         <TextView
             android:text="Products/Services"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -220,7 +250,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="10dp">
 
         <Button
             android:id="@+id/cancelButton"

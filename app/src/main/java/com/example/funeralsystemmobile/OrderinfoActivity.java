@@ -69,6 +69,10 @@ public class OrderinfoActivity extends AppCompatActivity {
                             String wakefrom = order.getString("durationfrom");
                             String waketo = order.getString("durationto");
 
+                            String crematory = order.getString("crematorium_name");
+                            String hearse_model = order.getString("hearse_model");
+                            String hearse_plate = order.getString("hearse_licenseplate");
+
                             ((TextView) findViewById(R.id.orderNumberTextView)).setText(orderNumber);
                             ((TextView) findViewById(R.id.addressTextView)).setText(address);
                             ((TextView) findViewById(R.id.contactTextView)).setText(contact);
@@ -98,6 +102,22 @@ public class OrderinfoActivity extends AppCompatActivity {
                             }
                             ((TextView) findViewById(R.id.wakeTextView)).setText(wakefrom + "-" + waketo);
                             ((TextView) findViewById(R.id.appointmentTextView)).setText(wakefrom + "-" + waketo);
+
+                            ((TextView) findViewById(R.id.crematoryTextView)).setText(crematory);
+                            if (crematory == "null") {
+                                ((TextView) findViewById(R.id.crematoryTextView)).setText(" ");
+                            }
+                            ((TextView) findViewById(R.id.hearseTextView)).setText(hearse_model +" ("+ hearse_plate +")");
+                            if (hearse_model == "null") {
+                                ((TextView) findViewById(R.id.hearseTextView)).setText(" ");
+                            }
+
+                            TableRow crematoriumRow = (TableRow) findViewById(R.id.crematoriumRow);
+                            TableRow hearseRow = (TableRow) findViewById(R.id.hearseRow);
+                            if (type.equals("PRODUCTS")) {
+                                crematoriumRow.setVisibility(View.GONE);
+                                hearseRow.setVisibility(View.GONE);
+                            }
 
                             if (status.equals("CANCELLED")) {
 //                                Toast.makeText(getApplicationContext(), "cancelled", Toast.LENGTH_LONG).show();
